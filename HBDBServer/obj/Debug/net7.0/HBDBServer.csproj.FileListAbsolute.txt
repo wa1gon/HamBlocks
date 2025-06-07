@@ -12,3 +12,7 @@ C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\refint\HBDBServer.dll
 C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\HBDBServer.pdb
 C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\HBDBServer.genruntimeconfig.cache
 C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\ref\HBDBServer.dll
+C:\github\HamBlocks\HBDBServer\bin\Debug\net7.0\NodaTime.dll
+C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\HBDBServer.csproj.AssemblyReference.cache
+C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\HBDBServer.sourcelink.json
+C:\github\HamBlocks\HBDBServer\obj\Debug\net7.0\HBDBServer.csproj.Up2Date

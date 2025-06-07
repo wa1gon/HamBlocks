@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HBDBServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1231a1621858ffef706d3937b38f1df8edcf5fad")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d625f9145994d3c7d0763f865ac295e392b2e75")]
 [assembly: System.Reflection.AssemblyProductAttribute("HBDBServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HBDBServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
