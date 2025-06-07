@@ -12,6 +12,7 @@ public class Qso
     public string Mode { get; set; } = string.Empty;
     [Required]
     public decimal Freq { get; set; } = decimal.Zero;
+    public string Band { get; set; } = string.Empty;
     public string RstSent { get; set; } = string.Empty;
     public string RstRcvd { get; set; } = string.Empty;
     

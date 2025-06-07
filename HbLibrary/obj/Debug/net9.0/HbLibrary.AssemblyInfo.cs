@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HbLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d625f9145994d3c7d0763f865ac295e392b2e75")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45d949517ee545f7104a8d4c452629ba7d194f51")]
 [assembly: System.Reflection.AssemblyProductAttribute("HbLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HbLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
