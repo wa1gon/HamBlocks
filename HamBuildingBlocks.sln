@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HbLibrary", "HbLibrary\HbLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HbLibrary.Test", "HbLibrary.Test\HbLibrary.Test.csproj", "{BF8F9109-E485-42B7-B2E8-69B07FDF337E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBAbstractions", "HBAbstractions\HBAbstractions.csproj", "{274E20A8-4119-4849-AE5B-C762EF30E626}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BF8F9109-E485-42B7-B2E8-69B07FDF337E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF8F9109-E485-42B7-B2E8-69B07FDF337E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF8F9109-E485-42B7-B2E8-69B07FDF337E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274E20A8-4119-4849-AE5B-C762EF30E626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274E20A8-4119-4849-AE5B-C762EF30E626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274E20A8-4119-4849-AE5B-C762EF30E626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274E20A8-4119-4849-AE5B-C762EF30E626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

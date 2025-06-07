@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ydDkeb3gf+U=",
+  "success": true,
+  "projectFilePath": "C:\\github\\HamBlocks\\HBDBServer\\HBDBServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wa1go\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512",
+    "C:\\Users\\wa1go\\.nuget\\packages\\nodatime\\3.2.2\\nodatime.3.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}
