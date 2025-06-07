@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace HamDotNetToolkit;
+namespace HamBlocks.Library.Models;
 
 public class Qso
 {

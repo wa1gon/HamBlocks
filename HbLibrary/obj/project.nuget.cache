@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dFCSfP+34NI=",
+  "dgSpecHash": "3tF0GP9lEuA=",
   "success": true,
   "projectFilePath": "C:\\github\\HamBlocks\\HbLibrary\\HbLibrary.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\wa1go\\.nuget\\packages\\nodatime\\3.2.2\\nodatime.3.2.2.nupkg.sha512"
+  ],
   "logs": []
 }
