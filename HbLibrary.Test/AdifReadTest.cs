@@ -1,12 +1,4 @@
 namespace HBLibrary.Test;
-
-// using Microsoft.VisualStudio.TestTools.UnitTesting;
-// using HamBlocks.Library.Models;
-// using NodaTime;
-// using System;
-// using System.IO;
-// using System.Linq;
-
 [TestClass]
 public class AdifReaderTests
 {
