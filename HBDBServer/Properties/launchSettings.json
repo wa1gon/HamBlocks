@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "HBDBServer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

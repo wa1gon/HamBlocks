@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ln3YY71R8+Q=",
+  "success": true,
+  "projectFilePath": "C:\\github\\HamBlocks\\HBDBServer\\HBDBServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wa1go\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+  ],
+  "logs": []
+}
