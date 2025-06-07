@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HBAbstractions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81f0e9f52dd4107ee2885496601a5dec72fbe6ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5b511ffd008892e06515fd94764157dc53bef5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("HBAbstractions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HBAbstractions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
