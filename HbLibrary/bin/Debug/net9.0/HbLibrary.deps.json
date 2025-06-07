@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "HbLibrary/1.0.0": {
         "dependencies": {
+          "HBAbstractions": "1.0.0",
           "NodaTime": "3.2.2"
         },
         "runtime": {
@@ -19,6 +20,14 @@
           "lib/net8.0/NodaTime.dll": {
             "assemblyVersion": "3.2.2.0",
             "fileVersion": "3.2.2.0"
+          }
+        }
+      },
+      "HBAbstractions/1.0.0": {
+        "runtime": {
+          "HBAbstractions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       }
@@ -36,6 +45,11 @@
       "sha512": "sha512-dmju5W0UYC3QP/UJM0juKAZkH0HSDMp0gH91A0+mT9M0kgyM2Jm67hUZPl/WRQLq8Lijjqmdk8kyAViWFWM7dA==",
       "path": "nodatime/3.2.2",
       "hashPath": "nodatime.3.2.2.nupkg.sha512"
+    },
+    "HBAbstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

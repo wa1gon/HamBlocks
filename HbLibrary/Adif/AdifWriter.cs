@@ -47,8 +47,8 @@ public static class AdifWriter
             AppendField(sb, "TIME_ON", dateTimeUtc.TimeOfDay.ToString("HHmmss", CultureInfo.InvariantCulture));
 
             // GUID if available
-            if (!string.IsNullOrWhiteSpace(qso.Id))
-                AppendField(sb, "GUID", qso.Id);
+            if (!string.IsNullOrWhiteSpace(qso.Id.ToString()))
+                AppendField(sb, "GUID", qso.Id.ToString());
 
             // Extra fields from QsoDetail
             foreach (var detail in qso.Details)

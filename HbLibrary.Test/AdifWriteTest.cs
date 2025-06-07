@@ -14,7 +14,7 @@ public class AdifWriterTests
         // Arrange
         var qso = new Qso
         {
-            Id = "123e4567-e89b-12d3-a456-426614174000",
+            Id = Guid.Parse("123e4567-e89b-12d3-a456-426614174000"),
             Call = "K1ABC",
             Mode = "SSB",
             Freq = 14.250m,

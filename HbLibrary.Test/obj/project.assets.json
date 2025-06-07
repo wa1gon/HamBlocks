@@ -407,10 +407,21 @@
           }
         }
       },
+      "HBAbstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/HBAbstractions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HBAbstractions.dll": {}
+        }
+      },
       "HbLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "HBAbstractions": "1.0.0",
           "NodaTime": "3.2.2"
         },
         "compile": {
@@ -1106,6 +1117,11 @@
         "version.txt"
       ]
     },
+    "HBAbstractions/1.0.0": {
+      "type": "project",
+      "path": "../HBAbstractions/HBAbstractions.csproj",
+      "msbuildProject": "../HBAbstractions/HBAbstractions.csproj"
+    },
     "HbLibrary/1.0.0": {
       "type": "project",
       "path": "../HbLibrary/HbLibrary.csproj",
@@ -1114,6 +1130,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "HBAbstractions >= 1.0.0",
       "HbLibrary >= 1.0.0",
       "MSTest.TestAdapter >= 3.0.4",
       "MSTest.TestFramework >= 3.0.4",
@@ -1157,6 +1174,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "C:\\github\\HamBlocks\\HBAbstractions\\HBAbstractions.csproj": {
+              "projectPath": "C:\\github\\HamBlocks\\HBAbstractions\\HBAbstractions.csproj"
+            },
             "C:\\github\\HamBlocks\\HbLibrary\\HbLibrary.csproj": {
               "projectPath": "C:\\github\\HamBlocks\\HbLibrary\\HbLibrary.csproj"
             }

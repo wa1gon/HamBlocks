@@ -45,8 +45,8 @@ public class AdifReaderTests
         Assert.AreEqual(expectedInstant, qso.QsoDate);
 
         // Verify GUID preserved from input
-        Assert.AreEqual("123e4567-e89b-12d3-a456-426614174000", qso.Id);
-        Assert.IsTrue(Guid.TryParse(qso.Id, out _));
+        Assert.AreEqual("123e4567-e89b-12d3-a456-426614174000", qso.Id.ToString());
+        Assert.IsTrue(Guid.TryParse(qso.Id.ToString(), out _));
 
         // Verify QsoDetails/Details contains non-core fields
         Assert.IsTrue(qso.Details.Any(d =>

@@ -67,7 +67,7 @@ public class AdifReader
                 case "mode": qso.Mode = value; break;
                 case "rst_sent": qso.RstSent = value; break;
                 case "rst_rcvd": qso.RstRcvd = value; break;
-                case "guid": qso.Id = value; break;
+                case "guid": qso.Id = Guid.Parse(value); break;
                 case "freq":
                     if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
                         qso.Freq = freq;
@@ -99,9 +99,9 @@ public class AdifReader
                     break;
             }
         }
-        if (string.IsNullOrWhiteSpace(qso.Id))
+        if (qso.Id == Guid.Empty)
         {
-            qso.Id = Guid.NewGuid().ToString();
+            qso.Id = Guid.NewGuid();
         }
         // Combine date + time into Instant
         if (date.HasValue)

@@ -2,7 +2,7 @@
 
 public class Qso
 {
-    [Required] public string Id { get; set; } = string.Empty;
+    [Required] public Guid Id { get; set; }
     [Required] public string Call { get; set; } = string.Empty;
     [Required] public string MyCall { get; set; } = string.Empty;
     [Required] public Instant QsoDate { get; set; }

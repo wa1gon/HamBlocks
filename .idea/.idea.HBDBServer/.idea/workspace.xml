@@ -9,11 +9,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="added abstraction project">
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/Debug/net9.0/HBAbstractions.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/Debug/net9.0/HBAbstractions.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/Debug/net9.0/HBAbstractions.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/Debug/net9.0/HBAbstractions.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Docker/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HBDBServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HBDBServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/HBDBServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/HBDBServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/obj/HBDBServer.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/obj/HBDBServer.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBDBServer/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBDBServer/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HbLibrary.Test/AdifReadTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/AdifReadTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/bin/Debug/net9.0/CoverletSourceRootsMapping_HbLibrary.Test" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/bin/Debug/net9.0/CoverletSourceRootsMapping_HbLibrary.Test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/Debug/net9.0/HbLibrary.Test.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/HbLibrary.Test.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/HbLibrary.Test.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Adif/AdifWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Adif/AdifWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/bin/Debug/net9.0/HbLibrary.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +75,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2yBZt0eDNU8usuz5s94GKsKTf7A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="autoscrollToSource" value="true" />
@@ -118,7 +149,7 @@
       <updated>1749310137711</updated>
       <workItem from="1749310139690" duration="717000" />
       <workItem from="1749310886931" duration="11543000" />
-      <workItem from="1749331428609" duration="790000" />
+      <workItem from="1749331428609" duration="3702000" />
     </task>
     <task id="LOCAL-00001" summary="added abstraction project">
       <option name="closed" value="true" />
@@ -151,24 +182,5 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="added abstraction project" />
     <option name="LAST_COMMIT_MESSAGE" value="added abstraction project" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs</url>
-          <line>5</line>
-          <properties documentPath="C:\github\HamBlocks\HbLibrary.Test\zGlobal.cs" containingFunctionPresentation="">
-            <startOffsets>
-              <option value="213" />
-            </startOffsets>
-            <endOffsets>
-              <option value="227" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
