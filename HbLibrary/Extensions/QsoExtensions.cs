@@ -12,6 +12,8 @@ public static class QsoExtensions
         nameof(Qso.Freq),
         nameof(Qso.RstSent),
         nameof(Qso.RstRcvd),
+        nameof(Qso.Band),
+        nameof(Qso.MyCall)
     };
 
     /// <summary>

@@ -2,15 +2,11 @@
 
 public class Qso
 {
-    [Required]
-    public string Id { get; set; } = string.Empty;
-    [Required]
-    public string Call { get; set; } = string.Empty;
-    [Required]
-    public Instant QsoDate { get; set; }
-    [Required]
-    public string Mode { get; set; } = string.Empty;
-    [Required]
+    [Required] public string Id { get; set; } = string.Empty;
+    [Required] public string Call { get; set; } = string.Empty;
+    [Required] public string MyCall { get; set; } = string.Empty;
+    [Required] public Instant QsoDate { get; set; }
+    [Required] public string Mode { get; set; } = string.Empty;
     public decimal Freq { get; set; } = decimal.Zero;
     public string Band { get; set; } = string.Empty;
     public string RstSent { get; set; } = string.Empty;

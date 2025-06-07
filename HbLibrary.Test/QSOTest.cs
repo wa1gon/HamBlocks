@@ -1,8 +1,5 @@
-using HamBlocks.Library.Models;
-using HbLibrary.Extensions;
-using NodaTime;
 
-namespace TestProject1;
+namespace HBLibrary.Test;
 using HamBlocks.Library.Models;
 
     [TestClass]

@@ -4,3 +4,4 @@ global using System.Globalization;
 global using System.Text.RegularExpressions;
 global using HamBlocks.Library.Models;
 global using NodaTime.Text;
+global using System.Text;
