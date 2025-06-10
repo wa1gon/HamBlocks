@@ -108,11 +108,11 @@ public class AdifReader
         {
             var localTime = time ?? new LocalTime(0, 0);
             var localDateTime = date.Value + localTime;
-            qso.QsoDate = localDateTime.InZoneStrictly(DateTimeZone.Utc).ToInstant();
+            qso.QsoDate = localDateTime.InZoneStrictly(DateTimeZone.Utc).ToDateTimeUtc();
         }
         else
         {
-            qso.QsoDate = Instant.FromUnixTimeSeconds(0); // fallback if no date
+            qso.QsoDate = DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime; // fallback if no date
         }
 
         return qso;

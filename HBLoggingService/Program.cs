@@ -2,14 +2,41 @@ using HBLoggingService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
+
 builder.Services.AddDbContext<LoggingDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine(connStr);
+    switch (dbProvider)
+    {
+        case "postgresql":
+            options.UseNpgsql(connStr);
+            break;
+
+        // case "sqlite":
+        //     options.UseSqlite(connStr);
+        //     break;
+        //
+        // case "sqlserver":
+        //     options.UseSqlServer(connStr);
+        //     break;
+
+        default:
+            throw new InvalidOperationException($"Unsupported database provider: {dbProvider}");
+    }
+});
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
+    db.Database.EnsureCreated();
+}
 app.UseSwagger();
 app.UseSwaggerUI();
 

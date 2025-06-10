@@ -18,7 +18,7 @@ public class AdifWriterTests
             Call = "K1ABC",
             Mode = "SSB",
             Freq = 14.250m,
-            QsoDate = Instant.FromUtc(2024, 6, 6, 14, 30),
+            QsoDate = Instant.FromUtc(2024, 6, 6, 14, 30).ToDateTimeUtc(),
             RstSent = "", // intentionally blank
             RstRcvd = "", // intentionally blank
             Details = new List<QsoDetail>
@@ -70,7 +70,7 @@ public class AdifWriterTests
         {
             Call = "N0FREQ",
             Mode = "FT8",
-            QsoDate = SystemClock.Instance.GetCurrentInstant()
+            QsoDate = SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc()
         };
 
         // Act

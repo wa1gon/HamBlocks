@@ -42,7 +42,7 @@ public static class AdifWriter
                 AppendField(sb, "RST_RCVD", qso.RstRcvd);
 
             // QSO date/time in UTC
-            var dateTimeUtc = qso.QsoDate.InUtc();
+            var dateTimeUtc = qso.QsoDate.ToUniversalTime();
             AppendField(sb, "QSO_DATE", dateTimeUtc.Date.ToString("yyyyMMdd", CultureInfo.InvariantCulture));
             AppendField(sb, "TIME_ON", dateTimeUtc.TimeOfDay.ToString("HHmmss", CultureInfo.InvariantCulture));
 

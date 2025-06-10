@@ -11,7 +11,7 @@ using HamBlocks.Library.Models;
             var qso = new Qso
             {
                 Call = "WX5ZZZ",
-                QsoDate = Instant.FromUtc(2025, 6, 6, 14, 30, 0),
+                QsoDate = DateTime.Now,
 
                 Mode = "SSB",
                 RstSent = "59",

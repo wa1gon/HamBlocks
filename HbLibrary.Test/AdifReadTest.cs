@@ -41,7 +41,7 @@ public class AdifReaderTests
         Assert.AreEqual("59", qso.RstRcvd);
         Assert.AreEqual(14.250m, qso.Freq);
 
-        var expectedInstant = Instant.FromUtc(2024, 6, 6, 14, 30);
+        var expectedInstant = new DateTime(2024, 6, 6, 14, 30, 0, DateTimeKind.Utc);
         Assert.AreEqual(expectedInstant, qso.QsoDate);
 
         // Verify GUID preserved from input

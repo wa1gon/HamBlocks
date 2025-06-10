@@ -5,7 +5,7 @@ public class Qso
     [Required] public Guid Id { get; set; }
     [Required] public string Call { get; set; } = string.Empty;
     [Required] public string MyCall { get; set; } = string.Empty;
-    [Required] public Instant QsoDate { get; set; }
+    [Required] public DateTime QsoDate { get; set; }
     [Required] public string Mode { get; set; } = string.Empty;
     public decimal Freq { get; set; } = decimal.Zero;
     public string Band { get; set; } = string.Empty;
@@ -13,10 +13,11 @@ public class Qso
     public string RstRcvd { get; set; } = string.Empty;
     
     public bool BackedUp { get; set; } = false;
-    public Instant BackupDate { get;set; }
-    public Instant LastUpdate { get;set; }
+    public DateTime BackupDate { get;set; }
+    public DateTime LastUpdate { get;set; }
 
-    public ICollection<QsoDetail> Details { get; set; } = new List<QsoDetail>();   public Dictionary<string,QsoDetail> QsoDetails { get; set; } = new Dictionary<string,QsoDetail>();
+    public ICollection<QsoDetail> Details { get; set; } = new List<QsoDetail>();   
+    // public Dictionary<string,QsoDetail> QsoDetails { get; set; } = new Dictionary<string,QsoDetail>();
     
     public override string ToString()
     {
