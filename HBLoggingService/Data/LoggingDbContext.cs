@@ -8,4 +8,5 @@ public class LoggingDbContext : DbContext
     }
 
     public DbSet<Qso> Qsos => Set<Qso>();
+    public DbSet<QsoDetail> QsoDetails { get; set; }
 }

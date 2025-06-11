@@ -40,7 +40,8 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/qsos", async (LoggingDbContext db) => await db.Qsos.ToListAsync());
+app.MapGet("/qsos", async (LoggingDbContext db) => 
+    await db.Qsos.Include(q => q.Details).ToListAsync());
 
 app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
 {
@@ -48,5 +49,5 @@ app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
     await db.SaveChangesAsync();
     return Results.Created($"/qsos/{qso.Id}", qso);
 });
-
+app.Urls.Add("http://localhost:5000");
 app.Run();

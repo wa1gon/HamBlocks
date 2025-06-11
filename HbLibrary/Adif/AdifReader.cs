@@ -65,6 +65,8 @@ public class AdifReader
                 case "call": qso.Call = value; break;
                 case "band": qso.Band = value; break;
                 case "mode": qso.Mode = value; break;
+                case "country": qso.Country = value; break;
+                case "state": qso.State = value; break;
                 case "rst_sent": qso.RstSent = value; break;
                 case "rst_rcvd": qso.RstRcvd = value; break;
                 case "guid": qso.Id = Guid.Parse(value); break;

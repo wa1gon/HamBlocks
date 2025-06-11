@@ -14,6 +14,11 @@ namespace HBLoggingService.Tests.Integration
     {
         private LoggingDbContext _dbContext;
 
+        public QsoIntegrationTests(LoggingDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [TestInitialize]
         public void Setup()
         {
@@ -54,8 +59,8 @@ namespace HBLoggingService.Tests.Integration
                     Freq = 14.250m,
                     Details = new List<QsoDetail>
                     {
-                        new QsoDetail { Key = "IOTA", Value = $"K-{i:0000}" },
-                        new QsoDetail { Key = "POTA", Value = $"P-{i:0000}" }
+                        new QsoDetail { FieldName = "IOTA", FieldValue = $"K-{i:0000}" },
+                        new QsoDetail { FieldName = "POTA", FieldValue = $"P-{i:0000}" }
                     }
                 };
                 qsos.Add(qso);
