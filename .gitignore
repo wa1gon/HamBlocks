@@ -33,3 +33,7 @@ HbLibrary/bin/
 HBLoggingService/obj/
 
 HBLoggingService/bin/
+
+HBDBLoggingServer.Test.Integration/bin/
+
+HBDBLoggingServer.Test.Integration/obj/
