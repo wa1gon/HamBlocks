@@ -14,11 +14,25 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
         // Add services to the container.
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+        {
+            var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            switch (dbProvider)
+            {
+                case "postgresql":
+                    options.UseNpgsql(connStr);
+                    break;
+
+                default:
+                    throw new InvalidOperationException($"Unsupported database provider: {dbProvider}");
+            }
+        });
+        
+        
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -28,7 +42,11 @@ public class Program
         builder.Services.AddSingleton<WeatherForecastService>();
 
         var app = builder.Build();
-
+        using (var scope = app.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            db.Database.EnsureCreated();
+        }
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
