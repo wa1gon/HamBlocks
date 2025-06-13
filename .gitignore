@@ -41,3 +41,7 @@ HBDBLoggingServer.Test.Integration/obj/
 HBLoggingServers/obj/
 
 HBLoggingServers/bin/
+
+HBWebLogger/obj/
+
+HBWebLogger/bin/
