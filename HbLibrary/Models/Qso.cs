@@ -1,6 +1,6 @@
 ﻿namespace HamBlocks.Library.Models;
 
-public class Qso
+public record class Qso
 {
     [Required] public Guid Id { get; set; }
     [Required] public string Call { get; set; } = string.Empty;
