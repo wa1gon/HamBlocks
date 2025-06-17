@@ -1,12 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-using HBWebLogger.Areas.Identity;
-using HBWebLogger.Data;
-using MudBlazor.Services;
+
 
 namespace HBWebLogger;
 
@@ -21,7 +13,6 @@ public class Program
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
             var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
-
             switch (dbProvider)
             {
                 case "postgresql":

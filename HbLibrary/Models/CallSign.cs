@@ -3,7 +3,13 @@ namespace HamBlocks.Library.Models;
 public record class CallSign
 {
     [Required]
-    public string Call { get; set; } = string.Empty;
+    private string _call = string.Empty;
+    [Key]
+    public string Call
+    {
+        get => _call;
+        set => _call = value?.ToUpperInvariant() ?? string.Empty;
+    }
 
     public bool IsPrimary { get; set; } = true;
     public Guid OperatorId { get; set; }

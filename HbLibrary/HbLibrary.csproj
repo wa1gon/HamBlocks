@@ -14,4 +14,8 @@
       <ProjectReference Include="..\HBAbstractions\HBAbstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ClientApi\" />
+    </ItemGroup>
+
 </Project>
