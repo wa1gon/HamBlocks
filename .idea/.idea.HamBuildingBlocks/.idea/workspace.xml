@@ -21,29 +21,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Profile.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Profile.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Profile.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBWebLogger/ZGlobalUsing.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HbLibrary/Models/LogConfiguration.cs" afterDir="false" />
+    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="wip">
+      <change afterPath="$PROJECT_DIR$/HBWebLogger/Models/ArrlFdModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBWebLogger/HBWebLogger.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/HBWebLogger.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBWebLogger/Pages/Counter.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBWebLogger/Pages/FetchData.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBWebLogger/Data/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBWebLogger/Data/WeatherForecastService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/Pages/Logs/ArrlFieldDay.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HBWebLogger/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBWebLogger/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBWebLogger/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/HBWebLogger/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/CallSign.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/CallSign.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,6 +244,15 @@
       <workItem from="1749310886931" duration="11543000" />
       <workItem from="1749767010171" duration="1785000" />
     </task>
+    <task id="LOCAL-00001" summary="wip">
+      <option name="closed" value="true" />
+      <created>1750200376413</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750200376413</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,5 +262,7 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
 </project>

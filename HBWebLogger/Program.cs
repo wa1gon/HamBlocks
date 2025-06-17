@@ -32,7 +32,6 @@ public class Program
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMudServices();
         builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-        builder.Services.AddSingleton<WeatherForecastService>();
 
         var app = builder.Build();
         using (var scope = app.Services.CreateScope())
