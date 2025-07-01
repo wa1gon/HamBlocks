@@ -1,12 +1,13 @@
 ﻿namespace HamBlocks.Library.Models;
 
-public class Qso
+public record class Qso
 {
     [Required] public Guid Id { get; set; }
     [Required] public string Call { get; set; } = string.Empty;
     [Required] public string MyCall { get; set; } = string.Empty;
     [Required] public DateTime QsoDate { get; set; }
     [Required] public string Mode { get; set; } = string.Empty;
+    public string ContestId { get; set; } = string.Empty;
     public string Country { get; set; } = string.Empty;
     public string State { get; set; } = string.Empty;
     public decimal Freq { get; set; } = decimal.Zero;

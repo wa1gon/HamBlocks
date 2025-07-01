@@ -1,0 +1,16 @@
+@page "/ArrlFieldDay"
+<h3>Arrl Field Day</h3>
+<MudGrid>
+    <MudItem xs="12" sm="6" md="4">
+        <MudTextField @bind-Value="ArrlFd.CallSign" Label="Call Sign" Variant="Variant.Outlined"/>
+    </MudItem>
+    <MudSelect T="string" @bind-Value="ArrlFd.Section" Label="Section" Variant="Variant.Outlined">
+        @foreach (var arrlSection in ArrlSections)
+        {
+            <MudSelectItem Value="@arrlSection">@arrlSection</MudSelectItem>
+        }
+    </MudSelect>
+    <MudItem xs="12" sm="6" md="4">
+        <MudTextField @bind-Value="ArrlFd.Class" Label="Class" Variant="Variant.Outlined"/>
+    </MudItem>
+</MudGrid>

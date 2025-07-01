@@ -69,6 +69,7 @@ public class AdifReader
                 case "state": qso.State = value; break;
                 case "rst_sent": qso.RstSent = value; break;
                 case "rst_rcvd": qso.RstRcvd = value; break;
+                case "contest-id": qso.ContestId = value; break;
                 case "guid": qso.Id = Guid.Parse(value); break;
                 case "freq":
                     if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))

@@ -1,11 +1,4 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-using HBWebLogger.Areas.Identity;
-using HBWebLogger.Data;
+
 
 namespace HBWebLogger;
 
@@ -20,7 +13,6 @@ public class Program
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
             var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
-
             switch (dbProvider)
             {
                 case "postgresql":
@@ -38,15 +30,15 @@ public class Program
             .AddEntityFrameworkStores<ApplicationDbContext>();
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
-        builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-        builder.Services.AddSingleton<WeatherForecastService>();
+        builder.Services.AddMudServices();
+        // builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
         var app = builder.Build();
-        using (var scope = app.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            db.Database.EnsureCreated();
-        }
+        // using (var scope = app.Services.CreateScope())
+        // {
+        //     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //     db.Database.EnsureCreated();
+        // }
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
