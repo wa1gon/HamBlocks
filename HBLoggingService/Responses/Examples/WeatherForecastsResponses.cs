@@ -1,6 +1,6 @@
 namespace HBLoggingService.Responses.Examples;
 
-public class WeatherForecastsResponses
+public class WeatherForecastsResponse
 {
     public IEnumerable<WeatherForecastResponse> Forecasts { get; set; }
 }
