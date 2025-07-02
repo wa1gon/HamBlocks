@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="6.2.0" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
@@ -20,6 +22,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HbLibrary\HbLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Endpoints\" />
+    <Folder Include="Models\" />
+    <Folder Include="Requests\" />
+    <Folder Include="Responses\" />
   </ItemGroup>
 
 </Project>

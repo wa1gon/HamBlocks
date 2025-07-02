@@ -1,3 +1,5 @@
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using HBLoggingService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,7 @@ var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
 builder.Services.AddDbContext<LoggingDbContext>(options =>
 {
     var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine(connStr);
+
     switch (dbProvider)
     {
         case "postgresql":
@@ -29,6 +31,7 @@ Console.WriteLine(connStr);
 
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -39,7 +42,10 @@ using (var scope = app.Services.CreateScope())
 }
 app.UseSwagger();
 app.UseSwaggerUI();
-
+app.UseAuthorization();
+app.UseFastEndpoints();
+app.UseOpenApi();
+app.UseSwaggerUi(x => x.ConfigureDefaults());
 app.MapGet("/qsos", async (LoggingDbContext db) => 
     await db.Qsos.Include(q => q.Details).ToListAsync());
 
