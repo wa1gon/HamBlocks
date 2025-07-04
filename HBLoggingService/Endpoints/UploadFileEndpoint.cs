@@ -1,14 +1,12 @@
-using HBLoggingService.Requests;
-using HBLoggingService.Responses;
-using FastEndpoints;
-using Microsoft.AspNetCore.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.IO;
-using HbLibrary.Adif; // Adjust namespace as needed
+using HBLoggingService.Data;
 
 public class UploadFileEndpoint : Endpoint<UploadFileRequest, UploadFileResponse>
 {
+    private readonly LoggingDbContext _db; 
+    public UploadFileEndpoint(LoggingDbContext db)
+    {
+        _db = db;
+    }
     public override void Configure()
     {
         Post("/upload");
@@ -32,7 +30,8 @@ public class UploadFileEndpoint : Endpoint<UploadFileRequest, UploadFileResponse
         var adifContent = await reader.ReadToEndAsync();
         
         var records = AdifReader.ReadFromString(adifContent); // Adjust method as per hbLibrary API
-
+        _db.Qsos.AddRange(records);
+        await _db.SaveChangesAsync(ct);
         await SendAsync(new UploadFileResponse
         {
             Message = $"File '{req.File.FileName}' uploaded. Parsed {records.Count} ADIF records."
