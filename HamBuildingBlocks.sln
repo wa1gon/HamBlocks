@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBDBLoggingServer.Test.Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBWebLogger", "HBWebLogger\HBWebLogger.csproj", "{7D1D02DA-83E1-40A5-AD39-4F769FC0FF2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastEndpointServer", "FastEndpointServer\FastEndpointServer.csproj", "{A1915574-7AFF-4AC2-AB38-811B5C8C1AA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUpload", "ConsoleUpload\ConsoleUpload.csproj", "{B758E14A-DF67-4606-B263-92D66BBC5C82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{7D1D02DA-83E1-40A5-AD39-4F769FC0FF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D1D02DA-83E1-40A5-AD39-4F769FC0FF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D1D02DA-83E1-40A5-AD39-4F769FC0FF2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1915574-7AFF-4AC2-AB38-811B5C8C1AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1915574-7AFF-4AC2-AB38-811B5C8C1AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1915574-7AFF-4AC2-AB38-811B5C8C1AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1915574-7AFF-4AC2-AB38-811B5C8C1AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B758E14A-DF67-4606-B263-92D66BBC5C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B758E14A-DF67-4606-B263-92D66BBC5C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B758E14A-DF67-4606-B263-92D66BBC5C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B758E14A-DF67-4606-B263-92D66BBC5C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

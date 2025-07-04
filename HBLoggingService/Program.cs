@@ -3,7 +3,13 @@ using FastEndpoints.Swagger;
 using HBLoggingService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// debugging
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(15);
+    serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(15);
+    // You can add more Kestrel options here as needed
+});
 var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
 
 builder.Services.AddDbContext<LoggingDbContext>(options =>
@@ -33,6 +39,7 @@ builder.Services.AddDbContext<LoggingDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocument();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -42,8 +49,8 @@ using (var scope = app.Services.CreateScope())
 }
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseAuthorization();
-app.UseFastEndpoints();
+// app.UseAuthorization();
+app.UseFastEndpoints().UseSwaggerGen();
 app.UseOpenApi();
 app.UseSwaggerUi(x => x.ConfigureDefaults());
 app.MapGet("/qsos", async (LoggingDbContext db) => 

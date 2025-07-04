@@ -3,12 +3,25 @@ namespace HbLibrary.Adif;
 public class AdifReader
 {
     private static readonly Regex AdifFieldPattern = new(@"<([^:>]+):(\d+)(:[^>]*)?>([^<]*)", RegexOptions.IgnoreCase);
-
+    // Todo: Add read from stream
     public static List<Qso> ReadFromFile(string filePath)
     {
         string content = File.ReadAllText(filePath);
+        if (string.IsNullOrWhiteSpace(content))
+            throw new ArgumentException("File content cannot be null or empty.", nameof(filePath));
+        var qsos = ReadFromString(content);
+        return qsos;
+    }
+    public static List<Qso> ReadFromString(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content))
+            throw new ArgumentException("Content cannot be null or empty.", nameof(content));
 
-        // Skip to after the <EOH> tag
+        // Check for ADIF header
+        // if (!content.StartsWith("<ADIF", StringComparison.OrdinalIgnoreCase))
+        //     throw new InvalidDataException("Invalid ADIF file format.");
+
+    // Skip to after the <EOH> tag
         int eohIndex = content.IndexOf("<EOH>", StringComparison.OrdinalIgnoreCase);
         if (eohIndex < 0)
             throw new InvalidDataException("Missing <EOH> tag.");
@@ -24,6 +37,8 @@ public class AdifReader
 
             var fields = ParseFields(record);
             var qso = ParseQso(fields);
+            if (qso.Id == Guid.Empty)
+                qso.Id = Guid.NewGuid(); // Ensure every QSO has a unique ID
             qsos.Add(qso);
         }
 
