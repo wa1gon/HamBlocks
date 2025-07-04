@@ -25,16 +25,43 @@ public class UploadFileEndpoint : Endpoint<UploadFileRequest, UploadFileResponse
             return;
         }
 
-        using var stream = req.File.OpenReadStream();
-        using var reader = new StreamReader(stream);
-        var adifContent = await reader.ReadToEndAsync();
+        List<Qso> validQsos = [];
+        List<Qso> invalidQsos = [];
+        var adifContent = await GetFileString(req);
         
-        var records = AdifReader.ReadFromString(adifContent); // Adjust method as per hbLibrary API
-        _db.Qsos.AddRange(records);
+        var records = AdifReader.ReadFromString(adifContent);
+        
+        foreach (var qso in records)
+        {
+            var minTime = qso.QsoDate.AddMinutes(-15);
+            var maxTime = qso.QsoDate.AddMinutes(15);
+
+            bool exists = await _db.Qsos.AnyAsync(x =>
+                x.Id == qso.Id ||
+                (x.Call == qso.Call &&
+                x.Band == qso.Band &&
+                x.Mode == qso.Mode &&
+                x.QsoDate >= minTime &&
+                x.QsoDate <= maxTime), ct);
+            if (exists)
+                invalidQsos.Add(qso);
+            else
+                validQsos.Add(qso);
+        }
+        
+        _db.Qsos.AddRange(validQsos);
         await _db.SaveChangesAsync(ct);
         await SendAsync(new UploadFileResponse
         {
             Message = $"File '{req.File.FileName}' uploaded. Parsed {records.Count} ADIF records."
         }, cancellation: ct);
+    }
+
+    private async Task<string> GetFileString(UploadFileRequest req)
+    {
+        using var stream = req.File.OpenReadStream();
+        using var reader = new StreamReader(stream);
+        var adifContent = await reader.ReadToEndAsync();
+        return adifContent;
     }
 }

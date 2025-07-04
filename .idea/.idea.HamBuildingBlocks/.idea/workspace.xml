@@ -26,7 +26,7 @@
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -404,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751663862659</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added qsos to database">
+      <option name="closed" value="true" />
+      <created>1751664824376</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1751664824376</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +429,8 @@
     <MESSAGE value="wip" />
     <MESSAGE value="examples build.  Not for production" />
     <MESSAGE value="parsing adif files" />
-    <option name="LAST_COMMIT_MESSAGE" value="parsing adif files" />
+    <MESSAGE value="Added qsos to database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added qsos to database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -452,30 +461,30 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs</url>
-          <line>44</line>
-          <properties documentPath="C:\github\HamBlocks\HbLibrary\Adif\AdifReader.cs" containingFunctionPresentation="Method 'ReadFromString'">
+          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs</url>
+          <line>53</line>
+          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\UploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
             <startOffsets>
-              <option value="1698" />
+              <option value="1688" />
             </startOffsets>
             <endOffsets>
-              <option value="1710" />
+              <option value="1865" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="16" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs</url>
-          <line>38</line>
-          <properties documentPath="C:\github\HamBlocks\HbLibrary\Adif\AdifReader.cs" containingFunctionPresentation="Method 'ReadFromString'">
+          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\UploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
             <startOffsets>
-              <option value="1509" />
+              <option value="1031" />
             </startOffsets>
             <endOffsets>
-              <option value="1536" />
+              <option value="1059" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="17" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
