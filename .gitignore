@@ -45,3 +45,5 @@ HBLoggingServers/bin/
 HBWebLogger/obj/
 
 HBWebLogger/bin/
+/ConsoleUpload/obj/rider.project.restore.info
+/ConsoleUpload/obj/Debug/net9.0/apphost.exe
