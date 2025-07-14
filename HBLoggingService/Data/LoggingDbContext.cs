@@ -11,4 +11,5 @@ public class LoggingDbContext : DbContext
     public DbSet<QsoDetail> QsoDetails { get; set; }
     public DbSet<OperatorProfile> OperatorProfiles { get; set; }
     public DbSet<CallSign> CallSigns { get; set; }
+    public DbSet<ServerLog> ServerLogs { get; set; }
 }

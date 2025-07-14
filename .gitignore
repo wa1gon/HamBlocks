@@ -1,49 +1,57 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Rider ignored files
-/modules.xml
-/contentModel.xml
-/projectSettingsUpdater.xml
-/.idea.HBDBServer.iml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+## .NET Core / .NET 6/7/8 / C#
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+*.pidb
+*.svclog
+*.ide
 
+# dotnet CLI-generated files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+.nuget/
+*.psmdcp
 *.cache
+*.log
+*.vspscc
+*.vssscc
+*.scc
 
-HbLibrary.Test/bin/
+# Rider-specific
+.idea/
+*.sln.iml
+.idea/.idea.*
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/shelf/
+.idea/**/dataSources/
+.idea/**/dataSources.local.xml
+.idea/httpRequests/
 
-HbLibrary.Test/obj/
+# JetBrains Rider caches
+.idea/**/gradle.xml
+.idea/**/libraries/
+.idea/**/dbnavigator.xml
+.idea/**/deployment.xml
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/sqlliteSettings.xml
+.idea/**/dataSources.local.xml
+.idea/**/webServers.xml
 
-HBDBServer/bin/
+# VS Code (optional)
+.vscode/
 
-HBDBServer/obj/
-
-HBAbstractions/obj/
-
-HBAbstractions/bin/
-
-HbLibrary/obj/
-
-HbLibrary/bin/
-
-HBLoggingService/obj/
-
-HBLoggingService/bin/
-
-HBDBLoggingServer.Test.Integration/bin/
-
-HBDBLoggingServer.Test.Integration/obj/
-
-HBLoggingServers/obj/
-
-HBLoggingServers/bin/
-
-HBWebLogger/obj/
-
-HBWebLogger/bin/
-/ConsoleUpload/obj/rider.project.restore.info
-/ConsoleUpload/obj/Debug/net9.0/apphost.exe
+# User secret
