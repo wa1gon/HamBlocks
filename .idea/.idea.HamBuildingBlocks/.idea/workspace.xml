@@ -25,12 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Models/ServerLog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,7 +363,7 @@
       <workItem from="1750433984621" duration="8424000" />
       <workItem from="1751044107322" duration="14318000" />
       <workItem from="1752013053063" duration="1748000" />
-      <workItem from="1752536456766" duration="413000" />
+      <workItem from="1752536456766" duration="2682000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -474,7 +469,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752014189982</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="wip">
+      <option name="closed" value="true" />
+      <created>1752537040051</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1752537040051</updated>
+    </task>
+    <task id="LOCAL-00015" summary="wip">
+      <option name="closed" value="true" />
+      <created>1752538012134</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1752538012134</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,42 +538,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs</url>
-          <line>53</line>
+          <line>34</line>
           <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\UploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
             <startOffsets>
-              <option value="1688" />
+              <option value="1038" />
             </startOffsets>
             <endOffsets>
-              <option value="1865" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs</url>
-          <line>33</line>
-          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\UploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
-            <startOffsets>
-              <option value="1031" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1059" />
+              <option value="1066" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/UploadFileEndpoint.cs</url>
-          <line>51</line>
-          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\UploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
-            <startOffsets>
-              <option value="1610" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1639" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
