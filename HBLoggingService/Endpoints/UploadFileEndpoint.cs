@@ -21,7 +21,8 @@ public class UploadFileEndpoint : Endpoint<UploadFileRequest, UploadFileResponse
     {
         if (req.File == null || req.File.Length == 0)
         {
-            await SendAsync(new UploadFileResponse { Message = "No file uploaded." }, StatusCodes.Status400BadRequest, ct);
+            await SendAsync(new UploadFileResponse(  "No file uploaded.") , 
+                StatusCodes.Status400BadRequest, ct);
             return;
         }
 
@@ -51,10 +52,7 @@ public class UploadFileEndpoint : Endpoint<UploadFileRequest, UploadFileResponse
         
         _db.Qsos.AddRange(validQsos);
         await _db.SaveChangesAsync(ct);
-        await SendAsync(new UploadFileResponse
-        {
-            Message = $"File '{req.File.FileName}' uploaded. Parsed {records.Count} ADIF records."
-        }, cancellation: ct);
+        await SendAsync(new UploadFileResponse($"File '{req.File.FileName}' uploaded. Parsed {records.Count} ADIF records."), cancellation: ct);
     }
 
     private async Task<string> GetFileString(UploadFileRequest req)
