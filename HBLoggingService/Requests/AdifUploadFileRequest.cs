@@ -2,7 +2,7 @@ namespace HBLoggingService.Requests;
 
 using Microsoft.AspNetCore.Http;
 
-public class UploadFileRequest
+public class AdifUploadFileRequest
 {
-    public IFormFile File { get; set; }
+    public IFormFile? File { get; set; }
 }

@@ -16,10 +16,7 @@ public class AdifReader
     {
         if (string.IsNullOrWhiteSpace(content))
             throw new ArgumentException("Content cannot be null or empty.", nameof(content));
-
-        // Check for ADIF header
-        // if (!content.StartsWith("<ADIF", StringComparison.OrdinalIgnoreCase))
-        //     throw new InvalidDataException("Invalid ADIF file format.");
+        
 
     // Skip to after the <EOH> tag
         int eohIndex = content.IndexOf("<EOH>", StringComparison.OrdinalIgnoreCase);
