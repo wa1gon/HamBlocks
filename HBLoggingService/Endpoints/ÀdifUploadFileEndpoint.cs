@@ -66,7 +66,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             try
             {
                 using var scope = _serviceProvider.CreateScope();
-                var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
+                using var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
                 
                 _logger.LogInformation("ADIF parse complete. Parsed {Count} records.", records.Count);
                 foreach (var qso in records)

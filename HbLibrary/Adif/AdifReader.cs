@@ -6,19 +6,28 @@ public class AdifReader
     // Todo: Add read from stream
     public static List<Qso> ReadFromFile(string filePath)
     {
-        string content = File.ReadAllText(filePath);
-        if (string.IsNullOrWhiteSpace(content))
-            throw new ArgumentException("File content cannot be null or empty.", nameof(filePath));
-        var qsos = ReadFromString(content);
+        // string content = File.ReadAllText(filePath);
+        // if (string.IsNullOrWhiteSpace(content))
+        //     throw new ArgumentException("File content cannot be null or empty.", nameof(filePath));
+        // var qsos = ReadFromString(content);
+        var qsos = ReadFromAdifFile(filePath);
         return qsos;
     }
+    /// <summary>
+    /// /This method reads ADIF content from a string and returns a list of QSO objects.
+    /// However, it requites more memory than reading from a file.
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns>List&gt;Qso&lt;</returns>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="InvalidDataException"></exception>
     public static List<Qso> ReadFromString(string content)
     {
         if (string.IsNullOrWhiteSpace(content))
             throw new ArgumentException("Content cannot be null or empty.", nameof(content));
         
 
-    // Skip to after the <EOH> tag
+        // Skip to after the <EOH> tag
         int eohIndex = content.IndexOf("<EOH>", StringComparison.OrdinalIgnoreCase);
         if (eohIndex < 0)
             throw new InvalidDataException("Missing <EOH> tag.");
@@ -38,10 +47,53 @@ public class AdifReader
                 qso.Id = Guid.NewGuid(); // Ensure every QSO has a unique ID
             qsos.Add(qso);
         }
-
         return qsos;
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidDataException"></exception>
+    public static List<Qso> ReadFromAdifFile(string filePath)
+    {
+        var qsos = new List<Qso>();
+        using var reader = new StreamReader(filePath);
 
+        // Read until <EOH>
+        string? line;
+        var headerBuilder = new StringBuilder();
+        while ((line = reader.ReadLine()) != null)
+        {
+            headerBuilder.AppendLine(line);
+            if (line.IndexOf("<EOH>", StringComparison.OrdinalIgnoreCase) >= 0)
+                break;
+        }
+        if (line == null)
+            throw new InvalidDataException("Missing <EOH> tag.");
+
+        // Read and process records one at a time
+        var recordBuilder = new StringBuilder();
+        while ((line = reader.ReadLine()) != null)
+        {
+            recordBuilder.AppendLine(line);
+            if (line.IndexOf("<EOR>", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                string record = recordBuilder.ToString();
+                recordBuilder.Clear();
+                if (!string.IsNullOrWhiteSpace(record))
+                {
+                    var fields = ParseFields(record);
+                    var qso = ParseQso(fields);
+                    if (qso.Id == Guid.Empty)
+                        qso.Id = Guid.NewGuid();
+                    qsos.Add(qso);
+                }
+            }
+        }
+        return qsos;
+    }
+    
     private static Dictionary<string, string> ParseFields(string record)
     {
         var fields = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
