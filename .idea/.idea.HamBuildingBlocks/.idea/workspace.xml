@@ -25,8 +25,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Options/StationConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUpload/ConsoleUpload.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/ConsoleUpload.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUpload/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +61,11 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b95edcc1c50e44ebbf7efbbca83c493ee8e928/2e/9e2920a8/List`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3fb093e29c135ccd8c61d19abd9ba8e2f7392926c5b44566ea41bf3f69ca195/StyleParser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4b365947f4b69d357ff97224764a6a1eec27a19136eda3866cf810f94ef082/MainExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4c93e8835464c6838e6cfad48212ddcc860ecb15571a36648d3df9ffd897b7c/MarkupParser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6a1fb5a19c4883d19f63515be2d0cce5e0e9929bb30469a912a58ad2e1e6152/Uri.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/93ccf4b8fe9f683098c39cd6a5d9ec273b3291c7384b294aec49ca2f5cd67fb/MarkupTokenizer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a0b45f29f34f594814a7b1fbc25fe5ef3c18257956ed4f4fbfa68717db58/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ad1d58b8dd22123dfae3f2cf5d8b199992465c9c344d032f93a826d8e5539ff/RuntimeType.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b741f17422844062bda644589ab84b32337fefcb677bc51957a62c3df8ad4d/AuthorizationAppBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -87,33 +99,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.HBDBServer.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.HBLoggingService: https.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.HBWebLogger: http.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.HBWebLogging: http.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Project.ConsoleUpload.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Project.FLDigiMonitorExample.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Project.FastEndpointServer.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.HBDBServer.executor": "Run",
+    ".NET Launch Settings Profile.HBLoggingService: https.executor": "Debug",
+    ".NET Launch Settings Profile.HBWebLogger: http.executor": "Debug",
+    ".NET Launch Settings Profile.HBWebLogging: http.executor": "Debug",
+    ".NET Project.ConsoleUpload.executor": "Debug",
+    ".NET Project.FLDigiMonitorExample.executor": "Debug",
+    ".NET Project.FastEndpointServer.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "optionPattern",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;GitIgnore&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "GitIgnore"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.HBLoggingService: https">
+}]]></component>
+  <component name="RunManager" selected=".NET Project.ConsoleUpload">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -373,7 +385,7 @@
       <workItem from="1753503818132" duration="2572000" />
       <workItem from="1753556281899" duration="215000" />
       <workItem from="1753556527464" duration="2421000" />
-      <workItem from="1753560706957" duration="2036000" />
+      <workItem from="1753560706957" duration="19956000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -527,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753391569655</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="wip">
+      <option name="closed" value="true" />
+      <created>1753716331293</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1753716331293</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,10 +567,10 @@
     <MESSAGE value="Imported about 9600 adif records" />
     <MESSAGE value="file added" />
     <MESSAGE value="added FLDigi console app for an example" />
-    <MESSAGE value="wip" />
     <MESSAGE value="make upload adif a background thread task." />
     <MESSAGE value="Change to read adif file one line at a time." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change to read adif file one line at a time." />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

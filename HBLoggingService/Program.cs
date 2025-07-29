@@ -1,7 +1,8 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using HBLoggingService.Data;
-
+using HBLoggingService.Options;
+using HBLoggingService.Options;
 var builder = WebApplication.CreateBuilder(args);
 // debugging
 builder.WebHost.ConfigureKestrel(serverOptions =>
@@ -11,6 +12,9 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     // You can add more Kestrel options here as needed
 });
 var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
+
+builder.Services.AddOptions<StationConfig>()
+    .BindConfiguration("StationConfig");
 
 builder.Services.AddDbContext<LoggingDbContext>(options =>
 {
