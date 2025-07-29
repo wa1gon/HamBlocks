@@ -24,18 +24,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Options/StationConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/ConsoleUpload.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/ConsoleUpload.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" afterDir="false" />
-    </list>
+    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,12 +42,22 @@
     &quot;assignee&quot;: &quot;wa1gon&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/wa1gon/HamBlocks.git&quot;,
-    &quot;accountId&quot;: &quot;2d8641ea-dc9a-400b-94b5-4eb8ac7c14e8&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/wa1gon/HamBlocks.git",
+    "accountId": "2d8641ea-dc9a-400b-94b5-4eb8ac7c14e8"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "wa1gon",
+    "repository": "HamBlocks"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b95edcc1c50e44ebbf7efbbca83c493ee8e928/2e/9e2920a8/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3fb093e29c135ccd8c61d19abd9ba8e2f7392926c5b44566ea41bf3f69ca195/StyleParser.cs" root0="FORCE_HIGHLIGHTING" />
@@ -110,7 +109,7 @@
     ".NET Project.FastEndpointServer.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "optionPattern",
+    "git-widget-placeholder": "#1 on optionPattern",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -385,7 +384,7 @@
       <workItem from="1753503818132" duration="2572000" />
       <workItem from="1753556281899" duration="215000" />
       <workItem from="1753556527464" duration="2421000" />
-      <workItem from="1753560706957" duration="19956000" />
+      <workItem from="1753560706957" duration="20480000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -547,7 +546,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753716331293</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="console upload not working">
+      <option name="closed" value="true" />
+      <created>1753813365204</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1753813365206</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +577,8 @@
     <MESSAGE value="make upload adif a background thread task." />
     <MESSAGE value="Change to read adif file one line at a time." />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="console upload not working" />
+    <option name="LAST_COMMIT_MESSAGE" value="console upload not working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
