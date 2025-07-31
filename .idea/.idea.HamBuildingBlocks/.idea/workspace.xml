@@ -24,7 +24,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="" />
+    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUpload/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/appsettings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,22 +50,22 @@
     &quot;assignee&quot;: &quot;wa1gon&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/wa1gon/HamBlocks.git",
-    "accountId": "2d8641ea-dc9a-400b-94b5-4eb8ac7c14e8"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wa1gon/HamBlocks.git&quot;,
+    &quot;accountId&quot;: &quot;2d8641ea-dc9a-400b-94b5-4eb8ac7c14e8&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "wa1gon",
-    "repository": "HamBlocks"
+    &quot;owner&quot;: &quot;wa1gon&quot;,
+    &quot;repository&quot;: &quot;HamBlocks&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b95edcc1c50e44ebbf7efbbca83c493ee8e928/2e/9e2920a8/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3fb093e29c135ccd8c61d19abd9ba8e2f7392926c5b44566ea41bf3f69ca195/StyleParser.cs" root0="FORCE_HIGHLIGHTING" />
@@ -98,33 +106,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.HBDBServer.executor": "Run",
-    ".NET Launch Settings Profile.HBLoggingService: https.executor": "Debug",
-    ".NET Launch Settings Profile.HBWebLogger: http.executor": "Debug",
-    ".NET Launch Settings Profile.HBWebLogging: http.executor": "Debug",
-    ".NET Project.ConsoleUpload.executor": "Debug",
-    ".NET Project.FLDigiMonitorExample.executor": "Debug",
-    ".NET Project.FastEndpointServer.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#1 on optionPattern",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.HBDBServer.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.HBLoggingService: https.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.HBWebLogger: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.HBWebLogging: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.ConsoleUpload.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.FLDigiMonitorExample.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.FastEndpointServer.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#1 on optionPattern&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "GitIgnore"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;GitIgnore&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Project.ConsoleUpload">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.HBLoggingService: https">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -242,7 +250,7 @@
     <configuration name="HBLoggingService: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/HBLoggingService/HBLoggingService.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net9.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -384,7 +392,9 @@
       <workItem from="1753503818132" duration="2572000" />
       <workItem from="1753556281899" duration="215000" />
       <workItem from="1753556527464" duration="2421000" />
-      <workItem from="1753560706957" duration="20480000" />
+      <workItem from="1753560706957" duration="21478000" />
+      <workItem from="1753973473159" duration="7101000" />
+      <workItem from="1753992007545" duration="411000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -610,29 +620,81 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs</url>
-          <line>106</line>
+          <line>107</line>
           <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\ÀdifUploadFileEndpoint.cs" containingFunctionPresentation="Lambda expression inside Method 'HandleAsync'">
             <startOffsets>
-              <option value="4042" />
+              <option value="4071" />
             </startOffsets>
             <endOffsets>
-              <option value="4143" />
+              <option value="4172" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs</url>
-          <line>124</line>
+          <line>125</line>
           <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\ÀdifUploadFileEndpoint.cs" containingFunctionPresentation="Method 'GetFileString'">
             <startOffsets>
-              <option value="4546" />
+              <option value="4575" />
             </startOffsets>
             <endOffsets>
-              <option value="4629" />
+              <option value="4658" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs</url>
+          <line>91</line>
+          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\ÀdifUploadFileEndpoint.cs" containingFunctionPresentation="Lambda expression inside Method 'HandleAsync'">
+            <startOffsets>
+              <option value="3367" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3409" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs</url>
+          <line>29</line>
+          <properties documentPath="C:\github\HamBlocks\HBLoggingService\Endpoints\ÀdifUploadFileEndpoint.cs" containingFunctionPresentation="Method 'HandleAsync'">
+            <startOffsets>
+              <option value="918" />
+            </startOffsets>
+            <endOffsets>
+              <option value="973" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ConsoleUpload/Program.cs</url>
+          <line>102</line>
+          <properties documentPath="C:\github\HamBlocks\ConsoleUpload\Program.cs" containingFunctionPresentation="Method 'UploadAdif'">
+            <startOffsets>
+              <option value="3483" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3531" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ConsoleUpload/Program.cs</url>
+          <line>112</line>
+          <properties documentPath="C:\github\HamBlocks\ConsoleUpload\Program.cs" containingFunctionPresentation="Method 'UploadAdif'">
+            <startOffsets>
+              <option value="4064" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4131" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

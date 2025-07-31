@@ -44,13 +44,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerDocument();
-
+var port = builder.Configuration.GetValue<int>("Port", 7300);
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
     db.Database.EnsureCreated();
 }
+
 app.UseSwagger();
 app.UseSwaggerUI();
 // app.UseAuthorization();
@@ -66,5 +67,5 @@ app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
     await db.SaveChangesAsync();
     return Results.Created($"/qsos/{qso.Id}", qso);
 });
-app.Urls.Add("http://localhost:5000");
+app.Urls.Add($"http://localhost:{port}");
 app.Run();

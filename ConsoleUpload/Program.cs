@@ -7,40 +7,51 @@ using Spectre.Console;
 
 class Program
 {
-    static string filePath = @"C:\temp\mycallcheck.adi";
-    static string uploadUrl = "http://localhost:5000/uploadadif";
+    private const string DefaultUploadUrl = "http://127.0.0.1:7300"; // Default for JS8Call API
+    private static readonly HttpClient _client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
+    private static string _filePath = @"C:\temp\mycallcheck.adi";
+    private static string _uploadUrl = DefaultUploadUrl;
+
     static async Task Main(string[] args)
     {
-        // AnsiConsole.MarkupLine("[red bold]Hello, World![/]");
-        // AnsiConsole.MarkupLine("Hello, World!");
-        // AnsiConsole.MarkupLine("[slowblink]Hello, World![/]");
-        // Console.ReadKey();
-        // AnsiConsole.Clear();
-
-        uploadUrl = AnsiConsole.Prompt(
-            new TextPrompt<string>($"QSO Upload URL [[default is {uploadUrl}]]:")
-                .DefaultValue(uploadUrl)
-                .Validate(input =>
-                {
-                    if (string.IsNullOrWhiteSpace(input))
-                        return ValidationResult.Success();
-
-                    if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
-                        (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+        try
+        {
+            // Prompt for QSO upload URL
+            if (false)
+            {
+            _uploadUrl = AnsiConsole.Prompt(
+                new TextPrompt<string>($"QSO Upload URL [[default is {_uploadUrl}]]:")
+                    .DefaultValue(_uploadUrl)
+                    .Validate(input =>
                     {
-                        return ValidationResult.Success();
-                    }
+                        if (string.IsNullOrWhiteSpace(input))
+                            return ValidationResult.Success();
 
-                    return ValidationResult.Error("Please enter a valid URL (e.g., http://127.0.0.1:24400).");
-                })
-        );
-        filePath = SelectFileInteractively();
-        AnsiConsole.MarkupLine($"You selected: [green]{filePath}[/]");
-        //await UploadAdif();
+                        if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
+                            (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+                        {
+                            return ValidationResult.Success();
+                        }
+                        return ValidationResult.Error("Please enter a valid absolute URL (e.g., http://127.0.0.1:24400).");
+                    })
+            );
+
+            // Select ADIF file
+            _filePath = SelectFileInteractively();
+            AnsiConsole.MarkupLine($"You selected: [green]{_filePath}[/]");
+            }
+            // Upload the file
+            await UploadAdif();
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]Error: {ex.Message}[/]");
+        }
     }
 
     public static string SelectFileInteractively()
     {
+        var goUpEntry = "[[Go up]]";
         string currentPath = AnsiConsole.Prompt(
             new TextPrompt<string>("Enter starting directory:")
                 .Validate(path => Directory.Exists(path)
@@ -50,14 +61,15 @@ class Program
 
         while (true)
         {
-            var entries = Directory.GetFileSystemEntries(currentPath);
-            var choices = entries.Concat(new[] { "[Go up]" }).ToArray();
+            var entries = Directory.GetFileSystemEntries(currentPath)
+                .Where(e => Directory.Exists(e) || Path.GetExtension(e).Equals(".adi", StringComparison.OrdinalIgnoreCase))
+                .Concat(new[] { goUpEntry })
+                .ToArray();
+
             string choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title($"Contents of [green]{currentPath}[/]:")
-                    .AddChoices(choices)
-                    .UseMarkup(false)
-            );
+                    .AddChoices(entries));
 
             if (choice == "[Go up]")
             {
@@ -71,32 +83,44 @@ class Program
             }
             else
             {
-                return choice;
+                // Confirm file selection
+                if (AnsiConsole.Confirm($"Upload {choice}?"))
+                    return choice;
             }
         }
     }
+
     private static async Task UploadAdif()
     {
-        // var filePath = @"C:\temp\mycallcheck.adi";
-        // var uploadUrl = "http://localhost:5000/uploadadif";
-
-        using var client = new HttpClient()
+        if (!File.Exists(_filePath))
         {
-            Timeout = TimeSpan.FromMinutes(15) // debug
-        };
-        using var form = new MultipartFormDataContent();
-        using var fileStream = File.OpenRead(filePath);
-        var fileContent = new StreamContent(fileStream);
-        fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            AnsiConsole.MarkupLine("[red]Error: ADIF file does not exist.[/]");
+            return;
+        }
 
-        // "File" must match the property name in your endpoint
-        form.Add(fileContent, "File", Path.GetFileName(filePath));
+        try
+        {
+            using var form = new MultipartFormDataContent();
+            using var fileStream = File.OpenRead(_filePath);
+            var fileContent = new StreamContent(fileStream);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            form.Add(fileContent, "File", Path.GetFileName(_filePath));
 
-        var response = await client.PostAsync(uploadUrl, form);
-        var responseContent = await response.Content.ReadAsStringAsync();
+            var response = await _client.PostAsync(_uploadUrl, form);
+            response.EnsureSuccessStatusCode(); // Throws if not successful
+            var responseContent = await response.Content.ReadAsStringAsync();
 
-        Console.WriteLine($"Status: {response.StatusCode}");
-        Console.WriteLine("Response:");
-        Console.WriteLine(responseContent);
+            AnsiConsole.MarkupLine($"[green]Status: {response.StatusCode}[/]");
+            AnsiConsole.MarkupLine("Response:");
+            AnsiConsole.MarkupLine(responseContent);
+        }
+        catch (HttpRequestException ex)
+        {
+            AnsiConsole.MarkupLine($"[red]HTTP Error: {ex.Message}[/]");
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]Upload Error: {ex.Message}[/]");
+        }
     }
 }
