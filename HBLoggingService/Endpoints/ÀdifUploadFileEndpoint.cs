@@ -1,4 +1,5 @@
 using HBLoggingService.Data;
+using NJsonSchema.Validation.FormatValidators;
 
 public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>
 {
@@ -88,7 +89,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
                     else
                     {
                         if (qso.Id == Guid.Empty)
-                            qso.Id = Guid.NewGuid(); // Ensure every QSO has a unique ID
+                            qso.Id = Guid.CreateVersion7(qso.QsoDate);
                         validQsos.Add(qso);
                     }
                 }
