@@ -9,7 +9,7 @@ class Program
     static async Task Main(string[] args)
     {
         var filePath = @"C:\temp\mycallcheck.adi";
-        var uploadUrl = "http://localhost:5000/uploadadif";
+        var uploadUrl = "http://localhost:7300/uploadadif";
 
         using var client = new HttpClient()
         {
