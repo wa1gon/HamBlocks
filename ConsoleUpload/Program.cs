@@ -17,26 +17,26 @@ class Program
         var filePath = @"C:\temp\mycallcheck.adi";
         var uploadUrl = "http://localhost:7300/uploadadif";
 
-                        if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
-                            (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
-                        {
-                            return ValidationResult.Success();
-                        }
-                        return ValidationResult.Error("Please enter a valid absolute URL (e.g., http://127.0.0.1:24400).");
-                    })
-            );
+        //             if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
+        //                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+        //             {
+        //                 return ValidationResult.Success();
+        //             }
+        //             return ValidationResult.Error("Please enter a valid absolute URL (e.g., http://127.0.0.1:24400).");
+        //         })
+        // );
 
-            // Select ADIF file
-            _filePath = SelectFileInteractively();
-            AnsiConsole.MarkupLine($"You selected: [green]{_filePath}[/]");
-            }
-            // Upload the file
-            await UploadAdif();
-        }
-        catch (Exception ex)
-        {
-            AnsiConsole.MarkupLine($"[red]Error: {ex.Message}[/]");
-        }
+        // Select ADIF file
+        // _filePath = SelectFileInteractively();
+        AnsiConsole.MarkupLine($"You selected: [green]{_filePath}[/]");
+        // }
+        // Upload the file
+        await UploadAdif();
+        // }
+        // catch (Exception ex)
+        // {
+        //     AnsiConsole.MarkupLine($"[red]Error: {ex.Message}[/]");
+        // }
     }
 
     public static string SelectFileInteractively()
