@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -14,18 +14,8 @@ class Program
 
     static async Task Main(string[] args)
     {
-        try
-        {
-            // Prompt for QSO upload URL
-            if (false)
-            {
-            _uploadUrl = AnsiConsole.Prompt(
-                new TextPrompt<string>($"QSO Upload URL [[default is {_uploadUrl}]]:")
-                    .DefaultValue(_uploadUrl)
-                    .Validate(input =>
-                    {
-                        if (string.IsNullOrWhiteSpace(input))
-                            return ValidationResult.Success();
+        var filePath = @"C:\temp\mycallcheck.adi";
+        var uploadUrl = "http://localhost:7300/uploadadif";
 
                         if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
                             (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))

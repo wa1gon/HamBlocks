@@ -67,5 +67,5 @@ app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
     await db.SaveChangesAsync();
     return Results.Created($"/qsos/{qso.Id}", qso);
 });
-app.Urls.Add($"http://localhost:{port}");
+app.Urls.Add("http://localhost:7300");
 app.Run();
