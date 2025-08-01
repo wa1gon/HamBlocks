@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace HamBlocks.Library.Models;
 
@@ -13,5 +14,6 @@ public class QsoDetail
     [MaxLength(255)] [Required]
     public string FieldValue { get; set; }
     [ForeignKey(nameof(QsoId))]
+    [JsonIgnore]
     public Qso? Qso { get; set; } = null;
 }

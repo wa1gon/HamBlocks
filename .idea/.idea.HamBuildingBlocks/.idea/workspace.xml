@@ -24,9 +24,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs">
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/Program.cs" afterDir="false" />
+    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/GetQsosEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoCreateEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoUpdateEndpoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HBLoggingService/Requests/GetQsosRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/QsoEndpoints.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/CreateQsoEndpoint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +89,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebb5f4ea498d103582284f189cf3dcd286dce471a292ec52e55cd5115ed19d4f/FeatureReferences.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/github/HamBlocks/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FLDigiMonitorExample/bin/Debug/net9.0/FLDigiMonitorExample.deps.json" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FLDigiMonitorExample/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/HBWebLogger/Data/ApplicationDbContext.cs" root0="FORCE_HIGHLIGHTING" />
@@ -127,7 +131,7 @@
     ".NET Project.FastEndpointServer.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#1 on optionPattern",
+    "git-widget-placeholder": "QSOs__filter",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -142,7 +146,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.ConsoleUpload">
+  <component name="RunManager" selected=".NET Launch Settings Profile.HBLoggingService: https">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -405,6 +409,7 @@
       <workItem from="1753560706957" duration="21478000" />
       <workItem from="1753973473159" duration="7101000" />
       <workItem from="1753992007545" duration="411000" />
+      <workItem from="1754082978868" duration="7548000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -574,7 +579,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753813365206</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs">
+      <option name="closed" value="true" />
+      <created>1753993520368</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1753993520368</updated>
+    </task>
+    <task id="LOCAL-00023" summary="added a qso filter">
+      <option name="closed" value="true" />
+      <created>1753999170569</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1753999170569</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +619,9 @@
     <MESSAGE value="Change to read adif file one line at a time." />
     <MESSAGE value="wip" />
     <MESSAGE value="console upload not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="console upload not working" />
+    <MESSAGE value="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs" />
+    <MESSAGE value="added a qso filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a qso filter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

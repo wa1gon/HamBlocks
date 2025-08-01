@@ -7,3 +7,6 @@ global using FastEndpoints;
 global using HbLibrary.Adif; // Adjust namespace as needed
 global using  HBLoggingService.Models;
 global using Microsoft.Extensions.Options;
+global using HBLoggingService.Responses;
+global using HBLoggingService.Requests;
+global using HBLoggingService.Data;

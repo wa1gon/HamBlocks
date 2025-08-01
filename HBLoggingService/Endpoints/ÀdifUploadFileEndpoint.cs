@@ -1,5 +1,3 @@
-using HBLoggingService.Data;
-using NJsonSchema.Validation.FormatValidators;
 
 public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>
 {
