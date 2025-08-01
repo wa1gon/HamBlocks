@@ -1,5 +1,7 @@
 
 
+using HbLibrary.Extensions;
+
 namespace HBLoggingService.Endpoints.Qsos;
 
 using FastEndpoints;
@@ -30,6 +32,19 @@ public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _
 
         if (!string.IsNullOrEmpty(req.Call))
             query = query.Where(q => q.Call.StartsWith(req.Call));
+        
+        if (req.Date.HasValue)
+            query = query.Where(q => q.QsoDate.Date == req.Date.Value.Date);
+        
+        if (req.Country.IsNotEmptyOrNull())
+            query = query.Where(q => q.Country == req.Country);
+        
+        if (req.State.IsNotEmptyOrNull())
+            query = query.Where(q => q.State == req.State);
+        // if (req.County.IsNotEmptyOrNull())
+        //     query = query.Where(q => q.County == req.County);
+        if (req.Band.IsNotEmptyOrNull())
+            query = query.Where(q => q.Band == req.Band);
 
         var skip = (req.PageNumber - 1) * req.PageSize;
         var result = await query

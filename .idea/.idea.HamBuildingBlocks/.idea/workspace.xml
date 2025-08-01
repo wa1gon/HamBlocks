@@ -25,18 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/GetQsosEndpoint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoCreateEndpoint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoUpdateEndpoint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HBLoggingService/Requests/GetQsosRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HbLibrary/Extensions/StringExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/QsoEndpoints.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/CreateQsoEndpoint.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Requests/QsoFilterRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Requests/QsoFilterRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,32 +113,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.HBDBServer.executor": "Run",
-    ".NET Launch Settings Profile.HBLoggingService: https.executor": "Debug",
-    ".NET Launch Settings Profile.HBWebLogger: http.executor": "Debug",
-    ".NET Launch Settings Profile.HBWebLogging: http.executor": "Debug",
-    ".NET Project.ConsoleUpload.executor": "Debug",
-    ".NET Project.FLDigiMonitorExample.executor": "Debug",
-    ".NET Project.FastEndpointServer.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "QSOs__filter",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.HBDBServer.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.HBLoggingService: https.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.HBWebLogger: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.HBWebLogging: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.ConsoleUpload.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.FLDigiMonitorExample.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.FastEndpointServer.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;QSOs__filter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "GitIgnore"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;GitIgnore&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.HBLoggingService: https">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -409,7 +402,7 @@
       <workItem from="1753560706957" duration="21478000" />
       <workItem from="1753973473159" duration="7101000" />
       <workItem from="1753992007545" duration="411000" />
-      <workItem from="1754082978868" duration="7548000" />
+      <workItem from="1754082978868" duration="8837000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -595,7 +588,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753999170569</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added CRUD fast endpoints">
+      <option name="closed" value="true" />
+      <created>1754090811707</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1754090811707</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +622,8 @@
     <MESSAGE value="console upload not working" />
     <MESSAGE value="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs" />
     <MESSAGE value="added a qso filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a qso filter" />
+    <MESSAGE value="Added CRUD fast endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CRUD fast endpoints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
