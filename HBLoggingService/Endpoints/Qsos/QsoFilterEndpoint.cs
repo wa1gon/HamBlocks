@@ -1,17 +1,18 @@
-using HBLoggingService.Data;
+
 
 namespace HBLoggingService.Endpoints.Qsos;
 
 using FastEndpoints;
 
-public class FilterQsoEndpoint : Endpoint<QsoFilterRequest, List<Qso>>
+public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _logger) : 
+    Endpoint<QsoFilterRequest, List<Qso>>
 {
 
-    private readonly LoggingDbContext _db;
-    public FilterQsoEndpoint(LoggingDbContext db)
-    {
-        _db = db;
-    }
+    // private readonly LoggingDbContext _db;
+    // public FilterQsoEndpoint(LoggingDbContext db)
+    // {
+    //     _db = db;
+    // }
 
     public override void Configure()
     {

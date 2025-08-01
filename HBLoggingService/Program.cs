@@ -58,14 +58,14 @@ app.UseSwaggerUI();
 app.UseFastEndpoints().UseSwaggerGen();
 app.UseOpenApi();
 app.UseSwaggerUi(x => x.ConfigureDefaults());
-app.MapGet("/qsos", async (LoggingDbContext db) => 
-    await db.Qsos.Include(q => q.Details).ToListAsync());
+// app.MapGet("/qsos", async (LoggingDbContext db) => 
+//     await db.Qsos.Include(q => q.Details).ToListAsync());
 
-app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
-{
-    db.Qsos.Add(qso);
-    await db.SaveChangesAsync();
-    return Results.Created($"/qsos/{qso.Id}", qso);
-});
+// app.MapPost("/qsos", async (LoggingDbContext db, Qso qso) =>
+// {
+//     db.Qsos.Add(qso);
+//     await db.SaveChangesAsync();
+//     return Results.Created($"/qsos/{qso.Id}", qso);
+// });
 app.Urls.Add("http://localhost:7300");
 app.Run();
