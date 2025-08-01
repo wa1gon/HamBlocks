@@ -33,7 +33,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             return;
         }
 
-        int totalRecords = 0;
+        // int totalRecords = 0;
         int totalErrors = 0;
         // ... process file, update totalRecords and totalErrors
 
@@ -113,11 +113,14 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
     {
         try
         {
-            using var stream = req.File.OpenReadStream();
-            using var reader = new StreamReader(stream);
-            var adifContent = reader.ReadToEnd();
+            using var stream = req.File?.OpenReadStream();
+            if (stream != null)
+            {
+                using var reader = new StreamReader(stream);
+                var adifContent = reader.ReadToEnd();
 
-            return adifContent;
+                return adifContent;
+            }
         }
         catch (Exception e)
         {
