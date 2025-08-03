@@ -7,8 +7,6 @@ public class HamLibRigCtlClient(string _host, int _port) : IDisposable, IRigCont
     
     private TcpClient? _client;
     private NetworkStream? _stream;
-    private readonly string _host;
-    private readonly int _port;
     private long _freq;
 
     public long Freq => _freq;
