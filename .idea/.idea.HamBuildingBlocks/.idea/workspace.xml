@@ -24,7 +24,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="" />
+    <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/Qsos/QsoFilterEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Endpoints/ÀdifUploadFileEndpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/HBLoggingService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/HBLoggingService.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Mappers/Examples/WeatherForecastMapper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Models/Examples/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Models/ServerLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Models/ServerLog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Options/StationConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Options/StationConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Responses/Examples/WeatherForecastResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Responses/Examples/WeatherForecastsResponses.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Responses/QsoResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Responses/QsoResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/zGlobalUsing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +136,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "XThreadsFramesViewSplitterKey": "0.49731022",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "hamlib__conntect",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

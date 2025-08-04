@@ -1,8 +1,6 @@
 using FastEndpoints;
-using FastEndpoints.Swagger;
-using HBLoggingService.Data;
-using HBLoggingService.Options;
-using HBLoggingService.Options;
+
+
 var builder = WebApplication.CreateBuilder(args);
 // debugging
 builder.WebHost.ConfigureKestrel(serverOptions =>
