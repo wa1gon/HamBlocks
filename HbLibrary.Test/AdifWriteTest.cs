@@ -1,9 +1,9 @@
 namespace HBLibrary.Test;
-using HamBlocks.Library.Models;
-using NodaTime;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using HamBlocks.Library.Models;
+using NodaTime;
 
 [TestClass]
 public class AdifWriterTests
