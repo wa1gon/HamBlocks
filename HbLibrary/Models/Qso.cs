@@ -19,7 +19,8 @@ public class Qso
     public DateTime BackupDate { get;set; }
     public DateTime LastUpdate { get;set; }
 
-    public ICollection<QsoDetail> Details { get; set; } = new List<QsoDetail>();   
+    public ICollection<QsoQslInfo> QslInfo { get; set; } = []; 
+    public ICollection<QsoDetail> Details { get; set; } = [];   
     // public Dictionary<string,QsoDetail> QsoDetails { get; set; } = new Dictionary<string,QsoDetail>();
     
     public override string ToString()

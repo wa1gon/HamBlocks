@@ -3,6 +3,10 @@ namespace HbLibrary.Adif;
 public class AdifReader
 {
     private static readonly Regex AdifFieldPattern = new(@"<([^:>]+):(\d+)(:[^>]*)?>([^<]*)", RegexOptions.IgnoreCase);
+    public static readonly string Direct = "CARD";
+    public static readonly string Lotw = "LOTW";
+    public static readonly string Eqsl = "EQSL";
+    
     // Todo: Add read from stream
     public static List<Qso> ReadFromFile(string filePath)
     {
@@ -112,76 +116,110 @@ public class AdifReader
 
         return fields;
     }
+private static Qso ParseQso(Dictionary<string, string> fields)
+{
+    var qso = new Qso();
+    var qslInfos = new Dictionary<string, QsoQslInfo>(StringComparer.OrdinalIgnoreCase);
+    DateTime? qsoDate = null;
+    TimeSpan? qsoTime = null;
 
-    private static Qso ParseQso(Dictionary<string, string> fields)
+    foreach (var field in fields)
     {
-        var qso = new Qso();
-        LocalDate? date = null;
-        LocalTime? time = null;
+        string name = field.Key.ToLowerInvariant();
+        string value = field.Value;
 
-        foreach (var field in fields)
+        string service = name.Contains("lotw") ? "LOTW"
+                        : name.Contains("eqsl") ? "EQSL"
+                        : (name.StartsWith("qsl_") ? "DIRECT" : null);
+        QsoQslInfo qslInfo = null;
+        if (service != null)
         {
-            string name = field.Key.ToLowerInvariant();
-            string value = field.Value;
-
-            switch (name)
+            if (!qslInfos.TryGetValue(service, out qslInfo))
             {
-                case "call": qso.Call = value; break;
-                case "band": qso.Band = value; break;
-                case "mode": qso.Mode = value; break;
-                case "country": qso.Country = value; break;
-                case "state": qso.State = value; break;
-                case "rst_sent": qso.RstSent = value; break;
-                case "rst_rcvd": qso.RstRcvd = value; break;
-                case "contest-id": qso.ContestId = value; break;
-                case "guid": qso.Id = Guid.Parse(value); break;
-                case "freq":
-                    if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
-                        qso.Freq = freq;
-                    break;
-
-                case "qso_date":
-                    var dateResult = LocalDatePattern.CreateWithInvariantCulture("yyyyMMdd").Parse(value);
-                    if (dateResult.Success)
-                        date = dateResult.Value;
-                    break;
-
-                case "time_on":
-                    var timePattern = value.Length == 4
-                        ? LocalTimePattern.CreateWithInvariantCulture("HHmm")
-                        : LocalTimePattern.CreateWithInvariantCulture("HHmmss");
-
-                    var timeResult = timePattern.Parse(value);
-                    if (timeResult.Success)
-                        time = timeResult.Value;
-                    break;
-
-                default:
-                    // Store all non-core fields in QsoDetail
-                    qso.Details.Add(new QsoDetail
-                    {
-                        FieldName = field.Key,
-                        FieldValue = value
-                    });
-                    break;
+                qslInfo = new QsoQslInfo { QslService = service };
+                qslInfos[service] = qslInfo;
             }
         }
-        if (qso.Id == Guid.Empty)
-        {
-            qso.Id = Guid.NewGuid();
-        }
-        // Combine date + time into Instant
-        if (date.HasValue)
-        {
-            var localTime = time ?? new LocalTime(0, 0);
-            var localDateTime = date.Value + localTime;
-            qso.QsoDate = localDateTime.InZoneStrictly(DateTimeZone.Utc).ToDateTimeUtc();
-        }
-        else
-        {
-            qso.QsoDate = DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime; // fallback if no date
-        }
 
-        return qso;
+        switch (name)
+        {
+            // Core fields
+            case "call": qso.Call = value; break;
+            case "band": qso.Band = value; break;
+            case "mode": qso.Mode = value; break;
+            case "country": qso.Country = value; break;
+            case "state": qso.State = value; break;
+            case "rst_sent": qso.RstSent = value; break;
+            case "rst_rcvd": qso.RstRcvd = value; break;
+            case "contest-id": qso.ContestId = value; break;
+            case "guid": qso.Id = Guid.Parse(value); break;
+            case "freq":
+                if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
+                    qso.Freq = freq;
+                break;
+            case "qso_date":
+                if (DateTime.TryParseExact(value, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+                    qsoDate = DateTime.SpecifyKind(date, DateTimeKind.Utc);
+                break;
+            case "time_on":
+                string[] formats = value.Length == 4 ? new[] { "HHmm" } : new[] { "HHmmss" };
+                if (TimeSpan.TryParseExact(value, formats, CultureInfo.InvariantCulture, out var time))
+                    qsoTime = time;
+                break;
+            
+            // QSL fields
+            case var n when n == "lotw_qsl_sent":
+                if (qslInfos.TryGetValue("LOTW", out qslInfo)) qslInfo.QslSent = value == "Y";
+                break;
+            case var n when n == "lotw_qsl_rcvd":
+                if (qslInfos.TryGetValue("LOTW", out qslInfo)) qslInfo.QslReceived = value == "Y";
+                break;
+            case var n when n == "eqsl_qsl_sent":
+                if (qslInfos.TryGetValue("EQSL", out qslInfo)) qslInfo.QslSent = value == "Y";
+                break;
+            case var n when n == "eqsl_qsl_rcvd":
+                if (qslInfos.TryGetValue("EQSL", out qslInfo)) qslInfo.QslReceived = value == "Y";
+                break;
+            case var n when n == "qsl_sent":
+                if (qslInfos.TryGetValue("DIRECT", out qslInfo)) qslInfo.QslSent = value == "Y";
+                break;
+            case var n when n == "qsl_rcvd":
+                if (qslInfos.TryGetValue("DIRECT", out qslInfo)) qslInfo.QslReceived = value == "Y";
+                break;
+            
+            default:
+                qso.Details.Add(new QsoDetail
+                {
+                    FieldName = field.Key,
+                    FieldValue = value
+                });
+                break;
+        }
     }
+
+    if (qso.Id == Guid.Empty)
+        qso.Id = Guid.NewGuid();
+
+    if (qsoDate.HasValue)
+    {
+        var dateTime = qsoDate.Value.Date;
+        if (qsoTime.HasValue)
+            dateTime = dateTime.Add(qsoTime.Value);
+
+        qso.QsoDate = DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+    }
+    else
+    {
+        qso.QsoDate = DateTime.SpecifyKind(DateTime.UnixEpoch, DateTimeKind.Utc);
+    }
+
+    foreach (var qslInfo in qslInfos.Values)
+    {
+        qslInfo.QsoId = qso.Id;
+    }
+    qso.QslInfo = qslInfos.Values.ToList();
+
+    return qso;
+    }
+
 }
