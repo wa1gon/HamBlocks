@@ -25,17 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HbLibrary/Models/QSLQSLInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HBLoggingService/Data/LoggingDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/zGlobal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/zGlobal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/Qso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/QsoQslInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/QsoQslInfo.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +126,7 @@
     "31d246a5-571e-49a2-b646-181e6149a1c6.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.49731022",
     "git-widget-placeholder": "QSL__Support",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -152,7 +147,7 @@
       <command value="nodatime" />
     </option>
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.HBWebLogger: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.HBLoggingService: https">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -609,7 +604,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754260465153</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="wip">
+      <option name="closed" value="true" />
+      <created>1754337836492</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1754337836492</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,12 +634,12 @@
     <MESSAGE value="added FLDigi console app for an example" />
     <MESSAGE value="make upload adif a background thread task." />
     <MESSAGE value="Change to read adif file one line at a time." />
-    <MESSAGE value="wip" />
     <MESSAGE value="console upload not working" />
     <MESSAGE value="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs" />
     <MESSAGE value="added a qso filter" />
     <MESSAGE value="add rigctl client, but not tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rigctl client, but not tested" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -678,6 +681,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs</url>
+          <line>130</line>
+          <properties documentPath="C:\github\HamBlocks\HbLibrary\Adif\AdifReader.cs" containingFunctionPresentation="Method 'ParseQso'">
+            <startOffsets>
+              <option value="4638" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4813" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs</url>
+          <line>170</line>
+          <properties documentPath="C:\github\HamBlocks\HbLibrary\Adif\AdifReader.cs" containingFunctionPresentation="Method 'ParseQso'">
+            <startOffsets>
+              <option value="6436" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6461" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs</url>
+          <line>174</line>
+          <properties documentPath="C:\github\HamBlocks\HbLibrary\Adif\AdifReader.cs" containingFunctionPresentation="Method 'ParseQso'">
+            <startOffsets>
+              <option value="6647" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6693" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
