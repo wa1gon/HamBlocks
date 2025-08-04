@@ -36,6 +36,8 @@ public static class AdifWriter
             AppendField(sb, "MODE", qso.Mode);
             AppendField(sb, "COUNTRY", qso.Country);
             AppendField(sb, "STATE", qso.State);
+            if (qso.Dxcc > 0)
+                AppendField(sb, "DXCC", qso.Dxcc.ToString(CultureInfo.InvariantCulture));
 
             if (!string.IsNullOrWhiteSpace(qso.RstSent))
                 AppendField(sb, "RST_SENT", qso.RstSent);

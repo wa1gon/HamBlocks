@@ -14,6 +14,7 @@ public class Qso
     [MaxLength(30)]public string Band { get; set; } = string.Empty;
     [MaxLength(10)]public string RstSent { get; set; } = string.Empty;
     [MaxLength(10)]public string RstRcvd { get; set; } = string.Empty;
+    public int Dxcc { get; set; } = 0; // DXCC entity number
     
     public bool BackedUp { get; set; } = false;
     public DateTime BackupDate { get;set; }

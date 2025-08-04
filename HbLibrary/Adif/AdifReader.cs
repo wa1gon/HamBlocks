@@ -149,6 +149,7 @@ private static Qso ParseQso(Dictionary<string, string> fields)
             case "mode": qso.Mode = value; break;
             case "country": qso.Country = value; break;
             case "state": qso.State = value; break;
+            case "dxcc": qso.Dxcc = int.TryParse(value, out int val) ? val : 0; break;
             case "rst_sent": qso.RstSent = value; break;
             case "rst_rcvd": qso.RstRcvd = value; break;
             case "contest-id": qso.ContestId = value; break;
