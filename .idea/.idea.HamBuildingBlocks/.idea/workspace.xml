@@ -26,8 +26,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -403,6 +401,7 @@
       <workItem from="1753973473159" duration="7101000" />
       <workItem from="1753992007545" duration="411000" />
       <workItem from="1754082978868" duration="7548000" />
+      <workItem from="1754264353765" duration="2996000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <option name="closed" value="true" />
@@ -596,7 +595,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754260465153</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fixed bug in HamlibRigCtlClient">
+      <option name="closed" value="true" />
+      <created>1754264512064</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1754264512064</updated>
+    </task>
+    <task id="LOCAL-00026" summary="wip">
+      <option name="closed" value="true" />
+      <created>1754264568706</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1754264568706</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,12 +633,13 @@
     <MESSAGE value="added FLDigi console app for an example" />
     <MESSAGE value="make upload adif a background thread task." />
     <MESSAGE value="Change to read adif file one line at a time." />
-    <MESSAGE value="wip" />
     <MESSAGE value="console upload not working" />
     <MESSAGE value="Merge branch 'master' into optionPattern&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.HamBuildingBlocks/.idea/workspace.xml&#10;#&#9;ConsoleUpload/Program.cs&#10;#&#9;ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs&#10;#&#9;HBAbstractions/obj/rider.project.restore.info&#10;#&#9;HBLoggingService/Program.cs" />
     <MESSAGE value="added a qso filter" />
     <MESSAGE value="add rigctl client, but not tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rigctl client, but not tested" />
+    <MESSAGE value="fixed bug in HamlibRigCtlClient" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -665,6 +681,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/HbLibrary.Test/HamLibRigCtlClientTests.cs</url>
+          <line>11</line>
+          <properties documentPath="C:\github\HamBlocks\HbLibrary.Test\HamLibRigCtlClientTests.cs" containingFunctionPresentation="Method 'Open_SetFreq_SetMode_AssertMode_Close_Works'">
+            <startOffsets>
+              <option value="273" />
+            </startOffsets>
+            <endOffsets>
+              <option value="274" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
