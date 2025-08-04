@@ -112,76 +112,140 @@ public class AdifReader
 
         return fields;
     }
+private static Qso ParseQso(Dictionary<string, string> fields)
+{
+    var qso = new Qso();
+    DateTime? qsoDate = null;
+    TimeSpan? qsoTime = null;
 
-    private static Qso ParseQso(Dictionary<string, string> fields)
+    foreach (var field in fields)
     {
-        var qso = new Qso();
-        LocalDate? date = null;
-        LocalTime? time = null;
+        string name = field.Key.ToLowerInvariant();
+        string value = field.Value;
 
-        foreach (var field in fields)
+        switch (name)
         {
-            string name = field.Key.ToLowerInvariant();
-            string value = field.Value;
+            case "call": qso.Call = value; break;
+            case "band": qso.Band = value; break;
+            case "mode": qso.Mode = value; break;
+            case "country": qso.Country = value; break;
+            case "state": qso.State = value; break;
+            case "rst_sent": qso.RstSent = value; break;
+            case "rst_rcvd": qso.RstRcvd = value; break;
+            case "contest-id": qso.ContestId = value; break;
+            case "guid": qso.Id = Guid.Parse(value); break;
+            case "freq":
+                if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
+                    qso.Freq = freq;
+                break;
 
-            switch (name)
-            {
-                case "call": qso.Call = value; break;
-                case "band": qso.Band = value; break;
-                case "mode": qso.Mode = value; break;
-                case "country": qso.Country = value; break;
-                case "state": qso.State = value; break;
-                case "rst_sent": qso.RstSent = value; break;
-                case "rst_rcvd": qso.RstRcvd = value; break;
-                case "contest-id": qso.ContestId = value; break;
-                case "guid": qso.Id = Guid.Parse(value); break;
-                case "freq":
-                    if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
-                        qso.Freq = freq;
-                    break;
+            case "qso_date":
+                if (DateTime.TryParseExact(value, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+                    qsoDate = DateTime.SpecifyKind(date, DateTimeKind.Utc);
+                break;
 
-                case "qso_date":
-                    var dateResult = LocalDatePattern.CreateWithInvariantCulture("yyyyMMdd").Parse(value);
-                    if (dateResult.Success)
-                        date = dateResult.Value;
-                    break;
+            case "time_on":
+                string[] formats = value.Length == 4 ? new[] { "HHmm" } : new[] { "HHmmss" };
+                if (TimeSpan.TryParseExact(value, formats, CultureInfo.InvariantCulture, out var time))
+                    qsoTime = time;
+                break;
 
-                case "time_on":
-                    var timePattern = value.Length == 4
-                        ? LocalTimePattern.CreateWithInvariantCulture("HHmm")
-                        : LocalTimePattern.CreateWithInvariantCulture("HHmmss");
-
-                    var timeResult = timePattern.Parse(value);
-                    if (timeResult.Success)
-                        time = timeResult.Value;
-                    break;
-
-                default:
-                    // Store all non-core fields in QsoDetail
-                    qso.Details.Add(new QsoDetail
-                    {
-                        FieldName = field.Key,
-                        FieldValue = value
-                    });
-                    break;
-            }
+            default:
+                qso.Details.Add(new QsoDetail
+                {
+                    FieldName = field.Key,
+                    FieldValue = value
+                });
+                break;
         }
-        if (qso.Id == Guid.Empty)
-        {
-            qso.Id = Guid.NewGuid();
-        }
-        // Combine date + time into Instant
-        if (date.HasValue)
-        {
-            var localTime = time ?? new LocalTime(0, 0);
-            var localDateTime = date.Value + localTime;
-            qso.QsoDate = localDateTime.InZoneStrictly(DateTimeZone.Utc).ToDateTimeUtc();
-        }
-        else
-        {
-            qso.QsoDate = DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime; // fallback if no date
-        }
-
-        return qso;
     }
+
+    if (qso.Id == Guid.Empty)
+        qso.Id = Guid.NewGuid();
+
+    // Combine date and time, ensure UTC
+    if (qsoDate.HasValue)
+    {
+        var dateTime = qsoDate.Value.Date;
+        if (qsoTime.HasValue)
+            dateTime = dateTime.Add(qsoTime.Value);
+
+        qso.QsoDate = DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
+    }
+    else
+    {
+        qso.QsoDate = DateTime.SpecifyKind(DateTime.UnixEpoch, DateTimeKind.Utc);
+    }
+
+    return qso;
+}
+    // private static Qso ParseQso(Dictionary<string, string> fields)
+    // {
+    //     var qso = new Qso();
+    //
+    //     foreach (var field in fields)
+    //     {
+    //         string name = field.Key.ToLowerInvariant();
+    //         string value = field.Value;
+    //
+    //         switch (name)
+    //         {
+    //             case "call": qso.Call = value; break;
+    //             case "band": qso.Band = value; break;
+    //             case "mode": qso.Mode = value; break;
+    //             case "country": qso.Country = value; break;
+    //             case "state": qso.State = value; break;
+    //             case "rst_sent": qso.RstSent = value; break;
+    //             case "rst_rcvd": qso.RstRcvd = value; break;
+    //             case "contest-id": qso.ContestId = value; break;
+    //             case "guid": qso.Id = Guid.Parse(value); break;
+    //             case "freq":
+    //                 if (decimal.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var freq))
+    //                     qso.Freq = freq;
+    //                 break;
+    //
+    //             case "qso_date":
+    //                 var dateResult = LocalDatePattern.CreateWithInvariantCulture("yyyyMMdd").Parse(value);
+    //                 if (dateResult.Success)
+    //                     date = dateResult.Value;
+    //                 break;
+    //
+    //             case "time_on":
+    //                 var timePattern = value.Length == 4
+    //                     ? LocalTimePattern.CreateWithInvariantCulture("HHmm")
+    //                     : LocalTimePattern.CreateWithInvariantCulture("HHmmss");
+    //
+    //                 var timeResult = timePattern.Parse(value);
+    //                 if (timeResult.Success)
+    //                     time = timeResult.Value;
+    //                 break;
+    //
+    //             default:
+    //                 // Store all non-core fields in QsoDetail
+    //                 qso.Details.Add(new QsoDetail
+    //                 {
+    //                     FieldName = field.Key,
+    //                     FieldValue = value
+    //                 });
+    //                 break;
+    //         }
+    //     }
+    //     if (qso.Id == Guid.Empty)
+    //     {
+    //         qso.Id = Guid.NewGuid();
+    //     }
+    //     // Combine date + time into Instant
+    //     if (date.HasValue)
+    //     {
+    //         var localTime = time ?? new LocalTime(0, 0);
+    //         var localDateTime = date.Value + localTime;
+    //         qso.QsoDate = localDateTime.InZoneStrictly(DateTimeZone.Utc).ToDateTimeUtc();
+    //     }
+    //     else
+    //     {
+    //         qso.QsoDate = DateTimeOffset.FromUnixTimeSeconds(0).UtcDateTime; // fallback if no date
+    //     }
+    //
+    //     return qso;
+    // }
 }

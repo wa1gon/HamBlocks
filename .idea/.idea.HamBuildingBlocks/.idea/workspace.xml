@@ -25,9 +25,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d629a43-4b94-44b3-91cd-113bb6abdd00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/HbLibrary/Models/QSLQSLInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HamBuildingBlocks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/HamBuildingBlocks.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/RigControl/HamLibRigCtlClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleUpload/obj/Debug/net9.0/ConsoleUpload.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/HBAbstractions/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/AdifWriteTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/HbLibrary.Test.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary.Test/zGlobal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Adif/AdifReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/HbLibrary.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/Models/QsoDetail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HbLibrary/zGlobal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HbLibrary/zGlobal.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,33 +120,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.HBDBServer.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.HBLoggingService: https.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.HBWebLogger: http.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Launch Settings Profile.HBWebLogging: http.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Project.ConsoleUpload.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Project.FLDigiMonitorExample.executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Project.FastEndpointServer.executor&quot;: &quot;Debug&quot;,
-    &quot;31d246a5-571e-49a2-b646-181e6149a1c6.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hamlib__conntect&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.HBDBServer.executor": "Run",
+    ".NET Launch Settings Profile.HBLoggingService: https.executor": "Debug",
+    ".NET Launch Settings Profile.HBWebLogger: http.executor": "Run",
+    ".NET Launch Settings Profile.HBWebLogging: http.executor": "Debug",
+    ".NET Project.ConsoleUpload.executor": "Debug",
+    ".NET Project.FLDigiMonitorExample.executor": "Debug",
+    ".NET Project.FastEndpointServer.executor": "Debug",
+    "31d246a5-571e-49a2-b646-181e6149a1c6.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "QSL__Support",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;GitIgnore&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "GitIgnore"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="nodatime" />
+    </option>
+  </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.HBWebLogger: http">
     <configuration name="ConsoleUpload" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
