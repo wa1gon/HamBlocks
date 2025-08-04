@@ -7,10 +7,10 @@ public class HamLibRigCtlClient(string _host, int _port) : IDisposable, IRigCont
     
     private TcpClient? _client;
     private NetworkStream? _stream;
-    private long _freq;
 
-    public long Freq => _freq;
 
+    public long Freq { get; set; }
+    public string Mode { get; set; } = "USB"; // Default mode
     public async Task OpenAsync()
     {
         try
@@ -37,7 +37,7 @@ public class HamLibRigCtlClient(string _host, int _port) : IDisposable, IRigCont
     {
         EnsureConnected();
         await SendCommandAsync($"F {freq}\n");
-        _freq = freq;
+        Freq = freq;
     }
 
     public async Task SetModeAsync(string mode)
@@ -62,7 +62,44 @@ public class HamLibRigCtlClient(string _host, int _port) : IDisposable, IRigCont
             throw new IOException("Lost connection to rigctld.", ex);
         }
     }
+    public async Task<string> ReadLineAsync()
+    {
+        if (_stream == null)
+            throw new InvalidOperationException("Not connected to rigctld.");
 
+        var ms = new MemoryStream();
+        var buffer = new byte[1];
+        while (true)
+        {
+            int bytesRead = await _stream.ReadAsync(buffer, 0, 1);
+            if (bytesRead == 0)
+                break; // End of stream
+            if (buffer[0] == '\n')
+                break;
+            if (buffer[0] == '\r')
+                continue; // Ignore carriage return
+            ms.WriteByte(buffer[0]);
+        }
+        return System.Text.Encoding.ASCII.GetString(ms.ToArray()).Trim();
+    }
+    public async Task<string> GetModeAsync()
+    {
+        EnsureConnected();
+        await SendCommandAsync("m\n");
+        string response = await ReadLineAsync();
+        throw new IOException("Failed to parse mode from rigctld response.");
+    }
+    public async Task<long> GetFreqAsync()
+    {
+        EnsureConnected();
+        await SendCommandAsync("f\n");
+        var buffer = new byte[64];
+        int bytesRead = await _stream!.ReadAsync(buffer, 0, buffer.Length);
+        var response = System.Text.Encoding.ASCII.GetString(buffer, 0, bytesRead).Trim();
+        if (long.TryParse(response, out var freq))
+            return freq;
+        throw new IOException("Failed to parse frequency from rigctld response.");
+    }
     private void EnsureConnected()
     {
         if (_client == null || !_client.Connected || _stream == null)

@@ -8,12 +8,6 @@ public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _
     Endpoint<QsoFilterRequest, List<Qso>>
 {
 
-    // private readonly LoggingDbContext _db;
-    // public FilterQsoEndpoint(LoggingDbContext db)
-    // {
-    //     _db = db;
-    // }
-
     public override void Configure()
     {
         Get("/qso/filter");

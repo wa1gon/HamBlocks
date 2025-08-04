@@ -1,4 +1,6 @@
 
+using System.Diagnostics;
+
 public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>
 {
     private readonly ILogger _logger;
@@ -32,8 +34,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
                 StatusCodes.Status400BadRequest, CancellationToken.None);
             return;
         }
-
-        int totalRecords = 0;
+        
         int totalErrors = 0;
         // ... process file, update totalRecords and totalErrors
 
@@ -113,11 +114,15 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
     {
         try
         {
-            using var stream = req.File.OpenReadStream();
+            ArgumentNullException.ThrowIfNull(req.File);
+            using var stream = req.File?.OpenReadStream();
+
+            Debug.Assert(stream != null, nameof(stream) + " != null");
             using var reader = new StreamReader(stream);
             var adifContent = reader.ReadToEnd();
 
             return adifContent;
+            
         }
         catch (Exception e)
         {
