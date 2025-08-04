@@ -1,9 +1,6 @@
 namespace HBLibrary.Test;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using HamBlocks.Library.Models;
-using NodaTime;
+
+
 
 [TestClass]
 public class AdifWriterTests
@@ -18,7 +15,7 @@ public class AdifWriterTests
             Call = "K1ABC",
             Mode = "SSB",
             Freq = 14.250m,
-            QsoDate = Instant.FromUtc(2024, 6, 6, 14, 30).ToDateTimeUtc(),
+            QsoDate = new DateTime(2024, 6, 6, 14, 30, 0, DateTimeKind.Utc),
             RstSent = "", // intentionally blank
             RstRcvd = "", // intentionally blank
             Details = new List<QsoDetail>
@@ -70,7 +67,7 @@ public class AdifWriterTests
         {
             Call = "N0FREQ",
             Mode = "FT8",
-            QsoDate = SystemClock.Instance.GetCurrentInstant().ToDateTimeUtc()
+            QsoDate = DateTime.UtcNow
         };
 
         // Act

@@ -14,12 +14,14 @@ public class Qso
     [MaxLength(30)]public string Band { get; set; } = string.Empty;
     [MaxLength(10)]public string RstSent { get; set; } = string.Empty;
     [MaxLength(10)]public string RstRcvd { get; set; } = string.Empty;
+    public int Dxcc { get; set; } = 0; // DXCC entity number
     
     public bool BackedUp { get; set; } = false;
     public DateTime BackupDate { get;set; }
     public DateTime LastUpdate { get;set; }
 
-    public ICollection<QsoDetail> Details { get; set; } = new List<QsoDetail>();   
+    public ICollection<QsoQslInfo> QslInfo { get; set; } = []; 
+    public ICollection<QsoDetail> Details { get; set; } = [];   
     // public Dictionary<string,QsoDetail> QsoDetails { get; set; } = new Dictionary<string,QsoDetail>();
     
     public override string ToString()

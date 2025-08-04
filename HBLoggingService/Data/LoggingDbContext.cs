@@ -13,9 +13,13 @@ public class LoggingDbContext : DbContext
 
         modelBuilder.Entity<Qso>()
             .HasIndex(q => q.Call);
+
+        modelBuilder.Entity<QsoQslInfo>()
+            .HasIndex(q => q.QslService);
     }
     public DbSet<Qso> Qsos => Set<Qso>();
     public DbSet<QsoDetail> QsoDetails { get; set; }
+    public DbSet<QsoQslInfo> QsoQslInfos { get; set; }
     public DbSet<OperatorProfile> OperatorProfiles { get; set; }
     public DbSet<CallSign> CallSigns { get; set; }
     public DbSet<ServerLog> ServerLogs { get; set; }

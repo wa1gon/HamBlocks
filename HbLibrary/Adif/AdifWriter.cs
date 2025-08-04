@@ -36,20 +36,14 @@ public static class AdifWriter
             AppendField(sb, "MODE", qso.Mode);
             AppendField(sb, "COUNTRY", qso.Country);
             AppendField(sb, "STATE", qso.State);
+            if (qso.Dxcc > 0)
+                AppendField(sb, "DXCC", qso.Dxcc.ToString(CultureInfo.InvariantCulture));
 
             if (!string.IsNullOrWhiteSpace(qso.RstSent))
                 AppendField(sb, "RST_SENT", qso.RstSent);
 
             if (!string.IsNullOrWhiteSpace(qso.RstRcvd))
                 AppendField(sb, "RST_RCVD", qso.RstRcvd);
-
-            // QSO date/time in UTC
-            if (qso.QsoDate != null)
-            {
-                var date = qso.QsoDate.ToUniversalTime();
-                sb.Append($"<QSO_DATE:8>{date:yyyyMMdd} ");
-                sb.Append($"<TIME_ON:6>{date:HHmmss} ");
-            }
 
             // GUID if available
             if (!string.IsNullOrWhiteSpace(qso.Id.ToString()))
@@ -59,9 +53,7 @@ public static class AdifWriter
             foreach (var detail in qso.Details)
             {
                 if (!string.IsNullOrWhiteSpace(detail.FieldName) && !string.IsNullOrWhiteSpace(detail.FieldValue))
-                {
                     AppendField(sb, detail.FieldName.ToUpperInvariant(), EscapeAdif(detail.FieldValue));
-                }
             }
 
             sb.AppendLine("<EOR>");
