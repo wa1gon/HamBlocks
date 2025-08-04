@@ -128,10 +128,10 @@ private static Qso ParseQso(Dictionary<string, string> fields)
         string name = field.Key.ToLowerInvariant();
         string value = field.Value;
 
-        string service = name.Contains("lotw") ? "LOTW"
-                        : name.Contains("eqsl") ? "EQSL"
-                        : (name.StartsWith("qsl_") ? "DIRECT" : null);
-        QsoQslInfo qslInfo = null;
+        var service = (name.Contains("lotw") ? "LOTW"
+            : name.Contains("eqsl") ? "EQSL"
+            : (name.StartsWith("qsl_") ? "DIRECT" : null)) ?? string.Empty;
+        QsoQslInfo? qslInfo = null;
         if (service != null)
         {
             if (!qslInfos.TryGetValue(service, out qslInfo))

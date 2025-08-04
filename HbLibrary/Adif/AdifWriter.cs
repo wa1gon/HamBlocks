@@ -43,14 +43,6 @@ public static class AdifWriter
             if (!string.IsNullOrWhiteSpace(qso.RstRcvd))
                 AppendField(sb, "RST_RCVD", qso.RstRcvd);
 
-            // QSO date/time in UTC
-            if (qso.QsoDate != null)
-            {
-                var date = qso.QsoDate.ToUniversalTime();
-                sb.Append($"<QSO_DATE:8>{date:yyyyMMdd} ");
-                sb.Append($"<TIME_ON:6>{date:HHmmss} ");
-            }
-
             // GUID if available
             if (!string.IsNullOrWhiteSpace(qso.Id.ToString()))
                 AppendField(sb, "GUID", qso.Id.ToString());
@@ -59,9 +51,7 @@ public static class AdifWriter
             foreach (var detail in qso.Details)
             {
                 if (!string.IsNullOrWhiteSpace(detail.FieldName) && !string.IsNullOrWhiteSpace(detail.FieldValue))
-                {
                     AppendField(sb, detail.FieldName.ToUpperInvariant(), EscapeAdif(detail.FieldValue));
-                }
             }
 
             sb.AppendLine("<EOR>");
