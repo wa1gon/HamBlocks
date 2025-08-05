@@ -1,4 +1,6 @@
+using System.Collections.Immutable;
 using HBAbstractions;
+using HBLibrary.RigControl;
 
 namespace HbLibrary.RigControl;
 
@@ -61,6 +63,28 @@ public class HamLibRigCtlClient(string _host, int _port) : IDisposable, IRigCont
         {
             throw new IOException("Lost connection to rigctld.", ex);
         }
+    }
+    public async Task<RigCapabilities> GetCapabilitiesAsync()
+    {
+        EnsureConnected();
+        await SendCommandAsync("\\dump_caps\n");
+
+        var buffer = new byte[4096];
+        var ms = new MemoryStream();
+
+        while (true)
+        {
+            int bytesRead = await _stream!.ReadAsync(buffer, 0, buffer.Length);
+            if (bytesRead == 0)
+                break; // End of stream or no more data
+            ms.Write(buffer, 0, bytesRead);
+            if (bytesRead < buffer.Length)
+                break; // Assume end of response
+        }
+
+        var response = System.Text.Encoding.ASCII.GetString(ms.ToArray());
+        var lines = response.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
+        return RigCapabilities.Parse(lines.ToImmutableArray());
     }
     public async Task<string> ReadLineAsync()
     {
