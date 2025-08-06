@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+
 
 namespace HBLibrary.RigControl;
 
@@ -38,8 +38,8 @@ public class RigCapabilities
     public static RigCapabilities Parse(ImmutableArray<string> lines)
     {
         var caps = new RigCapabilities();
-        List<FrequencyRange> currentRanges = null;
-        FrequencyRange currentRange = null;
+        List<FrequencyRange>? currentRanges = null;
+        FrequencyRange currentRange = null!;
 
         foreach (var line in lines)
         {
@@ -78,12 +78,12 @@ public class RigCapabilities
             else if (trimmed.StartsWith("TX ranges"))
             {
                 currentRanges = caps.TxRanges;
-                currentRange = null;
+                currentRange = null!;
             }
             else if (trimmed.StartsWith("RX ranges"))
             {
                 currentRanges = caps.RxRanges;
-                currentRange = null;
+                currentRange = null!;
             }
             else if (currentRanges != null && trimmed.EndsWith("Hz") && trimmed.Contains("-"))
             {
@@ -110,7 +110,7 @@ public class RigCapabilities
                 else if (trimmed.StartsWith("High power:"))
                     currentRange.HighPower = trimmed["High power:".Length..].Trim();
                 else if (string.IsNullOrWhiteSpace(trimmed))
-                    currentRange = null; // End of current range block
+                    currentRange = null!; // End of current range block
             }
         }
         return caps;
