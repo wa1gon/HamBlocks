@@ -5,6 +5,17 @@ public class DxClusterClient(string _address, int _port)
     private TcpClient? _client;
     private StreamReader? _reader;
 
+    public async IAsyncEnumerable<string> ReadRawLinesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        if (_reader == null)
+            yield break;
+        while (!cancellationToken.IsCancellationRequested && !_reader.EndOfStream)
+        {
+            var line = await _reader.ReadLineAsync();
+            if (line != null)
+                yield return line;
+        }
+    }
     public async Task ConnectAsync(string callsign)
     {
         _client = new TcpClient();
@@ -37,10 +48,12 @@ public class DxClusterClient(string _address, int _port)
     {
         if (_reader == null)
             yield break;
+        Console.WriteLine("Top of while loop in GetSpotsAsync");
         while (!_reader.EndOfStream)
         {
             var line = await _reader.ReadLineAsync();
             if (line == null) continue;
+            Console.WriteLine($"Raw line: {line}");
             var spot = ParseSpot(line);
             if (spot != null)
                 yield return spot;
@@ -49,19 +62,23 @@ public class DxClusterClient(string _address, int _port)
 
     private DxSpot? ParseSpot(string line)
     {
-        // Example spot line: "14074.0 K1ABC FT8 CQ NA"
-        var parts = line.Split(' ', 3, StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length < 2) return null;
+        if (!line.StartsWith("DX de ")) return null;
 
-        if (!double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var freq))
+        var parts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length < 6) return null;
+
+        var spotter = parts[2].TrimEnd(':');
+        if (!double.TryParse(parts[3], NumberStyles.Any, CultureInfo.InvariantCulture, out var freq))
             return null;
 
         return new DxSpot
         {
+            Spotter = spotter,
             Frequency = freq,
-            Callsign = parts[1],
-            Info = parts.Length > 2 ? parts[2] : "",
+            Callsign = parts[4],
+            Info = string.Join(' ', parts.Skip(5).Take(parts.Length - 6)),
             Timestamp = DateTime.UtcNow
         };
     }
+
 }

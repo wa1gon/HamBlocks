@@ -39,4 +39,13 @@ public class DxSpot
             Timestamp = timestamp
         };
     }
+    public override string ToString()
+    {
+        // Format timestamp as HHmmZ (UTC)
+        var timeStr = Timestamp.ToUniversalTime().ToString("HHmm'Z'");
+        // Pad frequency to match cluster output (e.g., 14340.0)
+        var freqStr = Frequency.ToString("F1", CultureInfo.InvariantCulture);
+        // Info may be empty
+        return $"DX de {Spotter}:    {freqStr}  {Callsign}   {Info}   {timeStr}".Trim();
+    }
 }
