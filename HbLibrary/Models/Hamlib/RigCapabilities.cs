@@ -38,8 +38,8 @@ public class RigCapabilities
     public static RigCapabilities Parse(ImmutableArray<string> lines)
     {
         var caps = new RigCapabilities();
-        List<FrequencyRange> currentRanges = null;
-        FrequencyRange currentRange = null;
+        List<FrequencyRange>? currentRanges = null;
+        FrequencyRange? currentRange = null;
 
         foreach (var line in lines)
         {
