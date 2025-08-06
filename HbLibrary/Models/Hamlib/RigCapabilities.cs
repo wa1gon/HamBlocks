@@ -39,7 +39,7 @@ public class RigCapabilities
     {
         var caps = new RigCapabilities();
         List<FrequencyRange>? currentRanges = null;
-        FrequencyRange currentRange = null!;
+        FrequencyRange? currentRange = null;
 
         foreach (var line in lines)
         {
