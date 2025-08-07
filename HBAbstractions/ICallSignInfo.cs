@@ -2,9 +2,14 @@ namespace HBAbstractions;
 
 public interface ICallSignInfo
 {
-    string CallSign { get; set; }
-    string Name { get; set; }
-    string Country { get; set; }
-    string Qth { get; set; }
+    public string CallSign { get; set; }
+    public string Name { get; set; }
+    public string Country { get; set; }
+    public string State { get; set; } 
+    public string County { get; set; } 
+    public string Grid { get; set; }  
+    public int Dxcc { get; set; }
+    public int Itu { get; set; }
+    public int Cq  { get; set; }
     // Add more properties as needed
 }

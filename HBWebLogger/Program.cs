@@ -1,5 +1,7 @@
 
 
+
+
 namespace HBWebLogger;
 
 public class Program
@@ -31,6 +33,7 @@ public class Program
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMudServices();
+        builder.Services.AddHttpClient<HamQthLookupProvider>();
         // builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
         var app = builder.Build();

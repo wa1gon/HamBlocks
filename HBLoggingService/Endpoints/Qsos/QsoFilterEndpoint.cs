@@ -19,7 +19,6 @@ public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _
 
     public override async Task HandleAsync(QsoFilterRequest req, CancellationToken ct)
     {
-        
         var query = _db.Qsos.AsQueryable();
 
         if (!string.IsNullOrEmpty(req.Call))
@@ -32,36 +31,7 @@ public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _
             .Take(req.PageSize)
             .ToListAsync(ct);
         await SendAsync( result);
-        
-        // var query = _db.Qsos.AsQueryable();
-        //
-        // if (!string.IsNullOrEmpty(req.Call))
-        //     query = query.Where(q => q.Call.StartsWith(req.Call));
-
-        // if (req.Date.HasValue)
-        //     query = query.Where(q => q.QsoDate == req.Date.Value.Date);
-
-        // Apply pagination
-        // var skip = (req.PageNumber - 1) * req.PageSize;
-        
-        
-        // var result = await query
-        //     .OrderBy(q => q.QsoDate) // Ensure consistent ordering
-        //     .Skip(skip)
-        //     .Take(req.PageSize)
-        //     // .Select(q => new QsoFilterResponse
-        //     // {
-        //     //     Id = q.Id,
-        //     //     Call = q.Call,
-        //     //     QsoDate = q.QsoDate,
-        //     //     Mode = q.Mode,
-        //     //     Freq = q.Freq,
-        //     //     Band = q.Band
-        //     //     // Map other properties as needed
-        //     // }
-        //     // )
-        //     .ToListAsync(ct);
-
-        // await SendAsync(result);
+        _logger.LogInformation("Filtered {Count} QSOs for call {Call} on page {PageNumber}", 
+            result.Count, req.Call, req.PageNumber);
     }
 }
