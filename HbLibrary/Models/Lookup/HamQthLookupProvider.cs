@@ -1,27 +1,31 @@
-
+using System.Xml.Serialization;
 
 namespace HamBlocks.Library.Models.Lookup;
-
-public class HamQthLookupProvider : ILookupProvider
+[XmlRoot("HamQTH", Namespace = "https://www.hamqth.com")]
+public class HamQthResponse
 {
-    private readonly string _username;
-    private readonly string _password;
+    [XmlElement("session")]
+    public Session Session { get; set; }
+}
+
+public class Session
+{
+    [XmlElement("session_id")]
+    public string SessionId { get; set; }
+}
+public class HamQthLookupProvider(string _userName, string _password, HttpClient _client ) : ILookupProvider
+{
+
     private string? _sessionKey;
-
-    public HamQthLookupProvider(string username, string password)
-    {
-        _username = username;
-        _password = password;
-    }
-
+    private DateTime _expired;
+    
     public async Task<ICallSignInfo?> LookupAsync(string callSign)
     {
-        if (_sessionKey == null)
+        if (_sessionKey == null || DateTime.UtcNow > _expired)
             await LoginAsync();
-
-        using var client = new HttpClient();
+        
         var url = $"https://www.hamqth.com/xml.php?id={_sessionKey}&callsign={callSign}";
-        var xml = await client.GetStringAsync(url);
+        var xml = await _client.GetStringAsync(url);
         var doc = XDocument.Parse(xml);
 
         var search = doc.Root?.Element("search");
@@ -32,18 +36,34 @@ public class HamQthLookupProvider : ILookupProvider
             CallSign = search.Element("call")?.Value ?? "",
             Name = search.Element("nick")?.Value ?? "",
             Country = search.Element("country")?.Value ?? "",
-            Qth = search.Element("qth")?.Value ?? ""
+            Qth = search.Element("qth")?.Value ?? "",
+            State = search.Element("us_state")?.Value ?? "",
+            Grid = search.Element("grid")?.Value ?? "",
+            County = search.Element("us_county")?.Value ?? "",
+            Dxcc = int.TryParse(search.Element("adif")?.Value, out var dxcc) ? dxcc : 0,
+            Itu = int.TryParse(search.Element("itu")?.Value, out var itu) ? dxcc : 0,
+            Cq = int.TryParse(search.Element("cq")?.Value, out var cq) ? dxcc : 0,
         };
     }
 
     private async Task LoginAsync()
     {
-        using var client = new HttpClient();
-        var url = $"https://www.hamqth.com/xml.php?u={_username}&p={_password}";
-        var xml = await client.GetStringAsync(url);
+        var url = $"https://www.hamqth.com/xml.php?u={_userName}&p={_password}";
+        var xml = await _client.GetStringAsync(url);
         var doc = XDocument.Parse(xml);
-        _sessionKey = doc.Root?.Element("session")?.Element("session_id")?.Value;
-        if (string.IsNullOrEmpty(_sessionKey))
+
+        // Get the default namespace from the root element
+        XNamespace ns = doc.Root?.GetDefaultNamespace() ?? "";
+
+        var sessionId = doc.Root?
+            .Element(ns + "session")?
+            .Element(ns + "session_id")?
+            .Value;
+
+        if (string.IsNullOrEmpty(sessionId))
             throw new Exception("HamQTH login failed.");
+
+        _sessionKey = sessionId;
+        _expired = DateTime.UtcNow + TimeSpan.FromMinutes(59);
     }
 }
