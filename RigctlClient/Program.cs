@@ -46,8 +46,9 @@ class Program
                 .Build();
 
             var provider = host.Services.GetRequiredService<HamQthLookupProvider>();
-            var result = await provider.LookupAsync("wa1gon");
-            Console.WriteLine(result?.CallSign);
+            var result = await provider.LookupCallSignAsync("wa1gon");
+            
+            Console.WriteLine($"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
             
     }
 

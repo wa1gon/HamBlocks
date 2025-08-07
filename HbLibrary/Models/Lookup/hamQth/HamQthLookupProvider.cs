@@ -2,52 +2,52 @@ using System.Xml.Serialization;
 
 namespace HamBlocks.Library.Models.Lookup;
 [XmlRoot("HamQTH", Namespace = "https://www.hamqth.com")]
-public class HamQthResponse
-{
-    [XmlElement("session")]
-    public Session? Session { get; set; }
-}
 
-public class Session
-{
-    [XmlElement("session_id")]
-    public string? SessionId { get; set; }
-}
-public class HamQthLookupProvider(string _userName, string _password, HttpClient _client ) : ILookupProvider
+
+
+public class HamQthLookupProvider(string _userName, string _password, HttpClient _client, string _programId = "HamBlocksLib" ) : ILookupProvider
 {
 
     private string? _sessionKey;
     private DateTime _expired;
     
-    public async Task<ICallSignInfo?> LookupAsync(string callSign)
+    public async Task<ICallSignInfo?> LookupCallSignAsync(string callSign)
     {
-        if (_sessionKey == null || DateTime.UtcNow > _expired)
-            await LoginAsync();
-        
-        var url = $"https://www.hamqth.com/xml.php?id={_sessionKey}&callsign={callSign}";
+        await LoginAsync();
+        var url = $"https://www.hamqth.com/xml.php?id={_sessionKey}&callsign={callSign}&prg={_programId}";
         var xml = await _client.GetStringAsync(url);
-        var doc = XDocument.Parse(xml);
 
-        var search = doc.Root?.Element("search");
-        if (search == null) return null;
+        var serializer = new XmlSerializer(typeof(HamQthCallSearchResponse));
+        using var reader = new StringReader(xml);
+        var callValue =  serializer.Deserialize(reader) as HamQthCallSearchResponse;
+        return ConvertToICallSignInfo(callValue);
+    }
 
-        return new CallSignInfo
+    private ICallSignInfo? ConvertToICallSignInfo(HamQthCallSearchResponse? callValue)
+    {
+        if (callValue is null)
+            return null;
+
+        var callrc = new CallSignInfo
         {
-            CallSign = search.Element("call")?.Value ?? "",
-            Name = search.Element("nick")?.Value ?? "",
-            Country = search.Element("country")?.Value ?? "",
-            Qth = search.Element("qth")?.Value ?? "",
-            State = search.Element("us_state")?.Value ?? "",
-            Grid = search.Element("grid")?.Value ?? "",
-            County = search.Element("us_county")?.Value ?? "",
-            Dxcc = int.TryParse(search.Element("adif")?.Value, out var dxcc) ? dxcc : 0,
-            Itu = int.TryParse(search.Element("itu")?.Value, out var itu) ? dxcc : 0,
-            Cq = int.TryParse(search.Element("cq")?.Value, out var cq) ? dxcc : 0,
+            CallSign = callValue.Search?.CallSign ?? string.Empty,
+            Name = callValue.Search?.Nick ?? string.Empty,
+            Country = callValue.Search?.Country ?? string.Empty,
+            Grid = callValue.Search?.Grid ?? string.Empty,
+            Dxcc = callValue.Search?.Adif ?? 0,
+            State = callValue.Search?.UsState ?? string.Empty,
+            County = callValue.Search?.UsCounty ?? string.Empty,
+            Itu = callValue.Search?.Itu ?? 0,
+            Cq = callValue.Search?.Cq ?? 0
         };
+        return callrc;
     }
 
     private async Task LoginAsync()
     {
+        if (_sessionKey != null && DateTime.UtcNow < _expired)
+            return;
+        
         var url = $"https://www.hamqth.com/xml.php?u={_userName}&p={_password}";
         var xml = await _client.GetStringAsync(url);
         var doc = XDocument.Parse(xml);

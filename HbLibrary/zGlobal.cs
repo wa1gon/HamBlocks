@@ -15,3 +15,4 @@ global using System.Xml.Linq;
 global using HamBlocks.Library.Models;
 global using HBAbstractions;
 global using HbLibrary.RigControl;
+global using System.Xml.Serialization;
