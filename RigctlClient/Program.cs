@@ -28,8 +28,16 @@ class Program
                 .ConfigureServices((context, services) =>
                 {
                     var configuration = context.Configuration;
-                    userName = configuration["HamQth:Username"];
-                    password = configuration["HamQth:Password"];
+                    if (configuration == null)
+                    {
+                        throw new InvalidOperationException("Configuration is not available.");
+                    }
+                    userName = configuration["HamQth:Username"] ?? throw new InvalidOperationException("Username missing");
+                    password = configuration["HamQth:Password"] ?? throw new InvalidOperationException("Password missing");
+                    if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+                    {
+                        throw new InvalidOperationException("HamQth username and password must be set in user secrets.");
+                    }
 
                     services.AddHttpClient<HamQthLookupProvider>();
                     services.AddTransient(sp =>

@@ -5,13 +5,13 @@ namespace HamBlocks.Library.Models.Lookup;
 public class HamQthResponse
 {
     [XmlElement("session")]
-    public Session Session { get; set; }
+    public Session? Session { get; set; }
 }
 
 public class Session
 {
     [XmlElement("session_id")]
-    public string SessionId { get; set; }
+    public string? SessionId { get; set; }
 }
 public class HamQthLookupProvider(string _userName, string _password, HttpClient _client ) : ILookupProvider
 {
