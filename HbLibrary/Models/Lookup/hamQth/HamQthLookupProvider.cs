@@ -5,11 +5,12 @@ namespace HamBlocks.Library.Models.Lookup;
 
 
 
-public class HamQthLookupProvider(string _userName, string _password, HttpClient _client, string _programId = "HamBlocksLib" ) : ILookupProvider
+public class HamQthLookupProvider(string _userName, string _password, 
+    HttpClient _client, string _programId = "HamBlocksLib" ) : ILookupProvider
 {
 
-    private string? _sessionKey;
-    private DateTime _expired;
+    static public string? _sessionKey;
+    static public DateTime _expired;
     
     public async Task<ICallSignInfo?> LookupCallSignAsync(string callSign)
     {
