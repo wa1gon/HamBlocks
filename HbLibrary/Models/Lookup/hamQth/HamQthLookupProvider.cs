@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using HbLibrary;
 
 namespace HamBlocks.Library.Models.Lookup;
 [XmlRoot("HamQTH", Namespace = "https://www.hamqth.com")]
@@ -15,7 +16,11 @@ namespace HamBlocks.Library.Models.Lookup;
         static public DateTime _expired;
 
 
-    
+    public async Task<IDxccInfo?> LookupDxccAsync(int dxcc)
+    {
+
+        return null;
+    }
     public async Task<ICallSignInfo?> LookupCallSignAsync(string callSign)
     {
         if (_cache.TryGetValue(callSign, out ICallSignInfo? cached))
@@ -39,7 +44,35 @@ namespace HamBlocks.Library.Models.Lookup;
         }
         return rc;
     }
+    public async Task<IDxccInfo?> LookupDxccByCallAsync(string callSign)
+    {
+        // await LoginAsync();
+        var url = $"https://www.hamqth.com/dxcc.php?callsign={callSign}";
+        var xml = await _client.GetStringAsync(url);
 
+        var serializer = new XmlSerializer(typeof(HamQthDxccResponse));
+        using var reader = new StringReader(xml);
+        var dxccValue = serializer.Deserialize(reader) as HamQthDxccResponse;
+        return ConvertToIDxccInfo(dxccValue?.Dxcc);
+    }
+    private IDxccInfo? ConvertToIDxccInfo(HamQthDxcc? dxcc)
+    {
+        if (dxcc is null)
+            return null;
+
+        var rc = new DxccInfo
+        {
+            CallSign = dxcc.CallSign ?? string.Empty,
+            Name = dxcc.Name ?? string.Empty,
+            Details = dxcc.Details ?? string.Empty,
+            Continent = dxcc.Continent ?? string.Empty,
+            Utc = dxcc.Utc ?? string.Empty,
+            Waz = dxcc.Waz ?? 0,
+            Itu = dxcc.Itu ?? 0,
+            Dxcc = dxcc.Dxcc ?? 0
+        };
+        return rc;
+    }
     private ICallSignInfo? ConvertToICallSignInfo(HamQthCallSearchResponse? callValue)
     {
         

@@ -54,6 +54,8 @@ class Program
             
             Console.WriteLine($"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
             
+            var dxcc = await provider.LookupDxccByCallAsync("wa1gon");
+            Console.WriteLine($"DXCC: {dxcc?.CallSign} Name: {dxcc?.Name} Continent: {dxcc?.Continent} ");
     }
 
     private static async Task DxClusterTest()
