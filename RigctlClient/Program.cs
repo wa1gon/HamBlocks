@@ -3,7 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HamBlocks.Library.Models.Lookup;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Caching.Memory;
 namespace RigctlClient;
 
 /// <summary>
@@ -15,9 +16,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-            // await RigTest();
 
-            // await DxClusterTest();
             string userName = string.Empty;
             string password = string.Empty;
             var host = Host.CreateDefaultBuilder(args)
@@ -29,23 +28,28 @@ class Program
                 {
                     var configuration = context.Configuration;
                     if (configuration == null)
-                    {
                         throw new InvalidOperationException("Configuration is not available.");
-                    }
-                    userName = configuration["HamQth:Username"] ?? throw new InvalidOperationException("Username missing");
-                    password = configuration["HamQth:Password"] ?? throw new InvalidOperationException("Password missing");
-                    if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
-                    {
-                        throw new InvalidOperationException("HamQth username and password must be set in user secrets.");
-                    }
 
+                    var userName = configuration["HamQth:Username"] ?? throw new InvalidOperationException("Username missing");
+                    var password = configuration["HamQth:Password"] ?? throw new InvalidOperationException("Password missing");
+
+                    services.AddMemoryCache();
                     services.AddHttpClient<HamQthLookupProvider>();
-                    services.AddTransient(sp =>
-                        new HamQthLookupProvider(userName, password, sp.GetRequiredService<HttpClient>()));
+                    services.AddTransient<HamQthLookupProvider>(sp =>
+                        new HamQthLookupProvider(
+                            userName,
+                            password,
+                            sp.GetRequiredService<HttpClient>(),
+                            "HamBlocksLib",
+                            sp.GetRequiredService<IMemoryCache>()
+                        )
+                    );
                 })
                 .Build();
 
             var provider = host.Services.GetRequiredService<HamQthLookupProvider>();
+            var result1 = await provider.LookupCallSignAsync("wa1gon");
+            var result2 = await provider.LookupCallSignAsync("kb1etc");
             var result = await provider.LookupCallSignAsync("wa1gon");
             
             Console.WriteLine($"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
