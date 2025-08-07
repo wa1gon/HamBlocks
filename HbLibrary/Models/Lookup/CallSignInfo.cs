@@ -11,5 +11,8 @@ public class CallSignInfo: ICallSignInfo
     public int Dxcc { get; set; }
     public int Itu { get; set; }
     public int Cq { get; set; }
+    public bool Lotw { get; set; }
+    public bool Eqsl { get; set; }
+    
     // Add more fields as needed
 }
