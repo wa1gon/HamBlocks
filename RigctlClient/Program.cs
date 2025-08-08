@@ -5,6 +5,8 @@ using HamBlocks.Library.Models.Lookup;
 using HamBlocks.Library.Models.Lookup.Qrz;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Caching.Memory;
+using HbLibrary.FileIO;
+
 namespace RigctlClient;
 
 /// <summary>
@@ -56,27 +58,34 @@ class Program
                     );
                 })
                 .Build();
+            
+            var dxccList = DxccJsonReader.LoadDxccFromJson("C:/temp/dxcc.json");
+            
+            if (false)
+            {
+                var HamQthprovider = host.Services.GetRequiredService<HamQthLookupProvider>();
+                var result1 = await HamQthprovider.LookupCallSignAsync("wa1gon");
+                var result2 = await HamQthprovider.LookupCallSignAsync("kb1etc");
+                var result = await HamQthprovider.LookupCallSignAsync("wa1gon");
 
-            var HamQthprovider = host.Services.GetRequiredService<HamQthLookupProvider>();
-            var result1 = await HamQthprovider.LookupCallSignAsync("wa1gon");
-            var result2 = await HamQthprovider.LookupCallSignAsync("kb1etc");
-            var result = await HamQthprovider.LookupCallSignAsync("wa1gon");
-            
-            Console.WriteLine($"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
-            
-            var dxcc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
-            Console.WriteLine($"DXCC: {dxcc?.CallSign} Name: {dxcc?.Name} Continent: {dxcc?.Continent} ");
-            
-            // QRZ lookup test
-            var Qrzprovider = host.Services.GetRequiredService<QrzLookupProvider>();
-            var qrzrc1 = await Qrzprovider.LookupCallSignAsync("wa1gon");
-            var qrzrc2 = await Qrzprovider.LookupCallSignAsync("kb1etc");
-            var qrzrc3 = await Qrzprovider.LookupCallSignAsync("wa1gon");
-            
-            Console.WriteLine($"call: {qrzrc1?.CallSign} State: {qrzrc1?.State} Country: {qrzrc1?.Country} Grid: {qrzrc1?.Grid}");
-            
-            var dxccrc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
-            Console.WriteLine($"DXCC: {dxccrc?.CallSign} Name: {dxccrc?.Name} Continent: {dxccrc?.Continent} ");
+                Console.WriteLine(
+                    $"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
+
+                var dxcc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
+                Console.WriteLine($"DXCC: {dxcc?.CallSign} Name: {dxcc?.Name} Continent: {dxcc?.Continent} ");
+
+                // QRZ lookup test
+                var Qrzprovider = host.Services.GetRequiredService<QrzLookupProvider>();
+                var qrzrc1 = await Qrzprovider.LookupCallSignAsync("wa1gon");
+                var qrzrc2 = await Qrzprovider.LookupCallSignAsync("kb1etc");
+                var qrzrc3 = await Qrzprovider.LookupCallSignAsync("wa1gon");
+
+                Console.WriteLine(
+                    $"call: {qrzrc1?.CallSign} State: {qrzrc1?.State} Country: {qrzrc1?.Country} Grid: {qrzrc1?.Grid}");
+
+                var dxccrc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
+                Console.WriteLine($"DXCC: {dxccrc?.CallSign} Name: {dxccrc?.Name} Continent: {dxccrc?.Continent} ");
+            }
     }
 
     private static async Task DxClusterTest()
