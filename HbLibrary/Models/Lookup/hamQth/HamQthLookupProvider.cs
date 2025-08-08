@@ -94,7 +94,7 @@ namespace HamBlocks.Library.Models.Lookup;
         return callrc;
     }
 
-    private async Task LoginAsync()
+    public async Task LoginAsync()
     {
         if (_sessionKey != null && DateTime.UtcNow < _expired)
             return;

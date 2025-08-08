@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HamBlocks.Library.Models.Lookup;
+using HamBlocks.Library.Models.Lookup.Qrz;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Caching.Memory;
 namespace RigctlClient;
 
@@ -30,15 +30,25 @@ class Program
                     if (configuration == null)
                         throw new InvalidOperationException("Configuration is not available.");
 
-                    var userName = configuration["HamQth:Username"] ?? throw new InvalidOperationException("Username missing");
-                    var password = configuration["HamQth:Password"] ?? throw new InvalidOperationException("Password missing");
-
+                    var hamqthUser = configuration["HamQth:Username"] ?? throw new InvalidOperationException("HamQTH Username missing");
+                    var hamqthPassword = configuration["HamQth:Password"] ?? throw new InvalidOperationException("HamQTH Password missing");
+                    var qrzUserName = configuration["QRZ:Username"] ?? throw new InvalidOperationException("QRZ Username missing");
+                    var qrzPassword = configuration["QRZ:Password"] ?? throw new InvalidOperationException("QRZ Password missing");
                     services.AddMemoryCache();
                     services.AddHttpClient<HamQthLookupProvider>();
                     services.AddTransient<HamQthLookupProvider>(sp =>
                         new HamQthLookupProvider(
-                            userName,
-                            password,
+                            hamqthUser,
+                            hamqthPassword,
+                            sp.GetRequiredService<HttpClient>(),
+                            "HamBlocksLib",
+                            sp.GetRequiredService<IMemoryCache>()
+                        )
+                    );
+                    services.AddTransient<QrzLookupProvider>(sp =>
+                        new QrzLookupProvider(
+                            qrzUserName,
+                            password: qrzPassword,
                             sp.GetRequiredService<HttpClient>(),
                             "HamBlocksLib",
                             sp.GetRequiredService<IMemoryCache>()
@@ -47,15 +57,26 @@ class Program
                 })
                 .Build();
 
-            var provider = host.Services.GetRequiredService<HamQthLookupProvider>();
-            var result1 = await provider.LookupCallSignAsync("wa1gon");
-            var result2 = await provider.LookupCallSignAsync("kb1etc");
-            var result = await provider.LookupCallSignAsync("wa1gon");
+            var HamQthprovider = host.Services.GetRequiredService<HamQthLookupProvider>();
+            var result1 = await HamQthprovider.LookupCallSignAsync("wa1gon");
+            var result2 = await HamQthprovider.LookupCallSignAsync("kb1etc");
+            var result = await HamQthprovider.LookupCallSignAsync("wa1gon");
             
             Console.WriteLine($"call: {result?.CallSign} State: {result?.State} Country: {result?.Country} Grid: {result?.Grid}");
             
-            var dxcc = await provider.LookupDxccByCallAsync("wa1gon");
+            var dxcc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
             Console.WriteLine($"DXCC: {dxcc?.CallSign} Name: {dxcc?.Name} Continent: {dxcc?.Continent} ");
+            
+            // QRZ lookup test
+            var Qrzprovider = host.Services.GetRequiredService<QrzLookupProvider>();
+            var qrzrc1 = await Qrzprovider.LookupCallSignAsync("wa1gon");
+            var qrzrc2 = await Qrzprovider.LookupCallSignAsync("kb1etc");
+            var qrzrc3 = await Qrzprovider.LookupCallSignAsync("wa1gon");
+            
+            Console.WriteLine($"call: {qrzrc1?.CallSign} State: {qrzrc1?.State} Country: {qrzrc1?.Country} Grid: {qrzrc1?.Grid}");
+            
+            var dxccrc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
+            Console.WriteLine($"DXCC: {dxccrc?.CallSign} Name: {dxccrc?.Name} Continent: {dxccrc?.Continent} ");
     }
 
     private static async Task DxClusterTest()
