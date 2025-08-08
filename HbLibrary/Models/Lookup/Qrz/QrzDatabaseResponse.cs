@@ -1,6 +1,6 @@
 namespace HamBlocks.Library.Models.Lookup.Qrz;
 
-[XmlRoot("QRZDatabase")]
+[XmlRoot("QRZDatabase", Namespace = "http://xmldata.qrz.com")]
 public class QrzDatabaseResponse
 {
     [XmlElement("Session")]
