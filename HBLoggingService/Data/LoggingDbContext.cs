@@ -21,6 +21,21 @@ public class LoggingDbContext : DbContext
             .HasIndex(q => q.Dxcc);
         modelBuilder.Entity<QsoQslInfo>()
             .HasIndex(q => q.QslService);
+        
+        modelBuilder.Entity<HBConfiguration>()
+            .HasMany(c => c.RigControls)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<HBConfiguration>()
+            .HasMany(c => c.Logbooks)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<HBConfiguration>()
+            .HasMany(c => c.DxClusters)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
     }
     public DbSet<Qso> Qsos => Set<Qso>();
     public DbSet<QsoDetail> QsoDetails { get; set; }
