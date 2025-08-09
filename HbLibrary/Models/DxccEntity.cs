@@ -12,7 +12,7 @@ public class DxccEntity
     public List<int> Cq { get; set; } = new();
     public bool Deleted { get; set; }
     public int EntityCode { get; set; }
-    public string Flag { get; set; } = string.Empty;
+    // public string Flag { get; set; } = string.Empty;
     public List<int> Itu { get; set; } = new();
     public string Name { get; set; } = string.Empty;
     public string Notes { get; set; } = string.Empty;
