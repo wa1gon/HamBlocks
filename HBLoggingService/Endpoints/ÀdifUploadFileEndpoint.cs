@@ -61,6 +61,8 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             new AdifUploadFileResponse(
                 $"File '{req.File.FileName}' uploaded. Processing in background."),
             cancellation: ct);
+        
+        var logger = _logger; // If needed       
         _ = Task.Run(async () =>
         {
             try

@@ -1,3 +1,5 @@
+using HbLibrary;
+
 namespace HBLoggingService.Data;
 
 public class LoggingDbContext : DbContext
@@ -13,7 +15,10 @@ public class LoggingDbContext : DbContext
 
         modelBuilder.Entity<Qso>()
             .HasIndex(q => q.Call);
-
+        modelBuilder.Entity<Qso>()
+            .HasIndex(q => q.Band);
+        modelBuilder.Entity<Qso>()
+            .HasIndex(q => q.Dxcc);
         modelBuilder.Entity<QsoQslInfo>()
             .HasIndex(q => q.QslService);
     }
@@ -23,4 +28,9 @@ public class LoggingDbContext : DbContext
     public DbSet<OperatorProfile> OperatorProfiles { get; set; }
     public DbSet<CallSign> CallSigns { get; set; }
     public DbSet<ServerLog> ServerLogs { get; set; }
+    public DbSet<HBConfiguration> HBConfigurations { get; set; }
+    public DbSet<CallBookConf> CallBookConfs { get; set; }
+    public DbSet<RigCtlConf> RigCtlConfs { get; set; }
+    public DbSet<DxccEntity> DxccEntities { get; set; }
+
 }

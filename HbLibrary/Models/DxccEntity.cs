@@ -7,6 +7,7 @@ public class DxccRoot
 }
 public class DxccEntity 
 {
+    public int Id { get; set; }
     public List<string> Continent { get; set; } = new();
     public string CountryCode { get; set; } = string.Empty;
     public List<int> Cq { get; set; } = new();
