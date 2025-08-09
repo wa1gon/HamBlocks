@@ -7,3 +7,7 @@ global using Microsoft.AspNetCore.Components.Authorization;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using MudBlazor.Services;
+global using HBWebLogger.Services;
+global using HamBlocks.Library.Models;
+global using HBAbstractions;
+global using MudBlazor;

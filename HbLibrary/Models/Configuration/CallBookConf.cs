@@ -1,6 +1,7 @@
 namespace HamBlocks.Library.Models;
 
-public class CallBookConf
+
+public class CallBookConf : ICallBookConf
 {
     [Key]
     public string Name { get; set; } = string.Empty;

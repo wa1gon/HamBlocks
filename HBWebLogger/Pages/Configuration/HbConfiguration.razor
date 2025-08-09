@@ -1,0 +1,37 @@
+@page "/hbconfigurations"
+
+@using HamBlocks.Library.Models
+@using MudBlazor
+
+<MudPaper>
+    <MudTable Items="_configs" Hover="true" Bordered="true">
+        <HeaderContent>
+            <MudTh>Profile Name</MudTh>
+            <MudTh>Callsign</MudTh>
+            <MudTh>Actions</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>@context.ProfileName</MudTd>
+            <MudTd>@context.Callsign</MudTd>
+            <MudTd>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(() => EditConfig(context))">Edit</MudButton>
+                <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(() => DeleteConfig(context))">Delete</MudButton>
+            </MudTd>
+        </RowTemplate>
+    </MudTable>
+    <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="AddConfig">Add Configuration</MudButton>
+</MudPaper>
+
+<MudDialog @bind-is-open="_dialogOpen">
+    <DialogContent>
+        <MudForm @ref="_form">
+            <MudTextField @bind-Value="_editConfig.ProfileName" Label="Profile Name" Required="true" Disabled="_isEdit"/>
+            <MudTextField @bind-Value="_editConfig.Callsign" Label="Callsign" Required="true"/>
+            <!-- Add more fields as needed -->
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="SaveConfig" Disabled="@(!_form!.IsValid)">Save</MudButton>
+        <MudButton OnClick="() => _dialogOpen = false">Cancel</MudButton>
+    </DialogActions>
+</MudDialog>

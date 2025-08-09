@@ -1,7 +1,3 @@
-
-
-
-
 namespace HBWebLogger;
 
 public class Program
@@ -26,7 +22,8 @@ public class Program
             }
         });
         
-        
+        builder.Services.AddScoped<IHbConfigurationApiService, HbConfigurationApiService>();
+        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://your-api-url/") });
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<ApplicationDbContext>();

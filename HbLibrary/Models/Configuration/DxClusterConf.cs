@@ -1,6 +1,6 @@
 namespace HamBlocks.Library.Models;
 
-public class DxClusterConf
+public class DxClusterConf : IDxClusterConf
 {
     [Key]
     public string Host { get; set; } = string.Empty;
