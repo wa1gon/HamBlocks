@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HamBlocks.Library.Models.Lookup;
 using HamBlocks.Library.Models.Lookup.Qrz;
+using HbLibrary;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Caching.Memory;
 using HbLibrary.FileIO;
@@ -60,6 +61,25 @@ class Program
                 .Build();
             
             var dxccList = DxccJsonReader.LoadDxccFromJson("C:/temp/dxcc.json");
+            var dxccEntity = Dxcc.FindMatchingPrefix("wa1gon", dxccList);
+            if (dxccEntity != null)
+            {
+                Console.WriteLine($"Found DXCC: {dxccEntity.Name} ({dxccEntity.CountryCode})");
+            }
+            dxccEntity = Dxcc.FindMatchingPrefix("kh6ff", dxccList);
+            if (dxccEntity != null)
+            {
+                Console.WriteLine($"Found DXCC: {dxccEntity.Name} ({dxccEntity.CountryCode})");
+            }            
+
+            // if (Dxcc.FindMatchingPrefix("wa1gon", dxccList) is DxccEntity dxcc)
+            // {
+            //     Console.WriteLine($"Found DXCC: {dxcc.Name} ({dxcc.CountryCode})");
+            // }
+            // else
+            // {
+            //     Console.WriteLine("No matching DXCC found for call sign 'wa1gon'.");
+            // });
             
             if (false)
             {
