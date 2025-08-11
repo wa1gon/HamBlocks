@@ -2,7 +2,7 @@ namespace HamBlocks.Library.Models;
 
 
 
-public class HBConfiguration : IHBConfiguration
+public class HBConfiguration //: IHBConfiguration
 {
     [Key][MaxLength(50)]
     public required string ProfileName { get; set; } 
@@ -23,7 +23,7 @@ public class HBConfiguration : IHBConfiguration
     public int Dxcc { get; set; } = 0; // DXCC Entity Code
     public int ProKey { get; set; } = 0; 
     
-    public List<IRigCtlConf> RigControls { get; set; } = [];
-    public List<ICallBookConf> Logbooks { get; set; } = [];
-    public List<IDxClusterConf> DxClusters { get; set; } = [];
+    public List<RigCtlConf> RigControls { get; set; } = [];
+    public List<CallBookConf> Logbooks { get; set; } = [];
+    public List<DxClusterConf> DxClusters { get; set; } = [];
 }

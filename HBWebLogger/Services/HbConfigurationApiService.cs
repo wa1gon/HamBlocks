@@ -1,11 +1,8 @@
-using HamBlocks.Library.Models;
-using HBAbstractions;
 
 namespace HBWebLogger.Services;
 
 
-
-public class HbConfigurationApiService : IHbConfigurationApiService
+public class HbConfigurationApiService
 {
     private readonly HttpClient _http;
 
@@ -16,17 +13,12 @@ public class HbConfigurationApiService : IHbConfigurationApiService
 
     public async Task<List<HBConfiguration>?> GetAllAsync()
         => await _http.GetFromJsonAsync<List<HBConfiguration>>("api/hbconfiguration");
-    
-    public async Task AddAsync(IHBConfiguration config)
+
+    public async Task AddAsync(HBConfiguration config)
         => await _http.PostAsJsonAsync("api/hbconfiguration", config);
 
-    public async Task UpdateAsync(IHBConfiguration config)
+    public async Task UpdateAsync(HBConfiguration config)
         => await _http.PutAsJsonAsync($"api/hbconfiguration/{config.ProfileName}", config);
-
-    Task<List<HBConfiguration>> IHbConfigurationApiService.GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
 
     public async Task DeleteAsync(string profileName)
         => await _http.DeleteAsync($"api/hbconfiguration/{profileName}");

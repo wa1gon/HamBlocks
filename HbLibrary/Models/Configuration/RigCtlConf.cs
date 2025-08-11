@@ -2,7 +2,7 @@ namespace HamBlocks.Library.Models;
 
 
 
-public class RigCtlConf : IRigCtlConf
+public class RigCtlConf //: IRigCtlConf
 {
     [Key]
     public string Name { get; set; } = string.Empty;

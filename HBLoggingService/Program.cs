@@ -40,6 +40,7 @@ builder.Services.AddDbContext<LoggingDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
+builder.Services.AddScoped<HbConfigurationService>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerDocument();
 var port = builder.Configuration.GetValue<int>("Port", 7300);
@@ -53,7 +54,11 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 // app.UseAuthorization();
-app.UseFastEndpoints().UseSwaggerGen();
+app.UseFastEndpoints(c =>
+{
+    c.Endpoints.RoutePrefix = "api";
+}).UseSwaggerGen();
+
 app.UseOpenApi();
 app.UseSwaggerUi(x => x.ConfigureDefaults());
 // app.MapGet("/qsos", async (LoggingDbContext db) => 

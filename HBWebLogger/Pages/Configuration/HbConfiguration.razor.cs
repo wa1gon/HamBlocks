@@ -4,7 +4,7 @@ namespace HBWebLogger.Pages.Configuration;
 public partial class HbConfiguration: ComponentBase
 {
     private List<HBConfiguration>? _configs = [];
-    private IHBConfiguration _editConfig = new HBConfiguration
+    private HBConfiguration _editConfig = new HBConfiguration
     {
         ProfileName = "DefaultProfile",
         Callsign = "N0CALL"
@@ -13,10 +13,10 @@ public partial class HbConfiguration: ComponentBase
     private bool _dialogOpen = false;
     private bool _isEdit = false;
     private MudForm? _form;
-    [Inject] public IHbConfigurationApiService? ConfigService { get; set; }
+    [Inject] public HbConfigurationApiService? ConfigService { get; set; }
 
     protected override async Task OnInitializedAsync()
-    {
+    {   
         _configs = await ConfigService!.GetAllAsync();
     }
 

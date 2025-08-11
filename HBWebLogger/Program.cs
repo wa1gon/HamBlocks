@@ -6,6 +6,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var dbProvider = builder.Configuration["DatabaseProvider"]?.ToLowerInvariant();
+        var apiUrl = builder.Configuration["LogApiServer:Url"] ?? "http://localhost:7300";
         // Add services to the container.
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -22,7 +23,7 @@ public class Program
             }
         });
         
-        builder.Services.AddScoped<IHbConfigurationApiService, HbConfigurationApiService>();
+        builder.Services.AddScoped<HbConfigurationApiService>();
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://your-api-url/") });
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
