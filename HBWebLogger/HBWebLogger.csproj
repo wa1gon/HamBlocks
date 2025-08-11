@@ -26,4 +26,8 @@
     <ProjectReference Include="..\HbLibrary\HbLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>
