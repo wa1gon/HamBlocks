@@ -1,0 +1,32 @@
+<h3>ConfigurationDialog</h3>
+
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="form">
+            <MudTextField @bind-Value="Config.ProfileName" Label="Profile Name" Required="true" MaxLength="50" />
+            <MudTextField @bind-Value="Config.Callsign" Label="Callsign" Required="true" MaxLength="20" />
+            <MudTextField @bind-Value="Config.StationName" Label="Station Name" MaxLength="20" />
+            <MudTextField @bind-Value="Config.GridSquare" Label="Grid Square" MaxLength="20" />
+            <MudTextField @bind-Value="Config.City" Label="City" MaxLength="50" />
+            <MudTextField @bind-Value="Config.County" Label="County" MaxLength="50" />
+            <MudTextField @bind-Value="Config.CountyCode" Label="County Code" MaxLength="10" />
+            <MudTextField @bind-Value="Config.State" Label="State" MaxLength="2" />
+            <MudNumericField @bind-Value="Config.Dxcc" Label="DXCC Entity Code" />
+            <MudNumericField @bind-Value="Config.ProKey" Label="Pro Key" />
+            <!-- Add controls for RigControls, Logbooks, DxClusters as needed -->
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Save" Color="Color.Primary">Save</MudButton>
+        <MudButton OnClick="Cancel" Color="Color.Secondary">Cancel</MudButton>
+    </DialogActions>
+</MudDialog>
+@* <MudDialog> *@
+@*     <DialogContent> *@
+@*         Dialog Content *@
+@*     </DialogContent> *@
+@*     <DialogActions> *@
+@*         <MudButton OnClick="Cancel">Cancel</MudButton> *@
+@*         <MudButton Color="Color.Primary" OnClick="Submit">OK</MudButton> *@
+@*     </DialogActions> *@
+@* </MudDialog> *@
