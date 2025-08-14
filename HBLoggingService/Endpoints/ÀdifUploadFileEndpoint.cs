@@ -1,5 +1,9 @@
-
-using System.Diagnostics;
+/// <summary>
+/// Uploads an ADIF file and processes it in the background.
+/// Valid QSOs are added to the database, duplicates are logged.
+/// The endpoint is designed to handle large files efficiently by processing them asynchronously.
+/// It uses a background task to parse the ADIF file and save valid QSOs to the database.
+/// </summary>
 
 public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>
 {
@@ -118,8 +122,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
         {
             ArgumentNullException.ThrowIfNull(req.File);
             using var stream = req.File?.OpenReadStream();
-
-            Debug.Assert(stream != null, nameof(stream) + " != null");
+            
             using var reader = new StreamReader(stream);
             var adifContent = reader.ReadToEnd();
 
