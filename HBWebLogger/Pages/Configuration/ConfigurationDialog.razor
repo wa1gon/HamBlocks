@@ -1,32 +1,77 @@
-<h3>ConfigurationDialog</h3>
+
+@using HamBlocks.Library.Models
+@inject MudBlazor.IDialogService DialogService
+
+<h3>Logbook Configuration</h3>
 
 <MudDialog>
     <DialogContent>
-        <MudForm @ref="form">
-            <MudTextField @bind-Value="Config.ProfileName" Label="Profile Name" Required="true" MaxLength="50" />
-            <MudTextField @bind-Value="Config.Callsign" Label="Callsign" Required="true" MaxLength="20" />
-            <MudTextField @bind-Value="Config.StationName" Label="Station Name" MaxLength="20" />
-            <MudTextField @bind-Value="Config.GridSquare" Label="Grid Square" MaxLength="20" />
-            <MudTextField @bind-Value="Config.City" Label="City" MaxLength="50" />
-            <MudTextField @bind-Value="Config.County" Label="County" MaxLength="50" />
-            <MudTextField @bind-Value="Config.CountyCode" Label="County Code" MaxLength="10" />
-            <MudTextField @bind-Value="Config.State" Label="State" MaxLength="2" />
-            <MudNumericField @bind-Value="Config.Dxcc" Label="DXCC Entity Code" />
-            <MudNumericField @bind-Value="Config.ProKey" Label="Pro Key" />
-            <!-- Add controls for RigControls, Logbooks, DxClusters as needed -->
-        </MudForm>
+<MudDataGrid T="HBConfiguration" Items="@configList" Editable="true" @ref="dataGrid">
+    <Columns>
+        @* <MudDataGridColumn T="HBConfiguration" Field="ProfileName" Title="Profile Name"> *@
+        <PropertyColumn Property="x => x.ProfileName" Title="Profile Name"></PropertyColumn>
+        <PropertyColumn Property="x => x.Callsign" Title="Callsign"></PropertyColumn>
+        <PropertyColumn Property="x => x.StationName" Title="Station Call"></PropertyColumn>
+        <PropertyColumn Property="x => x.GridSquare" Title="Grid"></PropertyColumn>
+        <PropertyColumn Property="x => x.City" Title="City"></PropertyColumn>
+        <PropertyColumn Property="x => x.County" Title="Us County"></PropertyColumn>
+        <PropertyColumn Property="x => x.CountyCode" Title="County Code"></PropertyColumn>
+        <PropertyColumn Property="x => x.State" Title="State/Prov"></PropertyColumn>
+        <PropertyColumn Property="x => x.Dxcc"></PropertyColumn>
+        <PropertyColumn Property="x => x.ProKey"></PropertyColumn>
+        
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="Callsign" Title="Callsign"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.Callsign" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="StationName" Title="Station Name"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.StationName" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="GridSquare" Title="Grid Square"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.GridSquare" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="City" Title="City"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.City" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="County" Title="County"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.County" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="CountyCode" Title="County Code"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.CountyCode" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="State" Title="State"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.State" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="Dxcc" Title="DXCC Entity Code"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.Dxcc" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+        @* <MudDataGridColumn T="HBConfiguration" Field="ProKey" Title="Pro Key"> *@
+        @*     <CellEditTemplate Context="item"> *@
+        @*         <MudTextField @bind-Value="item.ProKey" /> *@
+        @*     </CellEditTemplate> *@
+        @* </MudDataGridColumn> *@
+    </Columns>
+</MudDataGrid>
     </DialogContent>
     <DialogActions>
+        <MudButton OnClick="AddRow" Color="Color.Info">Add</MudButton>
         <MudButton OnClick="Save" Color="Color.Primary">Save</MudButton>
         <MudButton OnClick="Cancel" Color="Color.Secondary">Cancel</MudButton>
     </DialogActions>
 </MudDialog>
-@* <MudDialog> *@
-@*     <DialogContent> *@
-@*         Dialog Content *@
-@*     </DialogContent> *@
-@*     <DialogActions> *@
-@*         <MudButton OnClick="Cancel">Cancel</MudButton> *@
-@*         <MudButton Color="Color.Primary" OnClick="Submit">OK</MudButton> *@
-@*     </DialogActions> *@
-@* </MudDialog> *@

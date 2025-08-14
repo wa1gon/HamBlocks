@@ -8,3 +8,5 @@ global using HBWebLogger.Services;
 global using HamBlocks.Library.Models;
 global using HBAbstractions;
 global using MudBlazor;
+global using Microsoft.AspNetCore.Components;
+global using HamBlocks.Library.Models;
