@@ -1,5 +1,30 @@
 @page "/conf"
-@using MudBlazor
-@inject IDialogService Dialog
 
-<MudButton OnClick="@(() => OpenDialogAsync(_maxWidth))">Add New Configuration dialog</MudButton>
+<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-5">Configuration Grid</MudText>
+
+<MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" Editable="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" EditTrigger="DataGridEditTrigger.Manual"
+             StartedEditingItem="@StartedEditingItem" CanceledEditingItem="@CanceledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+             Bordered="true" Dense="true">
+    <Columns>
+        <PropertyColumn Property="x => x.ProfileName" Title="Profile Name" IsEditable="true" />
+        <PropertyColumn Property="x => x.Callsign" Title="Callsign" IsEditable="true" />
+        <PropertyColumn Property="x => x.StationName" Title="Station Call" IsEditable="true" />
+        <PropertyColumn Property="x => x.GridSquare" Title="Grid" IsEditable="true" />
+        <PropertyColumn Property="x => x.City" Title="City" IsEditable="true" />
+        <PropertyColumn Property="x => x.County" Title="Us County" IsEditable="true" />
+        <PropertyColumn Property="x => x.CountyCode" Title="County Code" IsEditable="true" />
+        <PropertyColumn Property="x => x.State" Title="State/Prov" IsEditable="true" />
+        <PropertyColumn Property="x => x.Dxcc" Title="DXCC" IsEditable="true" />
+        <PropertyColumn Property="x => x.ProKey" Title="Pro Key" IsEditable="true" />
+        <TemplateColumn Title="Actions">
+            <CellTemplate>
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@(() => context.Actions.StartEditingItemAsync())" />
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddRow">Add Row</MudButton>
+<button @onclick="SaveChanges">Save</button>
+<button @onclick="CancelChanges">Cancel</button>
+}

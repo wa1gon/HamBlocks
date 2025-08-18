@@ -22,17 +22,17 @@ public class LoggingDbContext : DbContext
         modelBuilder.Entity<QsoQslInfo>()
             .HasIndex(q => q.QslService);
         
-        modelBuilder.Entity<HBConfiguration>()
+        modelBuilder.Entity<LogConfig>()
             .HasMany(c => c.RigControls)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<HBConfiguration>()
+        modelBuilder.Entity<LogConfig>()
             .HasMany(c => c.Logbooks)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<HBConfiguration>()
+        modelBuilder.Entity<LogConfig>()
             .HasMany(c => c.DxClusters)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
@@ -43,7 +43,7 @@ public class LoggingDbContext : DbContext
     public DbSet<OperatorProfile> OperatorProfiles { get; set; }
     public DbSet<CallSign> CallSigns { get; set; }
     public DbSet<ServerLog> ServerLogs { get; set; }
-    public DbSet<HBConfiguration> HBConfigurations { get; set; }
+    public DbSet<LogConfig> HBConfigurations { get; set; }
     public DbSet<CallBookConf> CallBookConfs { get; set; }
     public DbSet<RigCtlConf> RigCtlConfs { get; set; }
     public DbSet<DxccEntity> DxccEntities { get; set; }

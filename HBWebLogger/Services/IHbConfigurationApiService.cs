@@ -4,8 +4,8 @@ namespace HBWebLogger.Services;
 
 public interface IHbConfigurationApiService
 {
-    Task<List<HBConfiguration>> GetAllAsync();
-    Task AddAsync(HBConfiguration config);
-    Task UpdateAsync(HBConfiguration config);
+    Task<List<LogConfig>> GetAllAsync();
+    Task AddAsync(LogConfig config);
+    Task UpdateAsync(LogConfig config);
     Task DeleteAsync(string profileName);
 }

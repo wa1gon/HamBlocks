@@ -47,8 +47,16 @@ var port = builder.Configuration.GetValue<int>("Port", 7300);
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
-    db.Database.EnsureCreated();
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
+        db.Database.EnsureCreated();
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"An error occurred while creating the database: {e.Message}");
+        throw;
+    }
 }
 
 app.UseSwagger();

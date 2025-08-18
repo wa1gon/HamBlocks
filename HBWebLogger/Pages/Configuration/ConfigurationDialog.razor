@@ -6,7 +6,7 @@
 
 <MudDialog>
     <DialogContent>
-<MudDataGrid T="HBConfiguration" Items="@configList" Editable="true" @ref="dataGrid">
+<MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" Editable="true" @ref="dataGrid">
     <Columns>
         @* <MudDataGridColumn T="HBConfiguration" Field="ProfileName" Title="Profile Name"> *@
         <PropertyColumn Property="x => x.ProfileName" Title="Profile Name"></PropertyColumn>

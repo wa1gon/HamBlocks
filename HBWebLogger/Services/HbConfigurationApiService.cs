@@ -11,13 +11,13 @@ public class HbConfigurationApiService
         _http = http;
     }
 
-    public async Task<List<HBConfiguration>?> GetAllAsync()
-        => await _http.GetFromJsonAsync<List<HBConfiguration>>("api/hbconfigurations");
+    public async Task<List<LogConfig>?> GetAllAsync()
+        => await _http.GetFromJsonAsync<List<LogConfig>>("api/conf");
 
-    public async Task AddAsync(HBConfiguration config)
+    public async Task AddAsync(LogConfig config)
         => await _http.PostAsJsonAsync("api/hbconfiguration", config);
 
-    public async Task UpdateAsync(HBConfiguration config)
+    public async Task UpdateAsync(LogConfig config)
         => await _http.PutAsJsonAsync($"api/hbconfiguration/{config.ProfileName}", config);
 
     public async Task DeleteAsync(string profileName)

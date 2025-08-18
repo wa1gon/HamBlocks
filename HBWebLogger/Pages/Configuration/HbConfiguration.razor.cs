@@ -1,25 +1,59 @@
-using Microsoft.AspNetCore.Components;
-using MudBlazor;
 
 namespace HBWebLogger.Pages.Configuration;
 
 public partial class HbConfiguration : ComponentBase
 {
-    private readonly DialogOptions _maxWidth = new() { MaxWidth = MaxWidth.Medium, FullWidth = true };
-    private readonly DialogOptions _closeButton = new() { CloseButton = true };
-    private readonly DialogOptions _noHeader = new() { NoHeader = true };
-    private readonly DialogOptions _backdropClick = new() { BackdropClick = false };
-    private readonly DialogOptions _fullScreen = new() { FullScreen = true, CloseButton = true };
-    private readonly DialogOptions _topCenter = new() { Position = DialogPosition.TopCenter };
-    private List<HBConfiguration>? _configs = [];
-    [Inject] public HbConfigurationApiService? ConfServ { get; set; }
+    private List<HamBlocks.Library.Models.LogConfig> configList = new();
+    private int commitCount = 0;
+    [Inject]
+    public HbConfigurationApiService? ConfServ { get; set; }
 
     protected override async Task OnInitializedAsync()
-    {   
-        _configs = await ConfServ!.GetAllAsync();
-    }
-    private Task OpenDialogAsync(DialogOptions options)
     {
-        return Dialog.ShowAsync<ConfigurationDialog>("Custom Options Dialog", options);
+        // Fetch configurations from the API
+        configList = await ConfServ!.GetAllAsync() ?? new List<LogConfig>();
+        Console.WriteLine($"Loaded {configList.Count} configurations");
+    }
+
+    private void AddRow()
+    {
+        configList.Add(new ()
+        {
+            ProfileName = "new-profile",
+            Callsign = "NOCALL",
+        });
+        StateHasChanged();
+    }
+
+    private void StartedEditingItem(HamBlocks.Library.Models.LogConfig config)
+    {
+        Console.WriteLine($"Editing started for {config.ProfileName}");
+    }
+
+    private void CanceledEditingItem(HamBlocks.Library.Models.LogConfig config)
+    {
+        Console.WriteLine($"Editing canceled for {config.ProfileName}");
+    }
+
+    private async Task CommittedItemChanges(HamBlocks.Library.Models.LogConfig config)
+    {
+        Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
+        // Example: Update database via API
+        // await ConfServ.UpdateAsync(config);
+        await Task.CompletedTask;
+    }
+    public async Task SaveChanges()
+    {
+        foreach (var config in configList)
+        {
+            await CommittedItemChanges(config);
+        }
+        Console.WriteLine("All changes saved.");
+    }
+    public void CancelChanges()
+    {
+        // Reload configs from API to discard changes
+        _ = OnInitializedAsync();
+        Console.WriteLine("Changes canceled.");
     }
 }

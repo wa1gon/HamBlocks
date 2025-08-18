@@ -3,28 +3,28 @@ using MudBlazor;
 
 public partial class ConfigurationDialog : ComponentBase
 {
-    [Parameter] public HBConfiguration Config { get; set; } = new HBConfiguration
+    [Parameter] public HamBlocks.Library.Models.LogConfig Config { get; set; } = new LogConfig
     {
         ProfileName = string.Empty,
         Callsign = string.Empty
         // Set other required properties if needed
     };
 
-    private MudDataGrid<HBConfiguration> dataGrid;
-    private List<HBConfiguration> configList;
+    private MudDataGrid<LogConfig> dataGrid;
+    private List<LogConfig> configList;
     
     [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
 
     protected override void OnInitialized()
     {
-        configList = new List<HBConfiguration> { Config };
+        configList = new List<LogConfig> { Config };
     }
 
     private void Save() => MudDialog.Close(DialogResult.Ok(Config));
     private void Cancel() => MudDialog.Cancel();
     private void AddRow()
     {
-        configList.Add(new HBConfiguration
+        configList.Add(new LogConfig
         {
             ProfileName = string.Empty,
             Callsign = string.Empty

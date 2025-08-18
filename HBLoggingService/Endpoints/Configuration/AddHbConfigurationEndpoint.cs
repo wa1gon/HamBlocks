@@ -1,6 +1,6 @@
 namespace HBLoggingService.Endpoints.Configuration;
 
-public class AddHbConfigurationEndpoint : Endpoint<HBConfiguration>
+public class AddHbConfigurationEndpoint : Endpoint<LogConfig>
 {
     private readonly HbConfigurationService _service;
     public AddHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
@@ -11,7 +11,7 @@ public class AddHbConfigurationEndpoint : Endpoint<HBConfiguration>
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(HBConfiguration req, CancellationToken ct)
+    public override async Task HandleAsync(LogConfig req, CancellationToken ct)
     {
         await _service.AddAsync(req);
         await SendOkAsync(ct);
