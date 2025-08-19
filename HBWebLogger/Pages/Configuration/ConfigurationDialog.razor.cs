@@ -1,3 +1,4 @@
+#if false
 namespace HBWebLogger.Pages.Configuration;
 using MudBlazor;
 
@@ -33,3 +34,4 @@ public partial class ConfigurationDialog : ComponentBase
         StateHasChanged();
     }
 }
+#endif

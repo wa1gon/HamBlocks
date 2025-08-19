@@ -2,29 +2,47 @@
 
 <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-5">Configuration Grid</MudText>
 
-<MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" Editable="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" EditTrigger="DataGridEditTrigger.Manual"
-             StartedEditingItem="@StartedEditingItem" CanceledEditingItem="@CanceledEditingItem" CommittedItemChanges="@CommittedItemChanges"
+<MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" Editable="true" 
+             ReadOnly="false" EditMode="DataGridEditMode.Cell" 
+             EditTrigger="DataGridEditTrigger.Manual"
+             StartedEditingItem="@StartedEditingItem" 
+             CanceledEditingItem="@CanceledEditingItem" 
+             CommittedItemChanges="@CommittedItemChanges"
+             RowClick="@RowClickCallback"         
              Bordered="true" Dense="true">
     <Columns>
-        <PropertyColumn Property="x => x.ProfileName" Title="Profile Name" IsEditable="true" />
-        <PropertyColumn Property="x => x.Callsign" Title="Callsign" IsEditable="true" />
-        <PropertyColumn Property="x => x.StationName" Title="Station Call" IsEditable="true" />
-        <PropertyColumn Property="x => x.GridSquare" Title="Grid" IsEditable="true" />
-        <PropertyColumn Property="x => x.City" Title="City" IsEditable="true" />
-        <PropertyColumn Property="x => x.County" Title="Us County" IsEditable="true" />
-        <PropertyColumn Property="x => x.CountyCode" Title="County Code" IsEditable="true" />
-        <PropertyColumn Property="x => x.State" Title="State/Prov" IsEditable="true" />
-        <PropertyColumn Property="x => x.Dxcc" Title="DXCC" IsEditable="true" />
-        <PropertyColumn Property="x => x.ProKey" Title="Pro Key" IsEditable="true" />
+        <PropertyColumn Property="x => x.ProfileName" Title="Profile Name" IsEditable="true">
+            <CellTemplate>
+                @context.Item.ProfileName?.ToUpper()
+            </CellTemplate>            
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.Callsign" Title="Callsign" IsEditable="true">
+            @* <CellTemplate> *@
+            @*     @context.Item.Callsign?.ToUpper() *@
+            @* </CellTemplate> *@
+            <EditTemplate>
+                <MudTextField @bind-Value="context.Item.Callsign" />
+            </EditTemplate>
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.StationName" Title="Station Call"  />
+        <PropertyColumn Property="x => x.GridSquare" Title="Grid"/>
+        <PropertyColumn Property="x => x.City" Title="City"/>
+        <PropertyColumn Property="x => x.County" Title="Us County"/>
+        <PropertyColumn Property="x => x.CountyCode" Title="County Code"/>
+        <PropertyColumn Property="x => x.State" Title="State/Prov"/>
+        <PropertyColumn Property="x => x.Dxcc" Title="DXCC"/>
+        <PropertyColumn Property="x => x.ProKey" Title="Pro Key"/>
         <TemplateColumn Title="Actions">
             <CellTemplate>
-                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" OnClick="@(() => context.Actions.StartEditingItemAsync())" />
+                <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" 
+                               OnClick="@(() => context.Actions.StartEditingItemAsync())" />
+
             </CellTemplate>
         </TemplateColumn>
     </Columns>
 </MudDataGrid>
 
 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddRow">Add Row</MudButton>
-<button @onclick="SaveChanges">Save</button>
-<button @onclick="CancelChanges">Cancel</button>
+<MudButton OnClick="SaveChanges" Color="Color.Primary" O>Save</MudButton>
+<MudButton OnClick="CancelChanges" Color="Color.Secondary">Cancel</MudButton>
 }

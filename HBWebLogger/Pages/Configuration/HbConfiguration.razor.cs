@@ -21,25 +21,33 @@ public partial class HbConfiguration : ComponentBase
         {
             ProfileName = "new-profile",
             Callsign = "NOCALL",
+            IsDirty = true
         });
         StateHasChanged();
     }
 
-    private void StartedEditingItem(HamBlocks.Library.Models.LogConfig config)
+    private void StartedEditingItem(LogConfig config)
     {
         Console.WriteLine($"Editing started for {config.ProfileName}");
     }
+    
+    private EventCallback<DataGridRowClickEventArgs<LogConfig>> RowClickCallback =>
+        EventCallback.Factory.Create<DataGridRowClickEventArgs<LogConfig>>(this, ConfigRowClicked);
 
-    private void CanceledEditingItem(HamBlocks.Library.Models.LogConfig config)
+    private void ConfigRowClicked(DataGridRowClickEventArgs<LogConfig> args)
+    {
+        // Your logic here
+    }
+
+    private void CanceledEditingItem(LogConfig config)
     {
         Console.WriteLine($"Editing canceled for {config.ProfileName}");
     }
 
-    private async Task CommittedItemChanges(HamBlocks.Library.Models.LogConfig config)
+    private async Task CommittedItemChanges(LogConfig config)
     {
+        config.Callsign = config.Callsign?.ToUpper() ?? "NOCALL";
         Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
-        // Example: Update database via API
-        // await ConfServ.UpdateAsync(config);
         await Task.CompletedTask;
     }
     public async Task SaveChanges()
@@ -56,4 +64,10 @@ public partial class HbConfiguration : ComponentBase
         _ = OnInitializedAsync();
         Console.WriteLine("Changes canceled.");
     }
+    void OnCallsignChanged(LogConfig item, string value)
+    {
+        item.Callsign = value?.ToUpper() ?? "NOCALL";
+        item.IsDirty = true;
+    }   
+
 }

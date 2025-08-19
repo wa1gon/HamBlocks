@@ -22,7 +22,8 @@ public class LogConfig //: IHBConfiguration
     public string State { get; set; } = string.Empty;
     public int Dxcc { get; set; } = 0; // DXCC Entity Code
     public int ProKey { get; set; } = 0; 
-    
+    [NotMapped]
+    public bool IsDirty { get; set; } = false; 
     public List<RigCtlConf> RigControls { get; set; } = [];
     public List<CallBookConf> Logbooks { get; set; } = [];
     public List<DxClusterConf> DxClusters { get; set; } = [];
