@@ -46,9 +46,18 @@ public partial class HbConfiguration : ComponentBase
 
     private async Task CommittedItemChanges(LogConfig config)
     {
-        config.Callsign = config.Callsign?.ToUpper() ?? "NOCALL";
-        Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
-        await Task.CompletedTask;
+
+        try
+        {
+            config.Callsign = config.Callsign?.ToUpper() ?? "NOCALL";
+            Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
+            await Task.CompletedTask;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
     public async Task SaveChanges()
     {

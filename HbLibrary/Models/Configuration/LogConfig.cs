@@ -2,7 +2,7 @@ namespace HamBlocks.Library.Models;
 
 
 
-public class LogConfig //: IHBConfiguration
+public record LogConfig //: IHBConfiguration
 {
     [Key][MaxLength(50)]
     public required string ProfileName { get; set; } 
