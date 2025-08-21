@@ -10,8 +10,6 @@ namespace HBLoggingService.Services;
 /// <param name="logger"></param>
 public class DxccLookupService
 {
-
-    
     public List<DxccEntity> DxccList { get; private set; } = [];
     private ILogger<DxccLookupService> _logger;
 
