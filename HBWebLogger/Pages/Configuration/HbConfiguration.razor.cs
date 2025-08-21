@@ -50,6 +50,7 @@ public partial class HbConfiguration : ComponentBase
         try
         {
             config.Callsign = config.Callsign?.ToUpper() ?? "NOCALL";
+            config.IsDirty = true;
             Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
             await Task.CompletedTask;
         }

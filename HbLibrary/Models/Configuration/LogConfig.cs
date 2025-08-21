@@ -2,9 +2,11 @@ namespace HamBlocks.Library.Models;
 
 
 
-public record LogConfig //: IHBConfiguration
+public record LogConfig 
 {
-    [Key][MaxLength(50)]
+    [Key]
+    public Guid Id { get; set; } = Guid.Empty; // Unique identifier for the configuration
+    [MaxLength(50)]
     public required string ProfileName { get; set; } 
     [MaxLength(20)]
     public required string Callsign { get; set; }
@@ -27,4 +29,16 @@ public record LogConfig //: IHBConfiguration
     public List<RigCtlConf> RigControls { get; set; } = [];
     public List<CallBookConf> Logbooks { get; set; } = [];
     public List<DxClusterConf> DxClusters { get; set; } = [];
+    
+    public LogConfig Copy()
+    {
+        return this with
+        {
+            Logbooks = Logbooks.Select(cb => cb with { }).ToList(),
+            RigControls = RigControls.Select(rc => rc with { }).ToList(),
+            DxClusters = DxClusters.Select(dc => dc with { }).ToList()
+
+        };
+    }
+    
 }
