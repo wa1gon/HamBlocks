@@ -3,7 +3,7 @@ public class GetQsosEndpoint(LoggingDbContext _db) : Endpoint<GetQsosRequest, Li
 {
     public override void Configure()
     {
-        Get("/qsos");
+        Get("/api/qsos");
         AllowAnonymous();
         Summary(s => {
             s.Summary = "Get all QSO records, optionally filtered by call sign";

@@ -13,7 +13,6 @@
 
     <ItemGroup>
       <Folder Include="ClientApi\" />
-      <Folder Include="Validation\" />
     </ItemGroup>
 
     <ItemGroup>

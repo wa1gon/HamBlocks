@@ -8,7 +8,7 @@
 <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-5">Configuration Grid</MudText>
 
 <div class="main-data-grid">
-    <MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" Editable="true" 
+    <MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" 
                  ReadOnly="false" EditMode="DataGridEditMode.Cell" 
                  EditTrigger="DataGridEditTrigger.Manual"
                  StartedEditingItem="@StartedEditingItem" 
@@ -17,12 +17,12 @@
                  RowClick="@RowClickCallback"         
                  Bordered="true" Dense="true">
         <Columns>
-            <PropertyColumn Property="x => x.ProfileName" Title="Profile Name" IsEditable="true">
-                <CellTemplate>
-                    @context.Item.ProfileName?.ToUpper()
-                </CellTemplate>            
+            <PropertyColumn Property="x => x.ProfileName" Title="Profile Name">
+                @* <CellTemplate> *@
+                @*     @context.Item.ProfileName?.ToUpper() *@
+                @* </CellTemplate>             *@
             </PropertyColumn>
-            <PropertyColumn Property="x => x.Callsign" Title="Callsign" IsEditable="true">
+            <PropertyColumn Property="x => x.Callsign" Title="Callsign" >
                 @* <CellTemplate> *@
                 @*     @context.Item.Callsign?.ToUpper() *@
                 @* </CellTemplate> *@
@@ -50,6 +50,6 @@
 </div>
 
 <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddRow">Add Row</MudButton>
-<MudButton OnClick="SaveChanges" Color="Color.Primary" O>Save</MudButton>
+<MudButton OnClick="SaveChanges" Color="Color.Primary">Save</MudButton>
 <MudButton OnClick="CancelChanges" Color="Color.Secondary">Cancel</MudButton>
 }

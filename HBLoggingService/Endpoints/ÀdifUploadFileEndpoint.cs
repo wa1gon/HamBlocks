@@ -123,7 +123,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             ArgumentNullException.ThrowIfNull(req.File);
             using var stream = req.File?.OpenReadStream();
             
-            using var reader = new StreamReader(stream);
+            using var reader = new StreamReader(stream!);
             var adifContent = reader.ReadToEnd();
 
             return adifContent;

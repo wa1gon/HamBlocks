@@ -43,6 +43,7 @@ builder.Services.AddFastEndpoints();
 builder.Services.AddScoped<HbConfigurationService>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerDocument();
+builder.Services.AddSingleton<DxccLookupService>();
 var port = builder.Configuration.GetValue<int>("Port", 7300);
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())

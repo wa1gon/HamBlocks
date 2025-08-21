@@ -61,12 +61,12 @@ class Program
                 .Build();
             
             var dxccList = DxccJsonReader.LoadDxccFromJson("C:/temp/dxcc.json");
-            var dxccEntity = Dxcc.FindMatchingPrefix("wa1gon", dxccList);
+            var dxccEntity = DxccCallInfo.FindMatchingPrefix("wa1gon", dxccList);
             if (dxccEntity != null)
             {
                 Console.WriteLine($"Found DXCC: {dxccEntity.Name} ({dxccEntity.CountryCode})");
             }
-            dxccEntity = Dxcc.FindMatchingPrefix("kh6ff", dxccList);
+            dxccEntity = DxccCallInfo.FindMatchingPrefix("kh6ff", dxccList);
             if (dxccEntity != null)
             {
                 Console.WriteLine($"Found DXCC: {dxccEntity.Name} ({dxccEntity.CountryCode})");

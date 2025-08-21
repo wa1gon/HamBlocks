@@ -8,4 +8,3 @@ global using HBWebLogger.Services;
 global using HamBlocks.Library.Models;
 global using HBAbstractions;
 global using MudBlazor;
-global using HamBlocks.Library.Models;

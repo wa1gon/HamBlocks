@@ -1,12 +1,10 @@
 namespace HamBlocks.Library.Models;
 
-
-
 public record LogConfig //: IHBConfiguration
 {
     [Key][MaxLength(50)]
     public required string ProfileName { get; set; } 
-    [MaxLength(20)]
+    [Callsign] [MaxLength(20)]
     public required string Callsign { get; set; }
     [MaxLength(20)]
     public string StationName { get; set; } = string.Empty;
