@@ -1,7 +1,5 @@
 namespace HamBlocks.Library.Models;
 
-public record LogConfig //: IHBConfiguration
-
 
 public record LogConfig 
 {
