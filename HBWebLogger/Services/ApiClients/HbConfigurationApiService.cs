@@ -12,7 +12,7 @@ public class HbConfigurationApiService
     }
 
     public async Task<List<LogConfig>?> GetAllAsync()
-        => await _http.GetFromJsonAsync<List<LogConfig>>("api/conf");
+        => await _http.GetFromJsonAsync<List<LogConfig>>("conf");
 
     public async Task AddAsync(LogConfig config)
         => await _http.PostAsJsonAsync("api/hbconfiguration", config);
