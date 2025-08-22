@@ -1,5 +1,3 @@
-
-
 namespace HBWebLogger.Services.ApiClients;
 /// <summary>
 /// The DxccEntity list will be static for many years if not decades.
@@ -14,7 +12,7 @@ public class DxccInfoClientService(HttpClient httpClient, ILogger<DxccInfoClient
     {
         PropertyNameCaseInsensitive = true
     };
-    
+    //Todo: This may need a overload to a different server, but I don't see the need now.
     /// <summary>
     /// Fetch the entire DXCC entity list.
     /// Adjust the endpoint path if your API differs.

@@ -2,17 +2,17 @@
 namespace HBWebLogger.Services.ApiClients;
 
 
-public class HbConfigurationApiService
+public class HbConfClientApiService
 {
     private readonly HttpClient _http;
 
-    public HbConfigurationApiService(HttpClient http)
+    public HbConfClientApiService(HttpClient http)
     {
         _http = http;
     }
 
     public async Task<List<LogConfig>?> GetAllAsync()
-        => await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        => await _http.GetFromJsonAsync<List<LogConfig>>("api/conf");
 
     public async Task AddAsync(LogConfig config)
         => await _http.PostAsJsonAsync("api/hbconfiguration", config);

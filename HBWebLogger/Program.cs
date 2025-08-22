@@ -8,8 +8,8 @@ public class Program
         var apiUrl = builder.Configuration["LogApiServer:Url"] ?? "http://localhost:7300/api";
         // Add services to the container.
         
-        builder.Services.AddScoped<HbConfigurationApiService>();
-        builder.Services.AddHttpClient<HbConfigurationApiService>(client =>
+        builder.Services.AddScoped<HbConfClientApiService>();
+        builder.Services.AddHttpClient<HbConfClientApiService>(client =>
         {
             client.BaseAddress = new Uri(apiUrl);
         });
@@ -18,6 +18,7 @@ public class Program
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMudServices();
         builder.Services.AddHttpClient<HamQthLookupProvider>();
+        builder.Services.AddSingleton<DxccInfoClientService>();
 
         var app = builder.Build();
 

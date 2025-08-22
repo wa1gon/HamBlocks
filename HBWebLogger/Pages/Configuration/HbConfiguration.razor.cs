@@ -5,14 +5,18 @@ public partial class HbConfiguration : ComponentBase
 {
     private List<HamBlocks.Library.Models.LogConfig> configList = new();
     private int commitCount = 0;
+    private List<DxccEntity> entities = [];
     [Inject]
-    public HbConfigurationApiService? ConfServ { get; set; }
+    public HbConfClientApiService? ConfServ { get; set; }
+    [Inject]
+    public DxccInfoClientService? DxccServ { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         // Fetch configurations from the API
         configList = await ConfServ!.GetAllAsync() ?? new List<LogConfig>();
         Console.WriteLine($"Loaded {configList.Count} configurations");
+        entities = (await DxccServ!.GetAllAsync()).ToList();
     }
 
     private void AddRow()

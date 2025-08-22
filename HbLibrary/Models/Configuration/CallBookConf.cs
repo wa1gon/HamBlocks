@@ -11,6 +11,7 @@ public record CallBookConf// : ICallBookConf
     public string? UserName { get; set; } 
     public string? Password { get; set; }
     public string? ApiKey { get; set; } 
+    public Guid HBConfigurationId { get; set; } = Guid.Empty; // Foreign key to LogConfig
     [NotMapped]
     public bool isDirty { get; set; } = false;
 }

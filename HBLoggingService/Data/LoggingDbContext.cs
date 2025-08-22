@@ -46,6 +46,5 @@ public class LoggingDbContext : DbContext
     public DbSet<LogConfig> HBConfigurations { get; set; }
     public DbSet<CallBookConf> CallBookConfs { get; set; }
     public DbSet<RigCtlConf> RigCtlConfs { get; set; }
-    public DbSet<DxccEntity> DxccEntities { get; set; }
 
 }

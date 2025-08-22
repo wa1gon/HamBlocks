@@ -9,6 +9,7 @@ public record RigCtlConf //: IRigCtlConf
     public string Name { get; set; } = string.Empty;
     public string Host { get; set; } = string.Empty;
     public int Port { get; set; }
+    public Guid HBConfigurationId { get; set; } = Guid.Empty; // Foreign key to LogConfig
     [NotMapped]
     public bool isDirty { get; set; } = false;
 }
