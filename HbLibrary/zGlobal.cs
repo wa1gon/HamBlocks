@@ -17,3 +17,4 @@ global using HamBlocks.Library.Models;
 global using HBAbstractions;
 global using HbLibrary.RigControl;
 global using Microsoft.Extensions.Caching.Memory;
+global using HBLoggingService.Validators;

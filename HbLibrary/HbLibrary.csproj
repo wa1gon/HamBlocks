@@ -4,6 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <UserSecretsId>c329c3db-c050-4926-bab4-69b034c9a0ba</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,7 +13,6 @@
 
     <ItemGroup>
       <Folder Include="ClientApi\" />
-      <Folder Include="Validation\" />
     </ItemGroup>
 
     <ItemGroup>

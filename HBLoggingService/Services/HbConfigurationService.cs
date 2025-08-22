@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 public class HbConfigurationService(LoggingDbContext _context)
 {
 
-    public List<HBConfiguration> Configuration { get; private set; } = [];
+    public List<LogConfig> Configuration { get; private set; } = [];
 
-    public async Task<List<HBConfiguration>> GetAllAsync()
+    public async Task<List<LogConfig>> GetAllAsync()
     {
         Configuration = await _context.HBConfigurations
             .Include(c => c.RigControls)
@@ -19,7 +19,7 @@ public class HbConfigurationService(LoggingDbContext _context)
         return Configuration;
     }
 
-    public async Task<HBConfiguration?> GetByProfileNameAsync(string profileName)
+    public async Task<LogConfig?> GetByProfileNameAsync(string profileName)
     {
         return await _context.HBConfigurations
             .Include(c => c.RigControls)
@@ -28,13 +28,13 @@ public class HbConfigurationService(LoggingDbContext _context)
             .FirstOrDefaultAsync(c => c.ProfileName == profileName);
     }
 
-    public async Task AddAsync(HBConfiguration config)
+    public async Task AddAsync(LogConfig config)
     {
         _context.HBConfigurations.Add(config);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(HBConfiguration config)
+    public async Task UpdateAsync(LogConfig config)
     {
         _context.HBConfigurations.Update(config);
         await _context.SaveChangesAsync();

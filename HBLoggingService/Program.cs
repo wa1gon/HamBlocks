@@ -40,20 +40,34 @@ builder.Services.AddDbContext<LoggingDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
+builder.Services.AddScoped<HbConfigurationService>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerDocument();
+builder.Services.AddSingleton<DxccLookupService>();
 var port = builder.Configuration.GetValue<int>("Port", 7300);
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
-    db.Database.EnsureCreated();
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
+        db.Database.EnsureCreated();
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"An error occurred while creating the database: {e.Message}");
+        throw;
+    }
 }
 
 app.UseSwagger();
 app.UseSwaggerUI();
 // app.UseAuthorization();
-app.UseFastEndpoints().UseSwaggerGen();
+app.UseFastEndpoints(c =>
+{
+    c.Endpoints.RoutePrefix = "api";
+}).UseSwaggerGen();
+
 app.UseOpenApi();
 app.UseSwaggerUi(x => x.ConfigureDefaults());
 // app.MapGet("/qsos", async (LoggingDbContext db) => 

@@ -24,9 +24,19 @@
   <ItemGroup>
     <ProjectReference Include="..\HbLibrary\HbLibrary.csproj" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <None Update="HbLibrary\Data\dxcc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
   <ItemGroup>
     <Folder Include="Mappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\dxcc.json" />
   </ItemGroup>
 
 </Project>
