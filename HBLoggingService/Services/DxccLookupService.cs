@@ -5,7 +5,10 @@ using Microsoft.IdentityModel.Tokens;
 namespace HBLoggingService.Services;
 /// <summary>
 /// Lookup service for DXCC information.  That can be used to look up DXCC information based on callsigns.
-/// The DXCC information is loaded from a JSON file located in the Data directory of the
+/// The DXCC information is loaded from a JSON file located in the Data directory of the application.
+///
+/// ***NOTE: *** dxcc.json file must be present in the Data directory of the application.
+/// It will be static for years if not decades.
 /// </summary>
 /// <param name="logger"></param>
 public class DxccLookupService
