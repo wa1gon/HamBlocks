@@ -14,8 +14,8 @@ class Program
 
     static async Task Main(string[] args)
     {
-        var filePath = @"C:\temp\mycallcheck.adi";
-        var uploadUrl = "http://localhost:7300/uploadadif";
+        // var filePath = @"C:\temp\mycallcheck.adi";
+        // var uploadUrl = "http://localhost:7300/api/uploadadif";
 
         //             if (Uri.TryCreate(input, UriKind.Absolute, out var uriResult) &&
         //                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))

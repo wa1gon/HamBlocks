@@ -1,5 +1,5 @@
 
-namespace HBWebLogger.Services;
+namespace HBWebLogger.Services.ApiClients;
 
 
 public class HbConfigurationApiService

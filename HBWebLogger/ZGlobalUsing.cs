@@ -4,7 +4,7 @@ global using Microsoft.AspNetCore.Components;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using Microsoft.AspNetCore.Identity;
 global using MudBlazor.Services;
-global using HBWebLogger.Services;
+global using HBWebLogger.Services.ApiClients;
 global using HamBlocks.Library.Models;
 global using HBAbstractions;
 global using MudBlazor;

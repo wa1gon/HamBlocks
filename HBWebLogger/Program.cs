@@ -5,11 +5,14 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var apiUrl = builder.Configuration["LogApiServer:Url"] ?? "http://localhost:7300";
+        var apiUrl = builder.Configuration["LogApiServer:Url"] ?? "http://localhost:7300/api";
         // Add services to the container.
         
         builder.Services.AddScoped<HbConfigurationApiService>();
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(apiUrl) });
+        builder.Services.AddHttpClient<HbConfigurationApiService>(client =>
+        {
+            client.BaseAddress = new Uri(apiUrl);
+        });
 
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
