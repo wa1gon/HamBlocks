@@ -22,6 +22,6 @@ public class DxccJsonReader
         };
         var dxRoot = System.Text.Json.JsonSerializer.Deserialize<DxccRoot>(jsonString, options);
 
-        return dxRoot.Dxcc ?? null;
+        return dxRoot.Dxcc ?? new List<DxccEntity>();
     }
 }

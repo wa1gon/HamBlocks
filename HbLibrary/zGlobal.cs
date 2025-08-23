@@ -18,3 +18,6 @@ global using HBAbstractions;
 global using HbLibrary.RigControl;
 global using Microsoft.Extensions.Caching.Memory;
 global using HBLoggingService.Validators;
+global using System.Net.Http.Json;
+global using System.Text.Json;
+global using Microsoft.Extensions.Logging;

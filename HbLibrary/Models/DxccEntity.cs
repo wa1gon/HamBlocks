@@ -5,7 +5,7 @@ public class DxccRoot
     // [JsonPropertyName("dxcc")]
     public List<DxccEntity> Dxcc { get; set; } = new();
 }
-public class DxccEntity 
+public sealed record DxccEntity 
 {
     public int Id { get; set; }
     public List<string> Continent { get; set; } = new();
