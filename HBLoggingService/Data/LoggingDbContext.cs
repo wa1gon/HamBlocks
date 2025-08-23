@@ -27,15 +27,24 @@ public class LoggingDbContext : DbContext
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LogConfig>()
-            .HasMany(c => c.Logbooks)
-            .WithOne()
+        modelBuilder.Entity<DxClusterConf>()
+            .HasOne<LogConfig>()
+            .WithMany()
+            .HasForeignKey(c => c.HBConfigurationId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<CallBookConf>()
+            .HasOne<LogConfig>()
+            .WithMany()
+            .HasForeignKey(c => c.HBConfigurationId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LogConfig>()
-            .HasMany(c => c.DxClusters)
-            .WithOne()
+        modelBuilder.Entity<RigCtlConf>()
+            .HasOne<LogConfig>()
+            .WithMany()
+            .HasForeignKey(r => r.HBConfigurationId)
             .OnDelete(DeleteBehavior.Cascade);
+
     }
     public DbSet<Qso> Qsos => Set<Qso>();
     public DbSet<QsoDetail> QsoDetails { get; set; }

@@ -6,20 +6,24 @@ public class HbConfClientApiService
 {
     private readonly HttpClient _http;
 
-    public HbConfClientApiService(HttpClient http)
+    public HbConfClientApiService(IHttpClientFactory http)
     {
-        _http = http;
+        _http = http.CreateClient("SharedClient");
     }
 
-    public async Task<List<LogConfig>?> GetAllAsync()
-        => await _http.GetFromJsonAsync<List<LogConfig>>("api/conf");
+    public async Task<List<LogConfig>?> GetAllAsync(CancellationToken ct = default)
+    {
+
+        Console.WriteLine("GetAllAsync called");
+         return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+    }
 
     public async Task AddAsync(LogConfig config)
-        => await _http.PostAsJsonAsync("api/hbconfiguration", config);
+        => await _http.PostAsJsonAsync("hbconfiguration", config);
 
     public async Task UpdateAsync(LogConfig config)
-        => await _http.PutAsJsonAsync($"api/hbconfiguration/{config.ProfileName}", config);
+        => await _http.PutAsJsonAsync($"hbconfiguration/{config.ProfileName}", config);
 
-    public async Task DeleteAsync(string profileName)
-        => await _http.DeleteAsync($"api/hbconfiguration/{profileName}");
+    public async Task DeleteAsync(string profileId)
+        => await _http.DeleteAsync($"hbconfiguration/{profileId}");
 }
