@@ -19,11 +19,38 @@ public class HbConfClientApiService
     }
 
     public async Task AddAsync(LogConfig config)
-        => await _http.PostAsJsonAsync("hbconfiguration", config);
+    {
+        try
+        {
+
+            // await _http.PostAsJsonAsync("conf", config);
+            Console.WriteLine("Sending POST request to 'conf' with payload:");
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(config));
+
+            var response = await _http.PostAsJsonAsync("conf", config);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("POST request succeeded.");
+            }
+            else
+            {
+                Console.WriteLine($"POST request failed with status code: {response.StatusCode}");
+                var errorContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error response content: {errorContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An error occurred during the POST request:");
+            Console.WriteLine(ex);
+            throw;
+        }
+    }
 
     public async Task UpdateAsync(LogConfig config)
-        => await _http.PutAsJsonAsync($"hbconfiguration/{config.ProfileName}", config);
+        => await _http.PutAsJsonAsync($"conf/{config.ProfileName}", config);
 
     public async Task DeleteAsync(string profileId)
-        => await _http.DeleteAsync($"hbconfiguration/{profileId}");
+        => await _http.DeleteAsync($"conf/{profileId}");
 }

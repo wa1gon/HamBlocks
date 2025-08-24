@@ -4,14 +4,13 @@ using HamBlocks.Library.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-public class HbConfigurationService(LoggingDbContext _context)
+public class HbConfigurationService(LoggingDbContext context)
 {
+    internal List<LogConfig> Configuration { get; private set; } = [];
 
-    public List<LogConfig> Configuration { get; private set; } = [];
-
-    public async Task<List<LogConfig>> GetAllAsync()
+    internal async Task<List<LogConfig>> GetAllAsync()
     {
-        Configuration = await _context.HBConfigurations
+        Configuration = await context.HBConfigurations
             .Include(c => c.RigControls)
             .Include(c => c.Logbooks)
             .Include(c => c.DxClusters)
@@ -19,34 +18,46 @@ public class HbConfigurationService(LoggingDbContext _context)
         return Configuration;
     }
 
-    public async Task<LogConfig?> GetByProfileNameAsync(string profileName)
+    internal async Task<LogConfig?> GetByProfileNameAsync(string profileName)
     {
-        return await _context.HBConfigurations
+        return await context.HBConfigurations
             .Include(c => c.RigControls)
             .Include(c => c.Logbooks)
             .Include(c => c.DxClusters)
             .FirstOrDefaultAsync(c => c.ProfileName == profileName);
     }
 
-    public async Task AddAsync(LogConfig config)
+    internal async Task AddAsync(LogConfig? config)
     {
-        _context.HBConfigurations.Add(config);
-        await _context.SaveChangesAsync();
+        if (config is not null && config.Id == Guid.Empty)
+        {
+            if (Configuration.Any(c => c.ProfileName == config.ProfileName))
+            {
+                throw new ArgumentException($"A configuration with the same ProfileName {config.ProfileName} already exists.");
+            }
+            config.Id = Guid.NewGuid();
+            context.HBConfigurations.Add(config);
+            await context.SaveChangesAsync();
+        }
+        else
+        {
+            throw new ArgumentException("Config is null or already has an Id");
+        }
     }
 
-    public async Task UpdateAsync(LogConfig config)
+    internal async Task UpdateAsync(LogConfig config)
     {
-        _context.HBConfigurations.Update(config);
-        await _context.SaveChangesAsync();
+        context.HBConfigurations.Update(config);
+        await context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(string profileName)
+    internal async Task DeleteAsync(string profileName)
     {
         var config = await GetByProfileNameAsync(profileName);
         if (config != null)
         {
-            _context.HBConfigurations.Remove(config);
-            await _context.SaveChangesAsync();
+            context.HBConfigurations.Remove(config);
+            await context.SaveChangesAsync();
         }
     }
 }
