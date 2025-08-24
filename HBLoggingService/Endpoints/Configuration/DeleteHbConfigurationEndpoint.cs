@@ -1,19 +1,20 @@
 namespace HBLoggingService.Endpoints.Configuration;
 
-public class DeleteHbConfigurationEndpoint : Endpoint<DeleteByProfileNameRequest>
+public class DeleteHbConfigurationEndpoint : ConfEndpointBase
 {
     private readonly HbConfigurationService _service;
     public DeleteHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
 
     public override void Configure()
     {
-        Delete("/hbconfigurations/{ProfileName}");
+        Delete($"/{BasePath}/{{Id}}");
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(DeleteByProfileNameRequest req, CancellationToken ct)
+    public override async Task HandleAsync(LogConfig? req, CancellationToken ct)
     {
-        await _service.DeleteAsync(req.ProfileName);
+        var id = Route<string>("id");
+        await _service.DeleteAsync(req.Id);
         await SendOkAsync(ct);
     }
 }

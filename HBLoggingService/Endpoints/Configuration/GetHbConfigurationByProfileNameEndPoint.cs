@@ -7,7 +7,7 @@ public class GetHbConfigurationByProfileNameEndpoint : Endpoint<GetByProfileName
 
     public override void Configure()
     {
-        Get("/hbconfigurations/{ProfileName}");
+        Get("/conf/{ProfileName}");
         AllowAnonymous();
     }
 
