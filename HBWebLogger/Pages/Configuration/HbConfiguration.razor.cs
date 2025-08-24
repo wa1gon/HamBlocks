@@ -14,24 +14,26 @@ public partial class HbConfiguration : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         // Fetch configurations from the API
-        configList = await ConfServ!.GetAllAsync() ?? new List<LogConfig>();
+        configList = await ConfServ!.GetAllAsync() ?? [];
         Console.WriteLine($"Loaded {configList.Count} configurations");
         entities = (await DxccServ!.GetAllAsync()).ToList();
     }
 
     private void AddRow()
     {
-        configList.Add(new ()
+        var item = new LogConfig
         {
             ProfileName = "new-profile",
             Callsign = "NOCALL",
             IsDirty = true
-        });
+        };
+        configList.Add(item);
         StateHasChanged();
     }
 
-    private void StartedEditingItem(LogConfig config)
+    private static void StartedEditingItem(LogConfig config)
     {
+        config.IsDirty = true;
         Console.WriteLine($"Editing started for {config.ProfileName}");
     }
     
@@ -68,7 +70,8 @@ public partial class HbConfiguration : ComponentBase
     {
         foreach (var config in configList)
         {
-            await CommittedItemChanges(config);
+            await ConfServ.AddAsync(config);
+            config.IsDirty = false;
         }
         Console.WriteLine("All changes saved.");
     }
@@ -78,10 +81,4 @@ public partial class HbConfiguration : ComponentBase
         _ = OnInitializedAsync();
         Console.WriteLine("Changes canceled.");
     }
-    void OnCallsignChanged(LogConfig item, string value)
-    {
-        item.Callsign = value?.ToUpper() ?? "NOCALL";
-        item.IsDirty = true;
-    }   
-
 }

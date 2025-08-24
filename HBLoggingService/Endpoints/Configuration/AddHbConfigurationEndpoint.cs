@@ -7,13 +7,25 @@ public class AddHbConfigurationEndpoint : Endpoint<LogConfig>
 
     public override void Configure()
     {
-        Post("/hbconfigurations");
+        Post("/conf");
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(LogConfig req, CancellationToken ct)
+    public override async Task HandleAsync(LogConfig? req, CancellationToken ct)
     {
-        await _service.AddAsync(req);
-        await SendOkAsync(ct);
+        try
+        {
+            await _service.AddAsync(req);
+            await SendOkAsync(ct);
+        }
+        catch (ArgumentException ae)
+        {
+            await SendAsync(new { Message = $"{ae.Message}" }, 409, ct);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
