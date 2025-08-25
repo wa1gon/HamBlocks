@@ -10,7 +10,7 @@ public class HbConfigurationService(LoggingDbContext context)
 
     internal async Task<List<LogConfig>> GetAllAsync()
     {
-        Configuration = await context.HBConfigurations
+        Configuration = await context.LogConfig
             .Include(c => c.RigControls)
             .Include(c => c.Logbooks)
             .Include(c => c.DxClusters)
@@ -20,7 +20,7 @@ public class HbConfigurationService(LoggingDbContext context)
 
     internal async Task<LogConfig?> GetByProfileNameAsync(string profileName)
     {
-        return await context.HBConfigurations
+        return await context.LogConfig
             .Include(c => c.RigControls)
             .Include(c => c.Logbooks)
             .Include(c => c.DxClusters)
@@ -36,7 +36,7 @@ public class HbConfigurationService(LoggingDbContext context)
                 throw new ArgumentException($"A configuration with the same ProfileName {config.ProfileName} already exists.");
             }
             config.Id = Guid.NewGuid();
-            context.HBConfigurations.Add(config);
+            context.LogConfig.Add(config);
             await context.SaveChangesAsync();
         }
         else
@@ -47,7 +47,7 @@ public class HbConfigurationService(LoggingDbContext context)
 
     internal async Task UpdateAsync(LogConfig config)
     {
-        context.HBConfigurations.Update(config);
+        context.LogConfig.Update(config);
         await context.SaveChangesAsync();
     }
 

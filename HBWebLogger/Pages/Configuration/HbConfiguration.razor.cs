@@ -21,10 +21,10 @@ public partial class HbConfiguration : ComponentBase
 
     private void AddRow()
     {
-        var item = new LogConfig
+        var item = new LogConfig("new-profile", "NOCALL")
         {
-            ProfileName = "new-profile",
-            Callsign = "NOCALL",
+            // ProfileName = "new-profile",
+            Callsign = "N0CALL",
             IsDirty = true
         };
         configList.Add(item);
