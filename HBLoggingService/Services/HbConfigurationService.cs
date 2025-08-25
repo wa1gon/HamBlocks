@@ -51,13 +51,28 @@ public class HbConfigurationService(LoggingDbContext context)
         await context.SaveChangesAsync();
     }
 
-    internal async Task DeleteAsync(string profileName)
+    internal async Task DeleteAsync(Guid Id)
     {
-        var config = await GetByProfileNameAsync(profileName);
-        if (config != null)
+        var entity = await context.Set<LogConfig>().FindAsync(Id);
+
+        if (entity != null)
         {
-            context.HBConfigurations.Remove(config);
+            // Mark the entity for deletion
+            context.Set<LogConfig>().Remove(entity);
+
+            // Save changes to the database
             await context.SaveChangesAsync();
         }
+        else
+        {
+            throw new ArgumentException("Entity not found.");
+        }
+        
+        // var config = await GetByProfileNameAsync(Id);
+        // if (config != null)
+        // {
+        //     context.HBConfigurations.Remove(config);
+        //     await context.SaveChangesAsync();
+        // }
     }
 }

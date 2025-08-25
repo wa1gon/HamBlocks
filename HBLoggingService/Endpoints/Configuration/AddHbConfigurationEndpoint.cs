@@ -1,6 +1,6 @@
 namespace HBLoggingService.Endpoints.Configuration;
 
-public class AddHbConfigurationEndpoint : Endpoint<LogConfig>
+public class AddHbConfigurationEndpoint :  ConfEndpointBase
 {
     private readonly HbConfigurationService _service;
     public AddHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
