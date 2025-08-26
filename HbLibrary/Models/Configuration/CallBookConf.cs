@@ -1,17 +1,25 @@
 namespace HamBlocks.Library.Models;
 
 
-public record CallBookConf// : ICallBookConf
+public record CallBookConf(string Name, string Host)
 {
-    [Key]
-    public Guid Id { get; set; } = Guid.Empty; 
-    public string Name { get; set; } = string.Empty;
-    public string Host { get; set; } = string.Empty;
+    public Guid Id { get; init; } = Guid.NewGuid();
+    public string Name { get; set; } = ValidateString(Name, nameof(Name));
+    public string Host { get; set; } = ValidateString(Host, nameof(Host));
     public int Port { get; set; }
-    public string? UserName { get; set; } 
+    public string? UserName { get; set; }
     public string? Password { get; set; }
-    public string? ApiKey { get; set; } 
-    public Guid HBConfigurationId { get; set; } = Guid.Empty; // Foreign key to LogConfig
-    [NotMapped]
-    public bool isDirty { get; set; } = false;
+    public string? ApiKey { get; set; }
+    public Guid LogConfigId { get; set; } // Explicit foreign key
+    public LogConfig LogConfig { get; set; } = null!;
+    public bool isDirty { get; set; } = false; // No [NotMapped]
+
+    // {
+    //     Console.WriteLine($"Creating CallBookConf: Name={Name}, Host={Host}");
+    // }
+
+    private static string ValidateString(string value, string propertyName)
+    {
+        return string.IsNullOrWhiteSpace(value) ? "Unknown" : value;
+    }
 }
