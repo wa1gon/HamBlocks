@@ -11,8 +11,9 @@ public class LoggingDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.LogTo(Console.WriteLine);
-
+        optionsBuilder.LogTo(Console.WriteLine, 
+            new[] { DbLoggerCategory.Database.Command.Name }, 
+            LogLevel.Information).EnableSensitiveDataLogging();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

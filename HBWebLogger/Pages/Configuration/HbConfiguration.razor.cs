@@ -3,82 +3,35 @@ namespace HBWebLogger.Pages.Configuration;
 
 public partial class HbConfiguration : ComponentBase
 {
-    private List<HamBlocks.Library.Models.LogConfig> configList = new();
-    private int commitCount = 0;
-    private List<DxccEntity> entities = [];
-    [Inject]
-    public HbConfClientApiService? ConfServ { get; set; }
-    [Inject]
-    public DxccInfoClientService? DxccServ { get; set; }
+    private const string NewItemValue = "--NEW--";
+    private List<LogConfig> Configurations = new();
+    private LogConfig CurrentConfig = new();
+    private string SelectedConfig = String.Empty;
+    private MudForm? Form;
 
     protected override async Task OnInitializedAsync()
     {
-        // Fetch configurations from the API
-        configList = await ConfServ!.GetAllAsync() ?? [];
-        Console.WriteLine($"Loaded {configList.Count} configurations");
-        entities = (await DxccServ!.GetAllAsync()).ToList();
+        Configurations = await ApiService.GetAllAsync() ?? new List<LogConfig>();
     }
-
-    private void AddRow()
+    private async Task OnSelectionChanged(string newValue)
     {
-        var item = new LogConfig("new-profile", "NOCALL")
+        // var selectedOption = newValue;
+        // Console.WriteLine($"Selection changed to: {selectedOption}");
+        // Add custom logic here, e.g., call a service or update data
+        await Task.CompletedTask; // Placeholder for async operations
+        // StateHasChanged(); // Refresh UI if needed
+    }
+    private async Task HandleSubmit()
+    {
+        if (Configurations.Any(c => c.ProfileName == CurrentConfig.ProfileName))
         {
-            // ProfileName = "new-profile",
-            Callsign = "N0CALL",
-            IsDirty = true
-        };
-        configList.Add(item);
-        StateHasChanged();
-    }
-
-    private static void StartedEditingItem(LogConfig config)
-    {
-        config.IsDirty = true;
-        Console.WriteLine($"Editing started for {config.ProfileName}");
-    }
-    
-    private EventCallback<DataGridRowClickEventArgs<LogConfig>> RowClickCallback =>
-        EventCallback.Factory.Create<DataGridRowClickEventArgs<LogConfig>>(this, ConfigRowClicked);
-
-    private void ConfigRowClicked(DataGridRowClickEventArgs<LogConfig> args)
-    {
-        // Your logic here
-    }
-
-    private void CanceledEditingItem(LogConfig config)
-    {
-        Console.WriteLine($"Editing canceled for {config.ProfileName}");
-    }
-
-    private async Task CommittedItemChanges(LogConfig config)
-    {
-
-        try
-        {
-            config.Callsign = config.Callsign?.ToUpper() ?? "NOCALL";
-            config.IsDirty = true;
-            Console.WriteLine($"Changes committed for {config.ProfileName} {commitCount++}");
-            await Task.CompletedTask;
+            await ApiService.UpdateAsync(CurrentConfig);
         }
-        catch (Exception e)
+        else
         {
-            Console.WriteLine(e);
-            throw;
+            await ApiService.AddAsync(CurrentConfig);
+            Configurations.Add(CurrentConfig);
         }
-    }
-    public async Task SaveChanges()
-    {
-        foreach (var config in configList)
-        {
-            await ConfServ.AddAsync(config);
-            config.IsDirty = false;
-        }
-        Console.WriteLine("All changes saved.");
-    }
-    public void CancelChanges()
-    {
-        // Reload configs from API to discard changes
-        _ = OnInitializedAsync();
-        Console.WriteLine("Changes canceled.");
+        CurrentConfig = new LogConfig();
     }
 }

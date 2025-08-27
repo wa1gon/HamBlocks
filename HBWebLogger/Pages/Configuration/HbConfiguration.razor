@@ -1,58 +1,20 @@
 @page "/conf"
-<style>
-    .hb-main-data-grid {
-        margin: 20px;
-        background-color: blue;
-    /*    z-index: 5;*/
+@inject HbConfClientApiService ApiService
+
+<h3>HbConfiguration</h3>
+
+<MudSelect T="string" Label="Select Configuration" 
+           ValueChanged="@OnSelectionChanged">
+    <MudSelectItem Value="@NewItemValue">-- NEW --</MudSelectItem>
+    @foreach (var config in Configurations)
+    {
+        <MudSelectItem Value="@config.ProfileName">@config.ProfileName</MudSelectItem>
     }
-    
-</style>
-<MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-5">Configuration Grid</MudText>
+</MudSelect>
 
-<div class="hb-main-data-grid">
-    <MudDataGrid T="HamBlocks.Library.Models.LogConfig" Items="@configList" 
-                 ReadOnly="false" EditMode="DataGridEditMode.Cell" 
-                 EditTrigger="DataGridEditTrigger.Manual"
-                 StartedEditingItem="@StartedEditingItem" 
-                 CanceledEditingItem="@CanceledEditingItem" 
-                 CommittedItemChanges="@CommittedItemChanges"
-                 RowClick="@RowClickCallback"   
-                 
-                 Bordered="true" Dense="true">
-        <Columns>
-            <PropertyColumn Property="x => x.ProfileName" Title="Profile Name">
-                @* <CellTemplate> *@
-                @*     @context.Item.ProfileName?.ToUpper() *@
-                @* </CellTemplate>             *@
-            </PropertyColumn>
-            <PropertyColumn Property="x => x.Callsign" Title="Callsign" >
-                @* <CellTemplate> *@
-                @*     @context.Item.Callsign?.ToUpper() *@
-                @* </CellTemplate> *@
-                <EditTemplate>
-                    <MudTextField @bind-Value="context.Item.Callsign" />
-                </EditTemplate>
-            </PropertyColumn>
-            <PropertyColumn Property="x => x.StationName" Title="Station Call"  />
-            <PropertyColumn Property="x => x.GridSquare" Title="Grid"/>
-            <PropertyColumn Property="x => x.City" Title="City"/>
-            <PropertyColumn Property="x => x.County" Title="Us County"/>
-            <PropertyColumn Property="x => x.CountyCode" Title="County Code"/>
-            <PropertyColumn Property="x => x.State" Title="State/Prov"/>
-            <PropertyColumn Property="x => x.Dxcc" Title="DXCC"/>
-            <PropertyColumn Property="x => x.ProKey" Title="Pro Key"/>
-            <TemplateColumn Title="Actions">
-                <CellTemplate>
-                    <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" 
-                                   OnClick="@(() => context.Actions.StartEditingItemAsync())" />
-
-                </CellTemplate>
-            </TemplateColumn>
-        </Columns>
-    </MudDataGrid>
-</div>
-
-<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddRow">Add Row</MudButton>
-<MudButton OnClick="SaveChanges" Color="Color.Primary">Save</MudButton>
-<MudButton OnClick="CancelChanges" Color="Color.Secondary">Cancel</MudButton>
-}
+<MudForm @ref="Form" OnValidSubmit="HandleSubmit">
+    <MudTextField T="string" Label="Profile Name" @bind-Value="CurrentConfig.ProfileName" />
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">
+        Save
+    </MudButton>
+</MudForm>
