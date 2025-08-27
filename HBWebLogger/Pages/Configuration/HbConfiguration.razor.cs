@@ -15,6 +15,22 @@ public partial class HbConfiguration : ComponentBase
     }
     private async Task OnSelectionChanged(string newValue)
     {
+        if (newValue == NewItemValue)
+        {
+            CurrentConfig = new LogConfig();
+        }
+        else
+        {
+            var selected = Configurations.FirstOrDefault(c => c.ProfileName == newValue);
+            if (selected != null)
+            {
+                CurrentConfig = new LogConfig
+                {
+                    ProfileName = selected.ProfileName,
+     
+                };
+            }
+        }
         // var selectedOption = newValue;
         // Console.WriteLine($"Selection changed to: {selectedOption}");
         // Add custom logic here, e.g., call a service or update data
