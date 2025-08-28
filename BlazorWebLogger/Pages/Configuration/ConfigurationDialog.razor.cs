@@ -1,5 +1,5 @@
 #if false
-namespace HBWebLogger.Pages.Configuration;
+namespace BlazorWebLogger.Pages.Configuration;
 using MudBlazor;
 
 public partial class ConfigurationDialog : ComponentBase

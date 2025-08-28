@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-HBWebLogger-5ec0d22c-d6dd-45a6-af29-93c4df4bf2e3</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RootNamespace>HBWebLogger</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
