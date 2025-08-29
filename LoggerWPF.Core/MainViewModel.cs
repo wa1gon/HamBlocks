@@ -6,6 +6,10 @@ namespace LoggerWPF.Core;
 
 public partial class MainViewModel : ObservableObject
 {
+    public MainViewModel()
+    {
+        // CurrentViewModel = _homeViewModel;
+    }
     [RelayCommand]
     public void SettingsMenuClick()
     {

@@ -12,23 +12,24 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
-        <Menu FontSize="20" Grid.Row="0">
+        
+        <Menu FontSize="20" Grid.Row="0" Margin="5">
             <MenuItem Header="_File">
                 <MenuItem Header="_Setting" Command="{Binding SettingsMenuClickCommand}" />
             </MenuItem>
             <MenuItem Header="_Awards" />
             <MenuItem Header="_WebLogs" />
         </Menu>
+        
         <StackPanel Grid.Row="1" Margin="10">
-            <ComboBox ItemsSource="{Binding Options}" 
-                      SelectedItem="{Binding SelectedOption}"
-                      Width="200" 
-                      Margin="0,0,0,10" />
-            <TextBlock Text="{Binding SelectedOption, StringFormat='Selected Option: {0}'}" />
+
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Background="Aquamarine">
+            
         </StackPanel>
     </Grid>
 </Window>
