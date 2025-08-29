@@ -1,4 +1,3 @@
-
 namespace HBLibrary.Test;
 
 [TestClass]
@@ -18,7 +17,7 @@ public class HamLibRigCtlClientTests
         await client.SetFreqAsync(testFreq);
         Assert.AreEqual(testFreq, client.Freq);
 
-        string testMode = "USB";
+        var testMode = "USB";
         await client.SetModeAsync(testMode);
 
         // Send mode query, ensure no exception
@@ -32,9 +31,6 @@ public class HamLibRigCtlClientTests
     {
         var client = new HamLibRigCtlClient(Host, 65530); // Unlikely to be used
 
-        await Assert.ThrowsExceptionAsync<IOException>(async () =>
-        {
-            await client.OpenAsync();
-        });
+        await Assert.ThrowsExceptionAsync<IOException>(async () => { await client.OpenAsync(); });
     }
 }

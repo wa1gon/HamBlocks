@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HBLoggingService\HBLoggingService.csproj" />
+        <ProjectReference Include="..\HBLoggingService\HBLoggingService.csproj"/>
     </ItemGroup>
 
 </Project>

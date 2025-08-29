@@ -2,8 +2,8 @@ namespace HamBlocks.Library.Models;
 
 public record class CallSign
 {
-    [Required]
-    private string _call = string.Empty;
+    [Required] private string _call = string.Empty;
+
     [Key]
     public string Call
     {

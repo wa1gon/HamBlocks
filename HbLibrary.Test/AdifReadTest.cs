@@ -1,4 +1,5 @@
 namespace HBLibrary.Test;
+
 [TestClass]
 public class AdifReaderTests
 {
@@ -15,7 +16,7 @@ public class AdifReaderTests
     public void ReadFromFile_ParsesQso_WithGuidAndDetails()
     {
         // Arrange
-        string adifContent = @"
+        var adifContent = @"
             <ADIF_VER:5>3.1.0
             <PROGRAMID:5>TEST1
             <EOH>

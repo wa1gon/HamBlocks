@@ -1,15 +1,14 @@
 namespace HBLoggingService.Endpoints.Qsos;
 
-public class QsoCreateEndpoint: Endpoint<Qso>
+public class QsoCreateEndpoint : Endpoint<Qso>
 {
     private readonly LoggingDbContext _db;
 
     public QsoCreateEndpoint(LoggingDbContext db)
     {
-
         _db = db;
-    }        
-    
+    }
+
     public override void Configure()
     {
         Post("/qso");
@@ -22,5 +21,5 @@ public class QsoCreateEndpoint: Endpoint<Qso>
         await _db.Qsos.AddAsync(req, ct);
         await _db.SaveChangesAsync(ct);
         await SendAsync(req);
-    }   
+    }
 }

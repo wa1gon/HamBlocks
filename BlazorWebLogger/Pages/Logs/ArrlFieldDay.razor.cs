@@ -1,13 +1,11 @@
 using HBWebLogger.Models;
-using Microsoft.AspNetCore.Components;
 
 namespace HBWebLogger.Pages.Logs;
 
 public partial class ArrlFieldDay : ComponentBase
 {
-    public ArrlFdModel ArrlFd { get; set; } = new ArrlFdModel();
     // this might need to go someplace else
-    private List<string> ArrlSections = new()
+    private readonly List<string> ArrlSections = new()
     {
         "AB", "AK", "AL", "AR", "AZ", "BC", "CO", "CT", "DC", "DE",
         "DX", "EB", "EMA", "ENY", "EPA", "EWA", "GA", "GTA", "IA", "ID",
@@ -19,4 +17,6 @@ public partial class ArrlFieldDay : ComponentBase
         "UT", "VA", "VI", "VT", "WCF", "WI", "WMA", "WNY", "WN", "WTX",
         "WV", "WWA", "WY"
     };
+
+    public ArrlFdModel ArrlFd { get; set; } = new();
 }

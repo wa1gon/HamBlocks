@@ -1,7 +1,5 @@
 namespace HBLoggingService.Validators;
 
-using System.ComponentModel.DataAnnotations;
-
 public class CallsignAttribute : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)

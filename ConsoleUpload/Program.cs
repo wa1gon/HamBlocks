@@ -1,18 +1,14 @@
-using System;
-using System.IO;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Spectre.Console;
 
-class Program
+internal class Program
 {
     private const string DefaultUploadUrl = "http://127.0.0.1:7300"; // Default for JS8Call API
-    private static readonly HttpClient _client = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
-    private static string _filePath = @"C:\temp\mycallcheck.adi";
-    private static string _uploadUrl = DefaultUploadUrl;
+    private static readonly HttpClient _client = new() { Timeout = TimeSpan.FromSeconds(30) };
+    private static readonly string _filePath = @"C:\temp\mycallcheck.adi";
+    private static readonly string _uploadUrl = DefaultUploadUrl;
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         // var filePath = @"C:\temp\mycallcheck.adi";
         // var uploadUrl = "http://localhost:7300/api/uploadadif";
@@ -42,7 +38,7 @@ class Program
     public static string SelectFileInteractively()
     {
         var goUpEntry = "[[Go up]]";
-        string currentPath = AnsiConsole.Prompt(
+        var currentPath = AnsiConsole.Prompt(
             new TextPrompt<string>("Enter starting directory:")
                 .Validate(path => Directory.Exists(path)
                     ? ValidationResult.Success()
@@ -52,11 +48,12 @@ class Program
         while (true)
         {
             var entries = Directory.GetFileSystemEntries(currentPath)
-                .Where(e => Directory.Exists(e) || Path.GetExtension(e).Equals(".adi", StringComparison.OrdinalIgnoreCase))
+                .Where(e => Directory.Exists(e) ||
+                            Path.GetExtension(e).Equals(".adi", StringComparison.OrdinalIgnoreCase))
                 .Concat(new[] { goUpEntry })
                 .ToArray();
 
-            string choice = AnsiConsole.Prompt(
+            var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title($"Contents of [green]{currentPath}[/]:")
                     .AddChoices(entries));

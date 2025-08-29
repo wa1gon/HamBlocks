@@ -2,7 +2,7 @@ namespace HbLibrary.Extensions;
 
 public static class CallsignExtensions
 {
-      private static readonly List<(string Prefix, string Country)> PrefixCountryList = new()
+    private static readonly List<(string Prefix, string Country)> PrefixCountryList = new()
     {
         ("K", "United States"), ("N", "United States"), ("W", "United States"),
         ("AA", "United States"), ("AB", "United States"), ("AC", "United States"),
@@ -26,7 +26,7 @@ public static class CallsignExtensions
         ("PY", "Brazil"), ("LU", "Argentina"), ("CX", "Uruguay"),
         ("CE", "Chile"), ("OA", "Peru"), ("HC", "Ecuador"),
         ("YV", "Venezuela"), ("HK", "Colombia"), ("TG", "Guatemala"),
-        ("XE", "Mexico"), ("CO", "Cuba"), ("CM", "Cuba"),
+        ("XE", "Mexico"), ("CO", "Cuba"), ("CM", "Cuba")
         // Add more as needed for full ITU coverage
     };
 
@@ -42,5 +42,5 @@ public static class CallsignExtensions
             .FirstOrDefault(pc => callSign.StartsWith(pc.Prefix));
 
         return string.IsNullOrEmpty(match.Country) ? "Unknown" : match.Country;
-    }  
+    }
 }

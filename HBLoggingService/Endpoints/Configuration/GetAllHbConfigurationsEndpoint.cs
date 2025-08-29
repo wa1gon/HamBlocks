@@ -1,11 +1,13 @@
-
-
 namespace HBLoggingService.Endpoints.Configuration;
 
 public class GetAllHbConfigurationsEndpoint : EndpointWithoutRequest<List<LogConfig>>
 {
     private readonly HbConfigurationService _service;
-    public GetAllHbConfigurationsEndpoint(HbConfigurationService service) => _service = service;
+
+    public GetAllHbConfigurationsEndpoint(HbConfigurationService service)
+    {
+        _service = service;
+    }
 
     public override void Configure()
     {
@@ -19,6 +21,7 @@ public class GetAllHbConfigurationsEndpoint : EndpointWithoutRequest<List<LogCon
             Console.WriteLine(e);
             throw;
         }
+
         Get("/conf");
         AllowAnonymous();
     }
@@ -35,6 +38,5 @@ public class GetAllHbConfigurationsEndpoint : EndpointWithoutRequest<List<LogCon
             Console.WriteLine(e);
             throw;
         }
-
     }
 }

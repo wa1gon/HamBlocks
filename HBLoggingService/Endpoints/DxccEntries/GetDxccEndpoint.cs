@@ -1,12 +1,7 @@
 namespace HBLoggingService.Endpoints.DxccEntries;
 
-using FastEndpoints;
-using HBLoggingService.Services;
-
 public class GetDxccEndpoint(DxccLookupService dxccService) : EndpointWithoutRequest<List<DxccEntity>>
 {
-
-
     // public GetDxccEndpoint(DxccLookupService dxccLookupService)
     // {
     //     _dxccLookupService = dxccLookupService;

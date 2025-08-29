@@ -3,7 +3,11 @@ namespace HBLoggingService.Endpoints.Configuration;
 public class UpdateHbConfigurationEndpoint : ConfEndpointBase
 {
     private readonly HbConfigurationService _service;
-    public UpdateHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
+
+    public UpdateHbConfigurationEndpoint(HbConfigurationService service)
+    {
+        _service = service;
+    }
 
     public override void Configure()
     {

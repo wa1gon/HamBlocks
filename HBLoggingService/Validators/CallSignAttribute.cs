@@ -1,6 +1,6 @@
-namespace HBLoggingService.Validators;
+using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
-using System.ComponentModel.DataAnnotations;
+namespace HBLoggingService.Validators;
 
 public class CallsignAttribute : ValidationAttribute
 {

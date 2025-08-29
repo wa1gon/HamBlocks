@@ -1,11 +1,13 @@
 namespace HbLibrary;
+
 // https://www.ng3k.com/Misc/cluster.html
 public class DxClusterClient(string _address, int _port)
 {
     private TcpClient? _client;
     private StreamReader? _reader;
 
-    public async IAsyncEnumerable<string> ReadRawLinesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<string> ReadRawLinesAsync(
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         if (_reader == null)
             yield break;
@@ -16,6 +18,7 @@ public class DxClusterClient(string _address, int _port)
                 yield return line;
         }
     }
+
     public async Task ConnectAsync(string callsign)
     {
         _client = new TcpClient();
@@ -31,7 +34,7 @@ public class DxClusterClient(string _address, int _port)
         while (true)
         {
             var bufferChar = new char[1];
-            int read = await _reader.ReadAsync(bufferChar, 0, 1);
+            var read = await _reader.ReadAsync(bufferChar, 0, 1);
             if (read == 0) throw new IOException("Connection closed before login.");
             buffer.Append(bufferChar[0]);
 
@@ -80,5 +83,4 @@ public class DxClusterClient(string _address, int _port)
             Timestamp = DateTime.UtcNow
         };
     }
-
 }

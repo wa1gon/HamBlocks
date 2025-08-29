@@ -1,5 +1,3 @@
-
-
 namespace HBLibrary.RigControl;
 
 public class RigCapabilities
@@ -45,34 +43,120 @@ public class RigCapabilities
         {
             var trimmed = line.Trim();
 
-            if (trimmed.StartsWith("Model name:")) caps.ModelName = trimmed["Model name:".Length..].Trim();
-            else if (trimmed.StartsWith("Mfg name:")) caps.Manufacturer = trimmed["Mfg name:".Length..].Trim();
-            else if (trimmed.StartsWith("Hamlib version:")) caps.HamlibVersion = trimmed["Hamlib version:".Length..].Trim();
-            else if (trimmed.StartsWith("Backend version:")) caps.BackendVersion = trimmed["Backend version:".Length..].Trim();
-            else if (trimmed.StartsWith("Backend copyright:")) caps.BackendCopyright = trimmed["Backend copyright:".Length..].Trim();
-            else if (trimmed.StartsWith("Backend status:")) caps.BackendStatus = trimmed["Backend status:".Length..].Trim();
-            else if (trimmed.StartsWith("Rig type:")) caps.RigType = trimmed["Rig type:".Length..].Trim();
-            else if (trimmed.StartsWith("PTT type:")) caps.PttType = trimmed["PTT type:".Length..].Trim();
-            else if (trimmed.StartsWith("DCD type:")) caps.DcdType = trimmed["DCD type:".Length..].Trim();
-            else if (trimmed.StartsWith("Port type:")) caps.PortType = trimmed["Port type:".Length..].Trim();
-            else if (trimmed.StartsWith("Write delay:")) caps.WriteDelay = trimmed["Write delay:".Length..].Trim();
-            else if (trimmed.StartsWith("Post write delay:")) caps.PostWriteDelay = trimmed["Post write delay:".Length..].Trim();
-            else if (trimmed.StartsWith("Has targetable VFO:")) caps.HasTargetableVfo = trimmed.Contains("Y");
-            else if (trimmed.StartsWith("Targetable features:")) caps.TargetableFeatures = trimmed["Targetable features:".Length..].Trim();
-            else if (trimmed.StartsWith("Has async data support:")) caps.HasAsyncDataSupport = trimmed.Contains("Y");
-            else if (trimmed.StartsWith("Announce:")) caps.Announce = trimmed["Announce:".Length..].Trim();
-            else if (trimmed.StartsWith("Max RIT:")) caps.MaxRit = trimmed["Max RIT:".Length..].Trim();
-            else if (trimmed.StartsWith("Max XIT:")) caps.MaxXit = trimmed["Max XIT:".Length..].Trim();
-            else if (trimmed.StartsWith("Max IF-SHIFT:")) caps.MaxIfShift = trimmed["Max IF-SHIFT:".Length..].Trim();
-            else if (trimmed.StartsWith("Preamp:")) caps.Preamp = trimmed["Preamp:".Length..].Trim();
-            else if (trimmed.StartsWith("Attenuator:")) caps.Attenuator = trimmed["Attenuator:".Length..].Trim();
-            else if (trimmed.StartsWith("AGC levels:")) caps.AgcLevels = trimmed["AGC levels:".Length..].Trim();
-            else if (trimmed.StartsWith("CTCSS:")) caps.Ctcss = trimmed["CTCSS:".Length..].Trim();
-            else if (trimmed.StartsWith("DCS:")) caps.Dcs = trimmed["DCS:".Length..].Trim();
-            else if (trimmed.StartsWith("Get functions:")) caps.GetFunctions = trimmed["Get functions:".Length..].Trim();
-            else if (trimmed.StartsWith("Set functions:")) caps.SetFunctions = trimmed["Set functions:".Length..].Trim();
-            else if (trimmed.StartsWith("Mode list:")) caps.ModeList = trimmed["Mode list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
-            else if (trimmed.StartsWith("VFO list:")) caps.VfoList = trimmed["VFO list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            if (trimmed.StartsWith("Model name:"))
+            {
+                caps.ModelName = trimmed["Model name:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Mfg name:"))
+            {
+                caps.Manufacturer = trimmed["Mfg name:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Hamlib version:"))
+            {
+                caps.HamlibVersion = trimmed["Hamlib version:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Backend version:"))
+            {
+                caps.BackendVersion = trimmed["Backend version:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Backend copyright:"))
+            {
+                caps.BackendCopyright = trimmed["Backend copyright:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Backend status:"))
+            {
+                caps.BackendStatus = trimmed["Backend status:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Rig type:"))
+            {
+                caps.RigType = trimmed["Rig type:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("PTT type:"))
+            {
+                caps.PttType = trimmed["PTT type:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("DCD type:"))
+            {
+                caps.DcdType = trimmed["DCD type:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Port type:"))
+            {
+                caps.PortType = trimmed["Port type:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Write delay:"))
+            {
+                caps.WriteDelay = trimmed["Write delay:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Post write delay:"))
+            {
+                caps.PostWriteDelay = trimmed["Post write delay:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Has targetable VFO:"))
+            {
+                caps.HasTargetableVfo = trimmed.Contains("Y");
+            }
+            else if (trimmed.StartsWith("Targetable features:"))
+            {
+                caps.TargetableFeatures = trimmed["Targetable features:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Has async data support:"))
+            {
+                caps.HasAsyncDataSupport = trimmed.Contains("Y");
+            }
+            else if (trimmed.StartsWith("Announce:"))
+            {
+                caps.Announce = trimmed["Announce:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Max RIT:"))
+            {
+                caps.MaxRit = trimmed["Max RIT:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Max XIT:"))
+            {
+                caps.MaxXit = trimmed["Max XIT:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Max IF-SHIFT:"))
+            {
+                caps.MaxIfShift = trimmed["Max IF-SHIFT:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Preamp:"))
+            {
+                caps.Preamp = trimmed["Preamp:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Attenuator:"))
+            {
+                caps.Attenuator = trimmed["Attenuator:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("AGC levels:"))
+            {
+                caps.AgcLevels = trimmed["AGC levels:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("CTCSS:"))
+            {
+                caps.Ctcss = trimmed["CTCSS:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("DCS:"))
+            {
+                caps.Dcs = trimmed["DCS:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Get functions:"))
+            {
+                caps.GetFunctions = trimmed["Get functions:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Set functions:"))
+            {
+                caps.SetFunctions = trimmed["Set functions:".Length..].Trim();
+            }
+            else if (trimmed.StartsWith("Mode list:"))
+            {
+                caps.ModeList = trimmed["Mode list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+            }
+            else if (trimmed.StartsWith("VFO list:"))
+            {
+                caps.VfoList = trimmed["VFO list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+            }
 
             // Frequency ranges
             else if (trimmed.StartsWith("TX ranges"))
@@ -100,11 +184,14 @@ public class RigCapabilities
             else if (currentRange != null)
             {
                 if (trimmed.StartsWith("VFO list:"))
-                    currentRange.VfoList = trimmed["VFO list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+                    currentRange.VfoList = trimmed["VFO list:".Length..].Trim()
+                        .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
                 else if (trimmed.StartsWith("Mode list:"))
-                    currentRange.ModeList = trimmed["Mode list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+                    currentRange.ModeList = trimmed["Mode list:".Length..].Trim()
+                        .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
                 else if (trimmed.StartsWith("Antenna list:"))
-                    currentRange.AntennaList = trimmed["Antenna list:".Length..].Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+                    currentRange.AntennaList = trimmed["Antenna list:".Length..].Trim()
+                        .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
                 else if (trimmed.StartsWith("Low power:"))
                     currentRange.LowPower = trimmed["Low power:".Length..].Trim();
                 else if (trimmed.StartsWith("High power:"))
@@ -113,6 +200,7 @@ public class RigCapabilities
                     currentRange = null!; // End of current range block
             }
         }
+
         return caps;
     }
 }

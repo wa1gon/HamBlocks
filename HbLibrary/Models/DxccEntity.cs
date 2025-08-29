@@ -5,14 +5,17 @@ public class DxccRoot
     // [JsonPropertyName("dxcc")]
     public List<DxccEntity> Dxcc { get; set; } = new();
 }
-public sealed record DxccEntity 
+
+public sealed record DxccEntity
 {
     public int Id { get; set; }
     public List<string> Continent { get; set; } = new();
     public string CountryCode { get; set; } = string.Empty;
     public List<int> Cq { get; set; } = new();
     public bool Deleted { get; set; }
+
     public int EntityCode { get; set; }
+
     // public string Flag { get; set; } = string.Empty;
     public List<int> Itu { get; set; } = new();
     public string Name { get; set; } = string.Empty;

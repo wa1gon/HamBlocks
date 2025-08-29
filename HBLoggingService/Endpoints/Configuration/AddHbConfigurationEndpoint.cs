@@ -1,9 +1,13 @@
 namespace HBLoggingService.Endpoints.Configuration;
 
-public class AddHbConfigurationEndpoint :  ConfEndpointBase
+public class AddHbConfigurationEndpoint : ConfEndpointBase
 {
     private readonly HbConfigurationService _service;
-    public AddHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
+
+    public AddHbConfigurationEndpoint(HbConfigurationService service)
+    {
+        _service = service;
+    }
 
     public override void Configure()
     {

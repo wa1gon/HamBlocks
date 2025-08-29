@@ -6,7 +6,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var apiUrl = builder.Configuration["LogApiServer:Url"] ?? "http://localhost:7300/api/";
-        
+
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
         builder.Services.AddMudServices();
@@ -22,7 +22,7 @@ public class Program
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
-   
+
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();

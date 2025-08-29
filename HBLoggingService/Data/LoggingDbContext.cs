@@ -1,5 +1,3 @@
-using HbLibrary;
-
 namespace HBLoggingService.Data;
 
 public class LoggingDbContext : DbContext
@@ -9,10 +7,21 @@ public class LoggingDbContext : DbContext
     {
     }
 
+    public DbSet<Qso> Qsos => Set<Qso>();
+    public DbSet<QsoDetail> QsoDetails { get; set; }
+    public DbSet<QsoQslInfo> QsoQslInfos { get; set; }
+    public DbSet<OperatorProfile> OperatorProfiles { get; set; }
+    public DbSet<CallSign> CallSigns { get; set; }
+    public DbSet<ServerLog> ServerLogs { get; set; }
+    public DbSet<LogConfig> LogConfig { get; set; }
+    public DbSet<CallBookConf> CallBookConfs { get; set; }
+    public DbSet<RigCtlConf> RigCtlConfs { get; set; }
+    public DbSet<DxClusterConf> DxClusterConfs { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.LogTo(Console.WriteLine, 
-            new[] { DbLoggerCategory.Database.Command.Name }, 
+        optionsBuilder.LogTo(Console.WriteLine,
+            new[] { DbLoggerCategory.Database.Command.Name },
             LogLevel.Information).EnableSensitiveDataLogging();
     }
 
@@ -107,15 +116,4 @@ public class LoggingDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
-
-    public DbSet<Qso> Qsos => Set<Qso>();
-    public DbSet<QsoDetail> QsoDetails { get; set; }
-    public DbSet<QsoQslInfo> QsoQslInfos { get; set; }
-    public DbSet<OperatorProfile> OperatorProfiles { get; set; }
-    public DbSet<CallSign> CallSigns { get; set; }
-    public DbSet<ServerLog> ServerLogs { get; set; }
-    public DbSet<LogConfig> LogConfig { get; set; }
-    public DbSet<CallBookConf> CallBookConfs { get; set; }
-    public DbSet<RigCtlConf> RigCtlConfs { get; set; }
-    public DbSet<DxClusterConf> DxClusterConfs { get; set; }
 }

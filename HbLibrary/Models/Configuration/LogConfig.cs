@@ -1,10 +1,11 @@
 namespace HamBlocks.Library.Models;
 
-
 public record LogConfig
 {
     public Guid Id { get; set; } = Guid.NewGuid();
+
     public string ProfileName { get; set; } //= ValidateString(ProfileName, nameof(ProfileName));
+
     // public string Callsign { get; set; } = ValidateString(Callsign, nameof(Callsign)).ToUpper();
     public string Callsign { get; set; }
     public string StationName { get; set; } = string.Empty;
@@ -19,7 +20,7 @@ public record LogConfig
     public ICollection<RigCtlConf> RigControls { get; set; } = [];
     public ICollection<CallBookConf> Logbooks { get; set; } = [];
     public ICollection<DxClusterConf> DxClusters { get; set; } = [];
-    
+
 
     private static string ValidateString(string value, string propertyName)
     {
@@ -28,6 +29,7 @@ public record LogConfig
             Console.WriteLine($"Warning: {propertyName} is null or empty, setting to default.");
             return "Unknown";
         }
+
         return value;
     }
 

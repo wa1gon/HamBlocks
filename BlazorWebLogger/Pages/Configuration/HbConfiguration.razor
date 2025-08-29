@@ -3,7 +3,7 @@
 
 <h3>HbConfiguration</h3>
 
-<MudSelect T="string" Label="Select Configuration" 
+<MudSelect T="string" Label="Select Configuration"
            ValueChanged="@OnSelectionChanged">
     <MudSelectItem Value="@NewItemValue">-- NEW --</MudSelectItem>
     @foreach (var config in Configurations)
@@ -13,7 +13,7 @@
 </MudSelect>
 
 <MudForm @ref="Form" OnValidSubmit="HandleSubmit">
-    <MudTextField T="string" Label="Profile Name" @bind-Value="CurrentConfig.ProfileName" />
+    <MudTextField T="string" Label="Profile Name" @bind-Value="CurrentConfig.ProfileName"/>
     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">
         Save
     </MudButton>

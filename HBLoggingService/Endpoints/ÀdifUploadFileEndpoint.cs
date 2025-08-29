@@ -1,14 +1,14 @@
 /// <summary>
-/// Uploads an ADIF file and processes it in the background.
-/// Valid QSOs are added to the database, duplicates are logged.
-/// The endpoint is designed to handle large files efficiently by processing them asynchronously.
-/// It uses a background task to parse the ADIF file and save valid QSOs to the database.
+///     Uploads an ADIF file and processes it in the background.
+///     Valid QSOs are added to the database, duplicates are logged.
+///     The endpoint is designed to handle large files efficiently by processing them asynchronously.
+///     It uses a background task to parse the ADIF file and save valid QSOs to the database.
 /// </summary>
-
 public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>
 {
     private readonly ILogger _logger;
-    private IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
+
     public ÀdifUploadFileEndpoint(ILogger<Endpoint<AdifUploadFileRequest, AdifUploadFileResponse>> logger,
         IServiceProvider serviceProvider)
     {
@@ -22,13 +22,12 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
         AllowAnonymous();
         Description(x => x
             .Accepts<AdifUploadFileRequest>("multipart/form-data")
-            .Produces<AdifUploadFileResponse>(StatusCodes.Status200OK)
+            .Produces<AdifUploadFileResponse>()
         );
     }
 
     public override async Task HandleAsync(AdifUploadFileRequest req, CancellationToken ct)
     {
-
         // Start background processing
 
         _logger.LogInformation("Start of ADIF file upload...");
@@ -38,12 +37,12 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
                 StatusCodes.Status400BadRequest, CancellationToken.None);
             return;
         }
-        
-        int totalErrors = 0;
+
+        var totalErrors = 0;
         // ... process file, update totalRecords and totalErrors
 
         // Log to database
-        var log = new ServerLog()
+        var log = new ServerLog
         {
             TotalErrors = totalErrors,
             Message = "Start of ADIF file upload",
@@ -65,7 +64,7 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             new AdifUploadFileResponse(
                 $"File '{req.File.FileName}' uploaded. Processing in background."),
             cancellation: ct);
-        
+
         var logger = _logger; // If needed       
         _ = Task.Run(async () =>
         {
@@ -73,14 +72,14 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
             {
                 using var scope = _serviceProvider.CreateScope();
                 using var db = scope.ServiceProvider.GetRequiredService<LoggingDbContext>();
-                
+
                 _logger.LogInformation("ADIF parse complete. Parsed {Count} records.", records.Count);
                 foreach (var qso in records)
                 {
                     var minTime = qso.QsoDate.AddMinutes(-15);
                     var maxTime = qso.QsoDate.AddMinutes(15);
 
-                    bool exists = await db.Qsos.AnyAsync(x =>
+                    var exists = await db.Qsos.AnyAsync(x =>
                         x.Id == qso.Id ||
                         (x.Call == qso.Call &&
                          x.Band == qso.Band &&
@@ -106,7 +105,6 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
                 db.ServerLogs.Add(log);
                 var foo = await db.SaveChangesAsync(CancellationToken.None);
                 _logger.LogInformation("SaveChangesAsync returned {Foo}", foo);
-                
             }
             catch (Exception e)
             {
@@ -122,12 +120,11 @@ public class ÀdifUploadFileEndpoint : Endpoint<AdifUploadFileRequest, AdifUploa
         {
             ArgumentNullException.ThrowIfNull(req.File);
             using var stream = req.File?.OpenReadStream();
-            
+
             using var reader = new StreamReader(stream!);
             var adifContent = reader.ReadToEnd();
 
             return adifContent;
-            
         }
         catch (Exception e)
         {

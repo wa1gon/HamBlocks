@@ -1,20 +1,13 @@
-
-
 namespace HBLoggingService.Endpoints.Qsos;
 
-using FastEndpoints;
-
-public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _logger) : 
+public class FilterQsoEndpoint(LoggingDbContext _db, ILogger<FilterQsoEndpoint> _logger) :
     Endpoint<QsoFilterRequest, List<Qso>>
 {
-
     public override void Configure()
     {
         Get("/qso/filter");
         AllowAnonymous();
-        Summary(s => {
-            s.Summary = "Filter QSO records by callsign and date with pagination";
-        });
+        Summary(s => { s.Summary = "Filter QSO records by callsign and date with pagination"; });
     }
 
     public override async Task HandleAsync(QsoFilterRequest req, CancellationToken ct)
@@ -30,8 +23,8 @@ public class FilterQsoEndpoint(LoggingDbContext _db,ILogger<FilterQsoEndpoint> _
             .Skip(skip)
             .Take(req.PageSize)
             .ToListAsync(ct);
-        await SendAsync( result);
-        _logger.LogInformation("Filtered {Count} QSOs for call {Call} on page {PageNumber}", 
+        await SendAsync(result);
+        _logger.LogInformation("Filtered {Count} QSOs for call {Call} on page {PageNumber}",
             result.Count, req.Call, req.PageNumber);
     }
 }

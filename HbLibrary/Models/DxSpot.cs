@@ -7,19 +7,19 @@ public class DxSpot
     public string? Callsign { get; set; }
     public string? Info { get; set; }
     public DateTime Timestamp { get; set; }
-    
+
     public static DxSpot? ParseSpot(string line)
     {
         // Example: DX de DK9BTX:    14235.0  YO9LIG       CQ CQ CQ DX                    1911Z
-        var match = System.Text.RegularExpressions.Regex.Match(
+        var match = Regex.Match(
             line,
             @"DX de (\w+):\s+([\d\.]+)\s+([A-Z0-9/]+)\s+(.+?)\s+(\d{4}Z)",
-            System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            RegexOptions.IgnoreCase
         );
         if (!match.Success) return null;
 
         var spotter = match.Groups[1].Value;
-        var freq = double.Parse(match.Groups[2].Value, System.Globalization.CultureInfo.InvariantCulture);
+        var freq = double.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture);
         var callsign = match.Groups[3].Value;
         var info = match.Groups[4].Value.Trim();
         var timeStr = match.Groups[5].Value;
@@ -39,6 +39,7 @@ public class DxSpot
             Timestamp = timestamp
         };
     }
+
     public override string ToString()
     {
         // Format timestamp as HHmmZ (UTC)

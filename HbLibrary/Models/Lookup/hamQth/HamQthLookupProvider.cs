@@ -1,26 +1,22 @@
-using System.Xml.Serialization;
 using HbLibrary;
 
 namespace HamBlocks.Library.Models.Lookup;
+
 [XmlRoot("HamQTH", Namespace = "https://www.hamqth.com")]
+public class HamQthLookupProvider(
+    string _userName,
+    string _password,
+    HttpClient _client,
+    string _programId,
+    IMemoryCache _cache) : ILookupProvider
+{
+    // private readonly string _userName;
+    // private readonly string _password;
+    // private readonly HttpClient _client;
+    // private readonly string _programId;
+    public static string? _sessionKey;
+    public static DateTime _expired;
 
-    public class HamQthLookupProvider
-        (string _userName,string _password, HttpClient _client, string _programId,
-         IMemoryCache _cache): ILookupProvider
-    {
-        // private readonly string _userName;
-        // private readonly string _password;
-        // private readonly HttpClient _client;
-        // private readonly string _programId;
-        static public string? _sessionKey;
-        static public DateTime _expired;
-
-
-    public async Task<IDxccInfo?> LookupDxccAsync(int dxcc)
-    {
-
-        return null;
-    }
     public async Task<ICallSignInfo?> LookupCallSignAsync(string callSign)
     {
         if (_cache.TryGetValue(callSign, out ICallSignInfo? cached))
@@ -35,15 +31,47 @@ namespace HamBlocks.Library.Models.Lookup;
 
         var serializer = new XmlSerializer(typeof(HamQthCallSearchResponse));
         using var reader = new StringReader(xml);
-        var callValue =  serializer.Deserialize(reader) as HamQthCallSearchResponse;
+        var callValue = serializer.Deserialize(reader) as HamQthCallSearchResponse;
         var rc = ConvertToICallSignInfo(callValue);
         if (rc is not null)
         {
             _cache.Set(callSign, rc, TimeSpan.FromHours(1));
             Console.WriteLine("Cache set for call sign: " + callSign);
         }
+
         return rc;
     }
+
+    public async Task LoginAsync()
+    {
+        if (_sessionKey != null && DateTime.UtcNow < _expired)
+            return;
+
+        var url = $"https://www.hamqth.com/xml.php?u={_userName}&p={_password}";
+        var xml = await _client.GetStringAsync(url);
+        var doc = XDocument.Parse(xml);
+
+        // Get the default namespace from the root element
+        var ns = doc.Root?.GetDefaultNamespace() ?? "";
+
+        var sessionId = doc.Root?
+            .Element(ns + "session")?
+            .Element(ns + "session_id")?
+            .Value;
+
+        if (string.IsNullOrEmpty(sessionId))
+            throw new Exception("HamQTH login failed.");
+
+        _sessionKey = sessionId;
+        _expired = DateTime.UtcNow + TimeSpan.FromMinutes(59);
+    }
+
+
+    public async Task<IDxccInfo?> LookupDxccAsync(int dxcc)
+    {
+        return null;
+    }
+
     public async Task<IDxccInfo?> LookupDxccByCallAsync(string callSign)
     {
         // await LoginAsync();
@@ -55,6 +83,7 @@ namespace HamBlocks.Library.Models.Lookup;
         var dxccValue = serializer.Deserialize(reader) as HamQthDxccResponse;
         return ConvertToIDxccInfo(dxccValue?.Dxcc);
     }
+
     private IDxccInfo? ConvertToIDxccInfo(HamQthDxcc? dxcc)
     {
         if (dxcc is null)
@@ -73,9 +102,9 @@ namespace HamBlocks.Library.Models.Lookup;
         };
         return rc;
     }
+
     private ICallSignInfo? ConvertToICallSignInfo(HamQthCallSearchResponse? callValue)
     {
-        
         if (callValue is null)
             return null;
 
@@ -92,29 +121,5 @@ namespace HamBlocks.Library.Models.Lookup;
             Cq = callValue.Search?.Cq ?? 0
         };
         return callrc;
-    }
-
-    public async Task LoginAsync()
-    {
-        if (_sessionKey != null && DateTime.UtcNow < _expired)
-            return;
-        
-        var url = $"https://www.hamqth.com/xml.php?u={_userName}&p={_password}";
-        var xml = await _client.GetStringAsync(url);
-        var doc = XDocument.Parse(xml);
-
-        // Get the default namespace from the root element
-        XNamespace ns = doc.Root?.GetDefaultNamespace() ?? "";
-
-        var sessionId = doc.Root?
-            .Element(ns + "session")?
-            .Element(ns + "session_id")?
-            .Value;
-
-        if (string.IsNullOrEmpty(sessionId))
-            throw new Exception("HamQTH login failed.");
-
-        _sessionKey = sessionId;
-        _expired = DateTime.UtcNow + TimeSpan.FromMinutes(59);
     }
 }

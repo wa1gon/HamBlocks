@@ -1,7 +1,6 @@
 namespace HBLoggingService.Endpoints;
 
-public abstract class ConfEndpointBase: Endpoint<LogConfig>
+public abstract class ConfEndpointBase : Endpoint<LogConfig>
 {
-    static protected string BasePath = "conf";
-
+    protected static string BasePath = "conf";
 }
