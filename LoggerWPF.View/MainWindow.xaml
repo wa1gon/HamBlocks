@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:core="clr-namespace:LoggerWPF.Core;assembly=LoggerWPF.Core"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <core:MainViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -12,16 +16,19 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Menu FontSize="20">
-            <MenuItem Header="_File"></MenuItem>
-            <MenuItem Header="_Awards"></MenuItem>
-            <MenuItem Header="_WebLogs"></MenuItem>
-            <!-- <MenuItem Header="_View"> -->
-            <!--     <MenuItem Header="_Customers" -->
-            <!--               Command="{Binding SelectViewModelCommand}"/> -->
-            <!--     <MenuItem Header="_Products" -->
-            <!--               Command="{Binding SelectViewModelCommand}"/> -->
-            <!-- </MenuItem> -->
+        <Menu FontSize="20" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Setting" Command="{Binding SettingsMenuClickCommand}" />
+            </MenuItem>
+            <MenuItem Header="_Awards" />
+            <MenuItem Header="_WebLogs" />
         </Menu>
+        <StackPanel Grid.Row="1" Margin="10">
+            <ComboBox ItemsSource="{Binding Options}" 
+                      SelectedItem="{Binding SelectedOption}"
+                      Width="200" 
+                      Margin="0,0,0,10" />
+            <TextBlock Text="{Binding SelectedOption, StringFormat='Selected Option: {0}'}" />
+        </StackPanel>
     </Grid>
 </Window>
