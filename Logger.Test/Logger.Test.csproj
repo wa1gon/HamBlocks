@@ -5,6 +5,7 @@
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>LoggerWPF.Test</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LoggerWPF.Core\LoggerWPF.Core.csproj" />
+      <ProjectReference Include="..\Logger.Core\Logger.Core.csproj" />
     </ItemGroup>
 
 </Project>

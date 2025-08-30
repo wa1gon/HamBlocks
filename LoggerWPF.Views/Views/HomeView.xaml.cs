@@ -1,8 +1,8 @@
 namespace LoggerWPF.Views;
 
-public partial class Home : UserControl
+public partial class HomeView : UserControl
 {
-    public Home()
+    public HomeView()
     {
         InitializeComponent();
     }

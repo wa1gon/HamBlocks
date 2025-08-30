@@ -1,4 +1,4 @@
-// using LoggerWPF.Core.Validation;
+// using Logger.Core.Validation;
 
 
 using System.Collections;

@@ -12,7 +12,6 @@ public partial class MainViewModel : ObservableObject
     private object currentViewModel;
     public MainViewModel()
     {
-
         CurrentViewModel = _homeViewModel;
     }
     [RelayCommand]
@@ -20,5 +19,12 @@ public partial class MainViewModel : ObservableObject
     {
         Console.WriteLine(nameof(SettingsMenuClickCommand));
         CurrentViewModel = new SettingsViewModel();
+    }
+
+    [RelayCommand]
+    public void HomeMenuClick()
+    {
+        Console.WriteLine(nameof(HomeMenuClick));
+        CurrentViewModel = new HomeViewModel();
     }
 }

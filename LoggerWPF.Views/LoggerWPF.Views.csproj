@@ -13,7 +13,6 @@
         <Folder Include="Converter\"/>
         <Folder Include="Data\"/>
         <Folder Include="Model\"/>
-        <Folder Include="Validations\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LoggerWPF.Core\LoggerWPF.Core.csproj" />
+      <ProjectReference Include="..\Logger.Core\Logger.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
