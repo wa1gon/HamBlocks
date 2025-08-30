@@ -10,6 +10,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new LoggerWPF.Core.MainViewModel();
+        DataContext = new MainViewModel();
     }
 }
