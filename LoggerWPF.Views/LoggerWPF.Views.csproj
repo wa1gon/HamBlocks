@@ -13,7 +13,6 @@
         <Folder Include="Converter\"/>
         <Folder Include="Data\"/>
         <Folder Include="Model\"/>
-        <Folder Include="Resources\"/>
     </ItemGroup>
 
     <ItemGroup>

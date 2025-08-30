@@ -25,7 +25,7 @@
             <RowDefinition Height="*"  />
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
-        <Menu FontSize="20" Grid.Row="0" Margin="5" Background="LightGray">
+        <Menu FontSize="20" Grid.Row="0" Margin="5" Background="Gray">
             <MenuItem Header="_File">
                 <MenuItem Header="_Setting" Command="{Binding SettingsMenuClickCommand}" />
             </MenuItem>
@@ -40,4 +40,4 @@
             <!-- Optional content for footer -->
         </StackPanel>
     </Grid>
-</Window>
+</Window>           
