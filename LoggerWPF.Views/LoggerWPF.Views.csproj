@@ -13,6 +13,7 @@
         <Folder Include="Converter\"/>
         <Folder Include="Data\"/>
         <Folder Include="Model\"/>
+        <Folder Include="Validations\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +23,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LoggerWPF.Core\LoggerWPF.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\HamBlocksBG.png" />
+      <Content Include="Assets\HamBlocksBG.png" />
     </ItemGroup>
 
 </Project>
