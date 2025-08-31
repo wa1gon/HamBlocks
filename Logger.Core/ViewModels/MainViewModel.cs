@@ -2,29 +2,43 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace LoggerWPF.Core;
 
-
-
 public partial class MainViewModel : ObservableObject
 {
-    private readonly SettingsViewModel _settingsViewModel;
-    private readonly HomeViewModel _homeViewModel = new HomeViewModel();
-    [ObservableProperty]
-    private object currentViewModel;
+    // private readonly SettingsViewModel _settingsViewModel;
+    // private readonly HomeViewModel _homeViewModel;
+
+    // public MainViewModel(SettingsViewModel settingsViewModel, HomeViewModel homeViewModel)
     public MainViewModel()
     {
-        CurrentViewModel = _homeViewModel;
+        // _settingsViewModel = settingsViewModel;
+        // _homeViewModel = homeViewModel;
+        // CurrentViewModel = _homeViewModel;
+        CurrentViewModel = new HomeViewModel();
     }
-    [RelayCommand]
-    public void SettingsMenuClick()
+
+    [ObservableProperty]
+    private object _currentViewModel;
+
+    public async Task InitializeAsync()
     {
-        Console.WriteLine(nameof(SettingsMenuClickCommand));
-        CurrentViewModel = new SettingsViewModel();
+        // await _settingsViewModel.InitializeAsync();
     }
 
     [RelayCommand]
-    public void HomeMenuClick()
+    void SettingsMenuClick()
+    {
+        Console.WriteLine(nameof(SettingsMenuClick));
+        // CurrentViewModel = _settingsViewModel;
+        var httpclient = new HttpClient();
+        httpclient.BaseAddress = new Uri("http://localhost:5000/");
+        // CurrentViewModel = new SettingsViewModel(new HbConfClientApiService(httpclient));
+    }
+
+    [RelayCommand]
+    void HomeMenuClick()
     {
         Console.WriteLine(nameof(HomeMenuClick));
-        CurrentViewModel = new HomeViewModel();
+        //todo
+        // CurrentViewModel = _homeViewModel;
     }
 }
