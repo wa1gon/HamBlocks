@@ -5,9 +5,9 @@ public class HbConfClientApiService : IHbConfClientApiService
     private readonly HttpClient _http;
     private readonly ILogger<HbConfClientApiService> _logger;
 
-    public HbConfClientApiService(IHttpClientFactory http, ILogger<HbConfClientApiService> logger)
+    public HbConfClientApiService(HttpClient  http, ILogger<HbConfClientApiService> logger)
     {
-        _http = http.CreateClient("SharedClient");
+        _http = http ?? throw new ArgumentNullException(nameof(http));;
         _logger = logger;
     }
 
