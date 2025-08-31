@@ -13,8 +13,19 @@ public class HbConfClientApiService : IHbConfClientApiService
 
     public async Task<List<LogConfig>?> GetAllAsync(CancellationToken ct = default)
     {
-        Console.WriteLine("GetAllAsync called");
-        return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        // Console.WriteLine("GetAllAsync called");
+        // return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        _logger.LogDebug("GET {Uri}", new Uri(_http.BaseAddress!, "conf"));
+        using var resp = await _http.GetAsync("conf", ct);
+        resp.EnsureSuccessStatusCode();
+        // If no content (204), return empty list
+        if (resp.Content.Headers.ContentLength is 0)
+            return [];
+
+        var data = await resp.Content.ReadFromJsonAsync<
+            List<LogConfig>>(cancellationToken: ct);
+
+        return data ?? [];
     }
 
     public async Task AddAsync(LogConfig config, CancellationToken ct = default)
