@@ -1,14 +1,17 @@
 
 
+using Microsoft.Extensions.Logging;
+
 namespace LoggerWPF.Core;
 
 public partial class SettingsViewModel : ObservableObject
 {
     private readonly IHbConfClientApiService _apiService;
-
-    public SettingsViewModel(IHbConfClientApiService apiService)
+    private readonly ILogger<SettingsViewModel> _logger;
+    public SettingsViewModel(IHbConfClientApiService apiService, ILogger<SettingsViewModel> logger)
     {
         _apiService = apiService;
+        _logger = logger;
         Options = new ObservableCollection<string>();
     }
 
@@ -20,7 +23,7 @@ public partial class SettingsViewModel : ObservableObject
 
     [ObservableProperty]
     private string _selectedOption;
-
+    
     public async Task InitializeAsync()
     {
         await LoadConfigsAsync();

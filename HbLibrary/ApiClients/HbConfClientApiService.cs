@@ -3,19 +3,32 @@ namespace HBWebLogger.Services.ApiClients;
 public class HbConfClientApiService : IHbConfClientApiService
 {
     private readonly HttpClient _http;
+    private readonly ILogger<HbConfClientApiService> _logger;
 
-    public HbConfClientApiService(IHttpClientFactory http)
+    public HbConfClientApiService(HttpClient  http, ILogger<HbConfClientApiService> logger)
     {
-        _http = http.CreateClient("SharedClient");
+        _http = http ?? throw new ArgumentNullException(nameof(http));;
+        _logger = logger;
     }
 
     public async Task<List<LogConfig>?> GetAllAsync(CancellationToken ct = default)
     {
-        Console.WriteLine("GetAllAsync called");
-        return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        // Console.WriteLine("GetAllAsync called");
+        // return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        _logger.LogDebug("GET {Uri}", new Uri(_http.BaseAddress!, "conf"));
+        using var resp = await _http.GetAsync("conf", ct);
+        resp.EnsureSuccessStatusCode();
+        // If no content (204), return empty list
+        if (resp.Content.Headers.ContentLength is 0)
+            return [];
+
+        var data = await resp.Content.ReadFromJsonAsync<
+            List<LogConfig>>(cancellationToken: ct);
+
+        return data ?? [];
     }
 
-    public async Task AddAsync(LogConfig config)
+    public async Task AddAsync(LogConfig config, CancellationToken ct = default)
     {
         try
         {
@@ -44,12 +57,12 @@ public class HbConfClientApiService : IHbConfClientApiService
         }
     }
 
-    public async Task UpdateAsync(LogConfig config)
+    public async Task UpdateAsync(LogConfig config,CancellationToken ct = default)
     {
         await _http.PutAsJsonAsync($"conf/{config.ProfileName}", config);
     }
 
-    public async Task DeleteAsync(string profileId)
+    public async Task DeleteAsync(string profileId,CancellationToken ct = default)
     {
         await _http.DeleteAsync($"conf/{profileId}");
     }

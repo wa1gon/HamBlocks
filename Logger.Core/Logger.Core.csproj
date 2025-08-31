@@ -16,4 +16,9 @@
       <ProjectReference Include="..\HbLibrary\HbLibrary.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>

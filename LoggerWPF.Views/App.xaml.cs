@@ -32,36 +32,49 @@ namespace LoggerWPF
                 .ConfigureServices((ctx, services) =>
                 {
                     // Register all your services/VMS/windows ONCE here
-                    AddServices(services);
+                    AddServices(services, ctx.Configuration);
                 })
                 .Build();
-
-            // ✅ Set your global DI container to the SINGLE host provider
+            
             DIContainer.Initialize(_host.Services);
-            // If you insist on a settable property instead of Initialize():
-            // DIContainer.ServiceProvider = _host.Services;
-
-            // Resolve via DIContainer if you prefer
+            
             var mainWindow = DIContainer.Get<MainWindow>();
-            // If MainWindow doesn't take the VM in its ctor:
             mainWindow.DataContext = DIContainer.Get<MainViewModel>();
 
             MainWindow = mainWindow;
             mainWindow.Show();
         }
 
-        private static void AddServices(IServiceCollection services)
+        private static void AddServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddHttpClient();
-            services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
+            services.AddOptions<ApiOptions>()
+                .Bind(configuration.GetSection("Api"))
+                .Validate(o => Uri.IsWellFormedUriString(o.BaseUrl, UriKind.Absolute),
+                    "Api:BaseUrl must be an absolute URL")
+                .ValidateOnStart();
+
+            // ViewModels / Windows
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MainWindow>();
+
+            // Typed HttpClient for your API client (this also registers IHttpClientFactory)
+            services.AddHttpClient<IHbConfClientApiService, HbConfClientApiService>(
+                (sp, client) =>
+                {
+                    var opts = sp.GetRequiredService<IOptions<ApiOptions>>().Value;
+                    var baseUrl = opts.BaseUrl.EndsWith("/") ? opts.BaseUrl : opts.BaseUrl + "/";
+                    client.BaseAddress = new Uri(baseUrl);
+                    client.Timeout = TimeSpan.FromSeconds(15);
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("HBWebLogger/1.0");
+                });
+
+
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _host?.Dispose(); // clean up singletons/handlers
+            _host?.Dispose(); 
             base.OnExit(e);
         }
     }
