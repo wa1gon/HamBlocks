@@ -1,5 +1,8 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=31d246a5_002D571e_002D49a2_002Db646_002D181e6149a1c6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from UnitTest1.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+﻿<wpf:ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib"
+                        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xml:space="preserve">
+	<s:String
+            x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=31d246a5_002D571e_002D49a2_002Db646_002D181e6149a1c6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from UnitTest1.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
     &lt;ProjectFile&gt;BF8F9109-E485-42B7-B2E8-69B07FDF337E/f:AdifReadTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;BF8F9109-E485-42B7-B2E8-69B07FDF337E/f:AdifWriteTest.cs&lt;/ProjectFile&gt;&#xD;

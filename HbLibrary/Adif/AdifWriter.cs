@@ -16,13 +16,11 @@ public static class AdifWriter
         foreach (var qso in qsos)
         {
             // Validation: must have at least BAND or FREQ
-            bool hasBand = !string.IsNullOrWhiteSpace(qso.Band);
-            bool hasFreq = qso.Freq != decimal.Zero;
+            var hasBand = !string.IsNullOrWhiteSpace(qso.Band);
+            var hasFreq = qso.Freq != decimal.Zero;
 
             if (!hasBand && !hasFreq)
-            {
                 throw new InvalidOperationException($"QSO with CALL {qso.Call} must have either BAND or FREQ.");
-            }
 
             // Core fields
             AppendField(sb, "CALL", qso.Call);
@@ -51,10 +49,8 @@ public static class AdifWriter
 
             // Extra fields from QsoDetail
             foreach (var detail in qso.Details)
-            {
                 if (!string.IsNullOrWhiteSpace(detail.FieldName) && !string.IsNullOrWhiteSpace(detail.FieldValue))
                     AppendField(sb, detail.FieldName.ToUpperInvariant(), EscapeAdif(detail.FieldValue));
-            }
 
             sb.AppendLine("<EOR>");
         }

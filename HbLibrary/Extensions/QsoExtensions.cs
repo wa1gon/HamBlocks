@@ -1,6 +1,5 @@
-using HamBlocks.Library.Models;
-
 namespace HbLibrary.Extensions;
+
 public static class QsoExtensions
 {
     // List of fields that belong to the main Qso entity
@@ -17,7 +16,7 @@ public static class QsoExtensions
     };
 
     /// <summary>
-    /// Adds a QsoDetail to the QSO only if the field is not part of the main Qso fields.
+    ///     Adds a QsoDetail to the QSO only if the field is not part of the main Qso fields.
     /// </summary>
     public static bool TryAddDetail(this Qso qso, string fieldName, string fieldValue)
     {
@@ -25,16 +24,11 @@ public static class QsoExtensions
             return false;
 
         if (CoreQsoFields.Contains(fieldName))
-        {
             // Do not allow duplication of core fields
             return false;
-        }
 
         // Avoid duplicate fields within details
-        if (qso.Details.Any(d => d.FieldName.Equals(fieldName, StringComparison.OrdinalIgnoreCase)))
-        {
-            return false;
-        }
+        if (qso.Details.Any(d => d.FieldName.Equals(fieldName, StringComparison.OrdinalIgnoreCase))) return false;
 
         qso.Details.Add(new QsoDetail
         {

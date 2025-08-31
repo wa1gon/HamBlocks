@@ -18,8 +18,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HBAbstractions\HBAbstractions.csproj" />
-      <ProjectReference Include="..\HbLibrary\HbLibrary.csproj" />
+        <ProjectReference Include="..\HBAbstractions\HBAbstractions.csproj"/>
+        <ProjectReference Include="..\HbLibrary\HbLibrary.csproj"/>
     </ItemGroup>
 
 </Project>

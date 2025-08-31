@@ -1,6 +1,5 @@
 namespace HamBlocks.Library.Models;
 
-
 public record CallBookConf(string Name, string Host)
 {
     public Guid Id { get; init; } = Guid.NewGuid();
@@ -13,10 +12,6 @@ public record CallBookConf(string Name, string Host)
     public Guid LogConfigId { get; set; } // Explicit foreign key
     public LogConfig LogConfig { get; set; } = null!;
     public bool isDirty { get; set; } = false; // No [NotMapped]
-
-    // {
-    //     Console.WriteLine($"Creating CallBookConf: Name={Name}, Host={Host}");
-    // }
 
     private static string ValidateString(string value, string propertyName)
     {

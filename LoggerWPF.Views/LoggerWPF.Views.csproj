@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>LoggerWPF</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Converter\"/>
+        <Folder Include="Data\"/>
+        <Folder Include="Model\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Logger.Core\Logger.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\HamBlocksBG.png" />
+      <Content Include="Assets\HamBlocksBG.png" />
+    </ItemGroup>
+
+</Project>

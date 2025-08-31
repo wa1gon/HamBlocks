@@ -9,5 +9,5 @@ public interface IRigControlClient
         Task SetModeAsync(string mode);
         Task SendCommandAsync(string command);
         void Dispose();
-    } 
+    }
 }

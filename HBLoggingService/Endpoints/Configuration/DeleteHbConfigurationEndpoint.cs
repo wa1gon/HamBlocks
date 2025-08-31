@@ -3,7 +3,11 @@ namespace HBLoggingService.Endpoints.Configuration;
 public class DeleteHbConfigurationEndpoint : ConfEndpointBase
 {
     private readonly HbConfigurationService _service;
-    public DeleteHbConfigurationEndpoint(HbConfigurationService service) => _service = service;
+
+    public DeleteHbConfigurationEndpoint(HbConfigurationService service)
+    {
+        _service = service;
+    }
 
     public override void Configure()
     {

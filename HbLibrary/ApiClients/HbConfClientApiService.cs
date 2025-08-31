@@ -1,6 +1,4 @@
-
 namespace HBWebLogger.Services.ApiClients;
-
 
 public class HbConfClientApiService
 {
@@ -13,19 +11,17 @@ public class HbConfClientApiService
 
     public async Task<List<LogConfig>?> GetAllAsync(CancellationToken ct = default)
     {
-
         Console.WriteLine("GetAllAsync called");
-         return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
+        return await _http.GetFromJsonAsync<List<LogConfig>>("conf");
     }
 
     public async Task AddAsync(LogConfig config)
     {
         try
         {
-
             // await _http.PostAsJsonAsync("conf", config);
             Console.WriteLine("Sending POST request to 'conf' with payload:");
-            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(config));
+            Console.WriteLine(JsonSerializer.Serialize(config));
 
             var response = await _http.PostAsJsonAsync("conf", config);
 
@@ -49,8 +45,12 @@ public class HbConfClientApiService
     }
 
     public async Task UpdateAsync(LogConfig config)
-        => await _http.PutAsJsonAsync($"conf/{config.ProfileName}", config);
+    {
+        await _http.PutAsJsonAsync($"conf/{config.ProfileName}", config);
+    }
 
     public async Task DeleteAsync(string profileId)
-        => await _http.DeleteAsync($"conf/{profileId}");
+    {
+        await _http.DeleteAsync($"conf/{profileId}");
+    }
 }

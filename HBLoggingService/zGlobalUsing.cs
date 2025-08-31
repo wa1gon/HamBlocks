@@ -1,4 +1,3 @@
-
 global using FastEndpoints;
 global using HamBlocks.Library.Models;
 global using HbLibrary.Adif; // Adjust namespace as needed

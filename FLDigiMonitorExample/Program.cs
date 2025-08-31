@@ -1,24 +1,20 @@
-﻿using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-class Program
+internal class Program
 {
-    static readonly HttpClient client = new HttpClient();
-    static string fldigiUrl = "http://localhost:7362/RPC2";
-    static string lastText = "";
+    private static readonly HttpClient client = new();
+    private static readonly string fldigiUrl = "http://localhost:7362/RPC2";
+    private static string lastText = "";
 
-    static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
         Console.WriteLine("JS8Call XML-RPC Client");
         Console.WriteLine($"Polling Fldigi at: {fldigiUrl}\n");
 
         while (true)
-        {
             try
             {
-                string xmlRequest = @"<?xml version='1.0'?>
+                var xmlRequest = @"<?xml version='1.0'?>
 <methodCall>
   <methodName>rx.get_text</methodName>
 </methodCall>";
@@ -26,9 +22,9 @@ class Program
                 var content = new StringContent(xmlRequest, Encoding.UTF8, "text/xml");
 
                 var response = await client.PostAsync(fldigiUrl, content);
-                string responseBody = await response.Content.ReadAsStringAsync();
+                var responseBody = await response.Content.ReadAsStringAsync();
 
-                string decoded = ExtractValue(responseBody);
+                var decoded = ExtractValue(responseBody);
                 if (!string.IsNullOrWhiteSpace(decoded) && decoded != lastText)
                 {
                     Console.WriteLine($"[{DateTime.Now:T}] New Message:");
@@ -44,20 +40,16 @@ class Program
                 Console.WriteLine($"Error: {ex.Message}");
                 await Task.Delay(5000);
             }
-        }
     }
 
-    static string ExtractValue(string xml)
+    private static string ExtractValue(string xml)
     {
         const string tagStart = "<string>";
         const string tagEnd = "</string>";
-        int start = xml.IndexOf(tagStart);
-        int end = xml.IndexOf(tagEnd);
+        var start = xml.IndexOf(tagStart);
+        var end = xml.IndexOf(tagEnd);
 
-        if (start >= 0 && end > start)
-        {
-            return xml.Substring(start + tagStart.Length, end - start - tagStart.Length);
-        }
+        if (start >= 0 && end > start) return xml.Substring(start + tagStart.Length, end - start - tagStart.Length);
 
         return "";
     }

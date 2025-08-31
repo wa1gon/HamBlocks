@@ -1,11 +1,14 @@
 namespace HamBlocks.Library.Models.Lookup.Qrz;
 
-public class QrzLookupProvider(string userName, string password, HttpClient client,
-    string programId, IMemoryCache cache) : ILookupProvider
+public class QrzLookupProvider(
+    string userName,
+    string password,
+    HttpClient client,
+    string programId,
+    IMemoryCache cache) : ILookupProvider
 {
-
     private string? _sessionKey;
-    
+
 
     public async Task LoginAsync()
     {

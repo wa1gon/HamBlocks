@@ -1,9 +1,5 @@
 namespace HBLoggingService.Services;
 
-using HamBlocks.Library.Models;
-using Microsoft.EntityFrameworkCore;
-
-
 public class HbConfigurationService(LoggingDbContext context)
 {
     internal List<LogConfig> Configuration { get; private set; } = [];
@@ -32,9 +28,8 @@ public class HbConfigurationService(LoggingDbContext context)
         if (config is not null && config.Id == Guid.Empty)
         {
             if (Configuration.Any(c => c.ProfileName == config.ProfileName))
-            {
-                throw new ArgumentException($"A configuration with the same ProfileName {config.ProfileName} already exists.");
-            }
+                throw new ArgumentException(
+                    $"A configuration with the same ProfileName {config.ProfileName} already exists.");
             config.Id = Guid.NewGuid();
             context.LogConfig.Add(config);
             await context.SaveChangesAsync();
@@ -67,7 +62,7 @@ public class HbConfigurationService(LoggingDbContext context)
         {
             throw new ArgumentException("Entity not found.");
         }
-        
+
         // var config = await GetByProfileNameAsync(Id);
         // if (config != null)
         // {

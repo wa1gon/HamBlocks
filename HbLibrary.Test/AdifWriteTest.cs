@@ -1,6 +1,6 @@
+using System.Text.RegularExpressions;
+
 namespace HBLibrary.Test;
-
-
 
 [TestClass]
 public class AdifWriterTests
@@ -20,9 +20,9 @@ public class AdifWriterTests
             RstRcvd = "", // intentionally blank
             Details = new List<QsoDetail>
             {
-                new QsoDetail { FieldName = "gridsquare", FieldValue = "FN42" },
-                new QsoDetail { FieldName = "qsl_rcvd", FieldValue = "Y" },
-                new QsoDetail { FieldName = "empty_field", FieldValue = " " }, // should be skipped
+                new() { FieldName = "gridsquare", FieldValue = "FN42" },
+                new() { FieldName = "qsl_rcvd", FieldValue = "Y" },
+                new() { FieldName = "empty_field", FieldValue = " " } // should be skipped
             }
         };
 
@@ -43,8 +43,8 @@ public class AdifWriterTests
         StringAssert.Contains(adif, "<GUID:36>123e4567-e89b-12d3-a456-426614174000");
 
         // Assert: Optional fields not present when blank
-        StringAssert.DoesNotMatch(adif, new System.Text.RegularExpressions.Regex(@"<RST_SENT:"));
-        StringAssert.DoesNotMatch(adif, new System.Text.RegularExpressions.Regex(@"<RST_RCVD:"));
+        StringAssert.DoesNotMatch(adif, new Regex(@"<RST_SENT:"));
+        StringAssert.DoesNotMatch(adif, new Regex(@"<RST_RCVD:"));
 
         // Assert: Details correctly added
         StringAssert.Contains(adif, "<GRIDSQUARE:4>FN42");

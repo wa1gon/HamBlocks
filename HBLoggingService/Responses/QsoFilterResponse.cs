@@ -1,6 +1,6 @@
 namespace HBLoggingService.Responses;
 
-public class QsoFilterResponse: Qso
+public class QsoFilterResponse : Qso
 {
     // public Guid Id { get; set; }
     // public string Call { get; set; }

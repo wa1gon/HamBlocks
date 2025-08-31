@@ -1,4 +1,5 @@
 namespace HBAbstractions;
+
 public interface IQsoQslInfo
 {
     int Id { get; set; }

@@ -3,7 +3,11 @@ namespace HBLoggingService.Endpoints.Configuration;
 public class GetHbConfigurationByProfileNameEndpoint : Endpoint<GetByProfileNameRequest, LogConfig?>
 {
     private readonly HbConfigurationService _service;
-    public GetHbConfigurationByProfileNameEndpoint(HbConfigurationService service) => _service = service;
+
+    public GetHbConfigurationByProfileNameEndpoint(HbConfigurationService service)
+    {
+        _service = service;
+    }
 
     public override void Configure()
     {
