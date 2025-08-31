@@ -11,7 +11,7 @@ public partial class MainViewModel : ObservableObject
     // public MainViewModel(SettingsViewModel settingsViewModel, HomeViewModel homeViewModel)
     public MainViewModel()
     {
-        _settingsViewModel = new SettingsViewModel();
+        // _settingsViewModel = DIContainer.Get<SettingsViewModel>();
         // _homeViewModel = homeViewModel;
         // CurrentViewModel = _homeViewModel;
         CurrentViewModel = new HomeViewModel();
@@ -31,7 +31,7 @@ public partial class MainViewModel : ObservableObject
         
         Console.WriteLine(nameof(SettingsMenuClick));
 
-        CurrentViewModel = App.ServiceProvider?.GetRequiredService<SettingsViewModel>();
+        CurrentViewModel = DIContainer.Get<SettingsViewModel>();
     }
 
     [RelayCommand]

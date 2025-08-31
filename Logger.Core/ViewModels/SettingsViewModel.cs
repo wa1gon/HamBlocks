@@ -4,9 +4,9 @@ namespace LoggerWPF.Core;
 
 public partial class SettingsViewModel : ObservableObject
 {
-    private readonly HbConfClientApiService _apiService;
+    private readonly IHbConfClientApiService _apiService;
 
-    public SettingsViewModel(HbConfClientApiService apiService)
+    public SettingsViewModel(IHbConfClientApiService apiService)
     {
         _apiService = apiService;
         Options = new ObservableCollection<string>();

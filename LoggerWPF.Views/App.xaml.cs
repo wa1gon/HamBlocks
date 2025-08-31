@@ -1,51 +1,68 @@
-﻿namespace LoggerWPF;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using System.Net.Http;
+using System.Windows;
 
-/// <summary>
-///     Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+namespace LoggerWPF
 {
-    
-    public static IServiceProvider? ServiceProvider { get; private set; }
-    private IHost? _host;
-    public App()
+    /// <summary>
+    ///     Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-        ServiceCollection services = new();
-        
-        ConfigureServices(services);
-        ServiceProvider = services.BuildServiceProvider();
-    }
+        private IHost? _host;
 
-    private void ConfigureServices(ServiceCollection services)
-    {
-        services.AddTransient<MainWindow>();
-    }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e);
+            _host = Host.CreateDefaultBuilder()
+                .UseContentRoot(AppContext.BaseDirectory)
+                .ConfigureAppConfiguration(cfg =>
+                {
+                    // CreateDefaultBuilder already loads appsettings.json,
+                    // but this keeps your explicit behavior and reloads.
+                    cfg.SetBasePath(AppContext.BaseDirectory);
+                    cfg.AddJsonFile("appsettings.json",
+                        optional: false, reloadOnChange: true);
+                })
+                .ConfigureServices((ctx, services) =>
+                {
+                    // Register all your services/VMS/windows ONCE here
+                    AddServices(services);
+                })
+                .Build();
 
-        _host = Host.CreateDefaultBuilder()
-            .ConfigureAppConfiguration(config =>
-            {
-                config.SetBasePath(Directory.GetCurrentDirectory());
-                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            })
-            .ConfigureServices((ctx, services) => { AddServices(services); })
-            .Build();
+            // ✅ Set your global DI container to the SINGLE host provider
+            DIContainer.Initialize(_host.Services);
+            // If you insist on a settable property instead of Initialize():
+            // DIContainer.ServiceProvider = _host.Services;
 
-        var mainWindow = _host.Services.GetRequiredService<MainWindow>();
-        mainWindow.DataContext = _host.Services.GetRequiredService<MainViewModel>();
-        MainWindow = mainWindow;
-        mainWindow.Show();
-    }
+            // Resolve via DIContainer if you prefer
+            var mainWindow = DIContainer.Get<MainWindow>();
+            // If MainWindow doesn't take the VM in its ctor:
+            mainWindow.DataContext = DIContainer.Get<MainViewModel>();
 
-    private static void AddServices(IServiceCollection services)
-    {
-        services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
-        services.AddSingleton<MainViewModel>();
-        services.AddSingleton<MainWindow>();
-        services.AddSingleton<SettingsViewModel>();
-        DIContainer.ServiceProvider = services.BuildServiceProvider();
+            MainWindow = mainWindow;
+            mainWindow.Show();
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddHttpClient();
+            services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
+            services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton<MainWindow>();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host?.Dispose(); // clean up singletons/handlers
+            base.OnExit(e);
+        }
     }
 }
