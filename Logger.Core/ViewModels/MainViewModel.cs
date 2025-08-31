@@ -39,6 +39,6 @@ public partial class MainViewModel : ObservableObject
     {
         Console.WriteLine(nameof(HomeMenuClick));
         //todo
-        // CurrentViewModel = _homeViewModel;
+        CurrentViewModel = new HomeViewModel();
     }
 }

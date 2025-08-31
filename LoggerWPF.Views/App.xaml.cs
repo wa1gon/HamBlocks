@@ -35,15 +35,10 @@ namespace LoggerWPF
                     AddServices(services);
                 })
                 .Build();
-
-            // ✅ Set your global DI container to the SINGLE host provider
+            
             DIContainer.Initialize(_host.Services);
-            // If you insist on a settable property instead of Initialize():
-            // DIContainer.ServiceProvider = _host.Services;
-
-            // Resolve via DIContainer if you prefer
+            
             var mainWindow = DIContainer.Get<MainWindow>();
-            // If MainWindow doesn't take the VM in its ctor:
             mainWindow.DataContext = DIContainer.Get<MainViewModel>();
 
             MainWindow = mainWindow;
@@ -53,6 +48,7 @@ namespace LoggerWPF
         private static void AddServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            
             services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
             services.AddSingleton<SettingsViewModel>();
             services.AddSingleton<MainViewModel>();
@@ -61,7 +57,7 @@ namespace LoggerWPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _host?.Dispose(); // clean up singletons/handlers
+            _host?.Dispose(); 
             base.OnExit(e);
         }
     }
