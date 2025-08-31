@@ -47,17 +47,18 @@ namespace LoggerWPF
 
         private static void AddServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
-            services.AddSingleton<SettingsViewModel>();
-            services.AddSingleton<MainViewModel>();
-            services.AddSingleton<MainWindow>();
             services.AddOptions<ApiOptions>()
                 .Bind(configuration.GetSection("Api"))
                 .Validate(o => Uri.IsWellFormedUriString(o.BaseUrl, UriKind.Absolute),
                     "Api:BaseUrl must be an absolute URL")
                 .ValidateOnStart();
-            
-            // services.AddHttpClient();
+
+            // ViewModels / Windows
+            services.AddSingleton<SettingsViewModel>();
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton<MainWindow>();
+
+            // Typed HttpClient for your API client (this also registers IHttpClientFactory)
             services.AddHttpClient<IHbConfClientApiService, HbConfClientApiService>(
                 (sp, client) =>
                 {
@@ -67,6 +68,8 @@ namespace LoggerWPF
                     client.Timeout = TimeSpan.FromSeconds(15);
                     client.DefaultRequestHeaders.UserAgent.ParseAdd("HBWebLogger/1.0");
                 });
+
+
         }
 
         protected override void OnExit(ExitEventArgs e)
