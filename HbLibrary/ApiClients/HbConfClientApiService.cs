@@ -1,6 +1,6 @@
 namespace HBWebLogger.Services.ApiClients;
 
-public class HbConfClientApiService
+public class HbConfClientApiService : IHbConfClientApiService
 {
     private readonly HttpClient _http;
 
