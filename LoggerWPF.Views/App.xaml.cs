@@ -7,6 +7,7 @@ public partial class App : Application
 {
     
     public static IServiceProvider? ServiceProvider { get; private set; }
+    private IHost? _host;
     public App()
     {
         ServiceCollection services = new();
@@ -23,18 +24,28 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
-        var services = new ServiceCollection();
-        services.AddHttpClient("SharedClient", client =>
-        {
-            client.BaseAddress = new Uri("https://api.example.com/");
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
-        });
+
+        _host = Host.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(config =>
+            {
+                config.SetBasePath(Directory.GetCurrentDirectory());
+                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+            })
+            .ConfigureServices((ctx, services) => { AddServices(services); })
+            .Build();
+
+        var mainWindow = _host.Services.GetRequiredService<MainWindow>();
+        mainWindow.DataContext = _host.Services.GetRequiredService<MainViewModel>();
+        MainWindow = mainWindow;
+        mainWindow.Show();
+    }
+
+    private static void AddServices(IServiceCollection services)
+    {
+        services.AddSingleton<IHbConfClientApiService, HbConfClientApiService>();
         services.AddSingleton<MainViewModel>();
-        services.AddTransient<SettingsViewModel>();
-        services.AddTransient<HbConfClientApiService>();
-        
-        ServiceProvider = services.BuildServiceProvider();
-        var mainWindow = ServiceProvider.GetService<MainWindow>();
-        mainWindow?.Show();
+        services.AddSingleton<MainWindow>();
+        services.AddSingleton<SettingsViewModel>();
+        DIContainer.ServiceProvider = services.BuildServiceProvider();
     }
 }

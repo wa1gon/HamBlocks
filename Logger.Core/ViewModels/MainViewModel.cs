@@ -1,16 +1,17 @@
 using CommunityToolkit.Mvvm.Input;
+using LoggerWPF;
 
 namespace LoggerWPF.Core;
 
 public partial class MainViewModel : ObservableObject
 {
-    // private readonly SettingsViewModel _settingsViewModel;
+    private readonly SettingsViewModel _settingsViewModel;
     // private readonly HomeViewModel _homeViewModel;
 
     // public MainViewModel(SettingsViewModel settingsViewModel, HomeViewModel homeViewModel)
     public MainViewModel()
     {
-        // _settingsViewModel = settingsViewModel;
+        _settingsViewModel = new SettingsViewModel();
         // _homeViewModel = homeViewModel;
         // CurrentViewModel = _homeViewModel;
         CurrentViewModel = new HomeViewModel();
@@ -27,11 +28,10 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     void SettingsMenuClick()
     {
+        
         Console.WriteLine(nameof(SettingsMenuClick));
-        // CurrentViewModel = _settingsViewModel;
-        var httpclient = new HttpClient();
-        httpclient.BaseAddress = new Uri("http://localhost:5000/");
-        // CurrentViewModel = new SettingsViewModel(new HbConfClientApiService(httpclient));
+
+        CurrentViewModel = App.ServiceProvider?.GetRequiredService<SettingsViewModel>();
     }
 
     [RelayCommand]
