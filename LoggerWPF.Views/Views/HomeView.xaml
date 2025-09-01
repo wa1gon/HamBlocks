@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="LightYellow">
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Green">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <TextBlock Text="{Binding Message}" FontSize="20" Margin="0,0,0,10" />
 
         </StackPanel>        

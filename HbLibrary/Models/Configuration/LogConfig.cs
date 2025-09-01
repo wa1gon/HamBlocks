@@ -14,6 +14,7 @@ public record LogConfig
     public string County { get; set; } = string.Empty;
     public string CountyCode { get; set; } = string.Empty;
     public string State { get; set; } = string.Empty;
+    public string PostalCode { get; set; } = string.Empty;
     public int Dxcc { get; set; } = 0;
     public int ProKey { get; set; } = 0;
     public bool IsDirty { get; set; } = false; // No [NotMapped], configured in Fluent API

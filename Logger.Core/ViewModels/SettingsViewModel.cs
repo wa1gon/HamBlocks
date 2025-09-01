@@ -1,5 +1,8 @@
-
-
+using System.Collections.ObjectModel;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using HbLibrary.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace LoggerWPF.Core;
@@ -8,75 +11,135 @@ public partial class SettingsViewModel : ObservableObject
 {
     private readonly IHbConfClientApiService _apiService;
     private readonly ILogger<SettingsViewModel> _logger;
+
     public SettingsViewModel(IHbConfClientApiService apiService, ILogger<SettingsViewModel> logger)
     {
         _apiService = apiService;
         _logger = logger;
         Options = new ObservableCollection<string>();
+        Configs = new ObservableCollection<LogConfig>();
     }
 
     [ObservableProperty]
-    private string _message = "Settings View";
+    private string message = "Settings View";
 
     [ObservableProperty]
-    private ObservableCollection<string> _options;
+    private ObservableCollection<string> options;
 
     [ObservableProperty]
-    private string _selectedOption;
-    
+    private ObservableCollection<LogConfig> configs;
+
+    [ObservableProperty]
+    private bool isMainVisible = false;
+
+    [ObservableProperty]
+    private bool isRigControlsVisible = false;
+
+    [ObservableProperty]
+    private bool isSpotsVisible = false;
+
+    [ObservableProperty]
+    private string? selectedOption;
+
+    [ObservableProperty]
+    private LogConfig selectedConfig = new();
+
+    partial void OnSelectedOptionChanged(string? value)
+    {
+        if (value.IsNullOrEmpty()) return;
+        _logger.LogInformation("Selected option changed to: {Option}", value);
+        if (value.ToLower() == "new config")
+        {
+            IsMainVisible = true;
+            SelectedConfig = new LogConfig();
+        }
+        else if (value != "None")
+        {
+            var config = Configs.FirstOrDefault(c => c.ProfileName == value);
+            if (config != null)
+            {
+                SelectedConfig = config;
+                IsMainVisible = true;
+            }
+        }
+        else
+        {
+            IsMainVisible = false;
+            SelectedConfig = new LogConfig();
+        }
+    }
+
     public async Task InitializeAsync()
     {
         await LoadConfigsAsync();
     }
-
 
     private async Task LoadConfigsAsync()
     {
         try
         {
             var configs = await _apiService.GetAllAsync();
-            if (configs != null)
+            Options.Clear();
+            Configs.Clear();
+            Options.Add("None");
+            Options.Add("New Config");
+            if (configs.IsNullOrEmpty())
             {
-                Options.Clear();
-                foreach (var config in configs)
+                Message = "No configs found";
+            }
+            else
+            {
+                foreach (var cfg in configs)
                 {
-                    // Options.Add(config);
+                    Configs.Add(cfg);
+                    Options.Add(cfg.ProfileName);
                 }
                 SelectedOption = Options.FirstOrDefault() ?? "None";
                 Message = "Configs loaded successfully";
             }
-            else
-            {
-                Message = "No configs found";
-            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading configs: {ex.Message}");
+            _logger.LogError(ex, "Error loading configs");
             Message = "Failed to load configs";
         }
     }
 
-    partial void OnSelectedOptionChanged(string value)
+    [RelayCommand]
+    private async Task SaveConfig()
     {
-        Console.WriteLine($"Selected option changed to: {value}");
-        SaveOptionAsync(value).GetAwaiter().GetResult();
-    }
+        try
+        {
+            if (SelectedConfig == null || SelectedOption.IsNullOrEmpty())
+            {
+                Message = "No configuration selected";
+                return;
+            }
 
-    private async Task SaveOptionAsync(string option)
-    {
-        //todo complete save
-        // try
-        // {
-        //     // var config = new LogConfig { ProfileName = "Default", SelectedOption = option };
-        //     // await _apiService.AddAsync(config);
-        //     _message = "Option saved successfully";
-        // }
-        // catch (Exception ex)
-        // {
-        //     Console.WriteLine($"Error saving option: {ex.Message}");
-        //     _message = "Failed to save option";
-        // }
+            SelectedConfig.IsDirty = true;
+            if (SelectedOption.ToLower() == "new config")
+            {
+                if (string.IsNullOrWhiteSpace(SelectedConfig.ProfileName))
+                {
+                    Message = "Profile Name is required";
+                    return;
+                }
+                await _apiService.AddAsync(SelectedConfig);
+                Configs.Add(SelectedConfig);
+                Options.Add(SelectedConfig.ProfileName);
+                Message = "Configuration saved successfully";
+            }
+            else
+            {
+                await _apiService.UpdateAsync(SelectedConfig);
+                Message = "Configuration updated successfully";
+            }
+            SelectedOption = SelectedConfig.ProfileName;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error saving configuration");
+            Message = "Failed to save configuration";
+        }
     }
-    
 }
