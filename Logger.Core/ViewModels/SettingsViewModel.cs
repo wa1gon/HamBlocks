@@ -1,5 +1,7 @@
-
-
+using System.Collections.ObjectModel;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using HbLibrary.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace LoggerWPF.Core;
@@ -8,7 +10,9 @@ public partial class SettingsViewModel : ObservableObject
 {
     private readonly IHbConfClientApiService _apiService;
     private readonly ILogger<SettingsViewModel> _logger;
-    public SettingsViewModel(IHbConfClientApiService apiService, ILogger<SettingsViewModel> logger)
+
+    public SettingsViewModel(IHbConfClientApiService apiService,
+                             ILogger<SettingsViewModel> logger)
     {
         _apiService = apiService;
         _logger = logger;
@@ -16,68 +20,89 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private string _message = "Settings View";
+    private string message = "Settings View";
 
     [ObservableProperty]
-    private ObservableCollection<string> _options;
-
-    [ObservableProperty]
-    private string _selectedOption;
+    private ObservableCollection<string> options;
     
+    [ObservableProperty]
+    private ObservableCollection<LogConfig> configs;
+    
+    [ObservableProperty]
+    private bool isMainVisable = false;
+    
+    [ObservableProperty]
+    private bool isRigControlsVisable = false;
+    
+    [ObservableProperty]
+    private bool isSpotssVisable = false;
+    
+    [ObservableProperty]
+    private string? selectedOption;
+
+    [ObservableProperty] private LogConfig selectedConfig = new();
+
+    // Toolkit generates this hook for you. It must be exactly this name/signature.
+    partial void OnSelectedOptionChanged(string? value)
+    {
+        if (value.IsNullOrEmpty() == true) return;
+        if (value.ToLower() == "new config")
+        {
+
+            isMainVisable = true;
+        }
+
+        // fire-and-forget is fine here; log errors inside the async method
+        // _ = SaveOptionAsync(value);
+
+    }
+
     public async Task InitializeAsync()
     {
         await LoadConfigsAsync();
     }
-
 
     private async Task LoadConfigsAsync()
     {
         try
         {
             var configs = await _apiService.GetAllAsync();
-            if (configs != null)
+            Options.Clear();
+            Options.Add("None");
+            Options.Add("New Config");
+            if (configs.Any() == true) IsMainVisable = true;
+            if (configs is not null)
             {
-                Options.Clear();
-                Options.Add("New Config");
-                foreach (var config in configs)
+                foreach (var cfg in configs)
                 {
-                    // Options.Add(config);
+                    // add whatever display string you want
+                    Options.Add(cfg.ProfileName); // <-- assuming LogConfig.ProfileName
                 }
-                SelectedOption = Options.FirstOrDefault() ?? "None";
-                Message = "Configs loaded successfully";
             }
-            else
-            {
-                Message = "No configs found";
-            }
+
+            SelectedOption = Options.FirstOrDefault() ?? "None";
+            Message = "Configs loaded successfully";
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error loading configs: {ex.Message}");
+            _logger.LogError(ex, "Error loading configs");
             Message = "Failed to load configs";
         }
     }
 
-    partial void OnSelectedOptionChanged(string value)
-    {
-        Console.WriteLine($"Selected option changed to: {value}");
-        SaveOptionAsync(value).GetAwaiter().GetResult();
-    }
-
     private async Task SaveOptionAsync(string option)
     {
-        //todo complete save
-        // try
-        // {
-        //     // var config = new LogConfig { ProfileName = "Default", SelectedOption = option };
-        //     // await _apiService.AddAsync(config);
-        //     _message = "Option saved successfully";
-        // }
-        // catch (Exception ex)
-        // {
-        //     Console.WriteLine($"Error saving option: {ex.Message}");
-        //     _message = "Failed to save option";
-        // }
+        try
+        {
+            _logger.LogInformation("Saving option {Option}", option);
+            // TODO: call your API service as needed
+            // await _apiService.AddAsync(new LogConfig { ProfileName = option }, ct);
+            Message = "Option saved successfully";
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error saving option");
+            Message = "Failed to save option";
+        }
     }
-    
 }

@@ -1,24 +1,24 @@
 <UserControl x:Class="LoggerWPF.Views.SettingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"
              Loaded="OnLoading">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"  />
+            <RowDefinition Height="*" />
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-            <TextBlock Text="{Binding Message}" FontSize="20" Margin="0,0,0,10" />
-            <ComboBox ItemsSource="{Binding Options}"
-                      Width="150"
-            ></ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                    Background="Gray" >
 
+        <StackPanel>
+            <TextBlock Text="Settings Profile" FontSize="20" Margin="5,0,0,10"/>
+            <ComboBox Width="150" HorizontalAlignment="Left"
+                      Margin="5,0,0,10"
+                      ItemsSource="{Binding Options}"
+                      SelectedItem="{Binding SelectedOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <StackPanel Background="Aquamarine" Height="150" Margin="5,0,0,10"></StackPanel>
+            <StackPanel Background="Aquamarine" Height="100" Margin="5,0,0,10"></StackPanel>
+            <StackPanel Background="Aquamarine" Height="100" Margin="5,0,0,10"></StackPanel>
         </StackPanel>
+
+        <StackPanel Grid.Row="1" Background="Gray"/>
     </Grid>
 </UserControl>
