@@ -3,14 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:LoggerWPF.Core;assembly=LoggerWPF.Core"
+             xmlns:local="clr-namespace:Logger.Core;assembly=Logger.Core"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              Loaded="OnLoading"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <!-- <UserControl.Resources> -->
-    <!--     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" /> -->
-    <!-- </UserControl.Resources> -->
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <Border BorderBrush="Red" BorderThickness="1" DockPanel.Dock="Top">
+                                <AdornedElementPlaceholder/>
+                            </Border>
+                            <TextBlock Foreground="Red" FontSize="12" Text="{Binding [0].ErrorContent}" 
+                                       DockPanel.Dock="Bottom" Margin="0,2,0,0"/>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+    </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -23,56 +38,182 @@
                           Margin="0,0,0,10"
                           ItemsSource="{Binding Options}"
                           SelectedItem="{Binding SelectedOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <Grid Visibility="{Binding IsMainVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Profile Name:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.ProfileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="0" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="Callsign:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.Callsign, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="1" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="Station Name:" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.StationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="2" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="Grid Square:" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.GridSquare, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="3" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="City:" Grid.Row="4" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="4" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="County:" Grid.Row="5" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="5" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="County Code:" Grid.Row="6" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.CountyCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="6" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="State:" Grid.Row="7" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="7" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="DXCC:" Grid.Row="8" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.Dxcc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="8" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBlock Text="Pro Key:" Grid.Row="9" Grid.Column="0" Margin="0,0,10,5"/>
-                    <TextBox Text="{Binding SelectedConfig.ProKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Grid.Row="9" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                </Grid>
-                <Button Content="Save" Command="{Binding SaveConfigCommand}" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0"/>
-                <TextBlock Text="{Binding Message}" FontSize="14" Margin="0,10,0,0"/>
+                <TabControl Visibility="{Binding IsMainVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,0,0,10">
+                    <!-- LogConfig Tab -->
+                    <TabItem Header="Profile">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Profile Name:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.ProfileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+                            <TextBlock Text="Callsign:" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.Callsign, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="0" Grid.Column="4" Margin="0,0,0,5"/>
+                            <TextBlock Text="Station Name:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.StationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+                            <TextBlock Text="Grid Square:" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.GridSquare, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="1" Grid.Column="4" Margin="0,0,0,5"/>
+                            <TextBlock Text="City:" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+                            <TextBlock Text="County:" Grid.Row="2" Grid.Column="3" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.County, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="2" Grid.Column="4" Margin="0,0,0,5"/>
+                            <TextBlock Text="County Code:" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.CountyCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"/>
+                            <TextBlock Text="State:" Grid.Row="3" Grid.Column="3" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="3" Grid.Column="4" Margin="0,0,0,5"/>
+                            <TextBlock Text="DXCC:" Grid.Row="4" Grid.Column="0" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.Dxcc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
+                            <TextBlock Text="Pro Key:" Grid.Row="4" Grid.Column="3" Margin="0,0,10,5"/>
+                            <TextBox Text="{Binding SelectedConfig.ProKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                     Grid.Row="4" Grid.Column="4" Margin="0,0,0,5"/>
+                            <Button Content="Save Profile" Command="{Binding SaveConfigCommand}" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                                    IsEnabled="{Binding _validationErrors.Count, Converter={StaticResource InverseBooleanConverter}, ConverterParameter=Count}"/>
+                        </Grid>
+                    </TabItem>
+                    <!-- CallBookConf Tab -->
+                    <TabItem Header="Call Book">
+                        <StackPanel>
+                            <ComboBox Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"
+                                      ItemsSource="{Binding CallBookConfigs}"
+                                      SelectedItem="{Binding SelectedCallBook, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Name"/>
+                            <Button Content="Add New Call Book" Command="{Binding AddNewCallBookCommand}" Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                            <Grid Visibility="{Binding SelectedCallBook, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Host:" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.Host, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="4" Margin="0,0,0,5"/>
+                                <TextBlock Text="Port:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Username:" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="4" Margin="0,0,0,5"/>
+                                <TextBlock Text="Password:" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="API Key:" Grid.Row="2" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedCallBook.ApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="2" Grid.Column="4" Margin="0,0,0,5"/>
+                                <Button Content="Save Call Book" Command="{Binding SaveCallBookCommand}" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                        Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                        IsEnabled="{Binding _validationErrors.Count, Converter={StaticResource InverseBooleanConverter}, ConverterParameter=Count}"/>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <!-- RigCtlConf Tab -->
+                    <TabItem Header="Rig Control">
+                        <StackPanel>
+                            <ComboBox Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"
+                                      ItemsSource="{Binding RigCtlConfigs}"
+                                      SelectedItem="{Binding SelectedRigCtl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Name"/>
+                            <Button Content="Add New Rig Control" Command="{Binding AddNewRigCtlCommand}" Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                            <Grid Visibility="{Binding SelectedRigCtl, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedRigCtl.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Host:" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedRigCtl.Host, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="4" Margin="0,0,0,5"/>
+                                <TextBlock Text="Port:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedRigCtl.Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Tuner Name:" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedRigCtl.TunerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="4" Margin="0,0,0,5"/>
+                                <Button Content="Save Rig Control" Command="{Binding SaveRigCtlCommand}" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                        IsEnabled="{Binding _validationErrors.Count, Converter={StaticResource InverseBooleanConverter}, ConverterParameter=Count}"/>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <!-- DxClusterConf Tab -->
+                    <TabItem Header="DX Cluster">
+                        <StackPanel>
+                            <ComboBox Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"
+                                      ItemsSource="{Binding DxClusterConfigs}"
+                                      SelectedItem="{Binding SelectedDxCluster, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Host"/>
+                            <Button Content="Add New DX Cluster" Command="{Binding AddNewDxClusterCommand}" Width="150" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                            <Grid Visibility="{Binding SelectedDxCluster, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Host:" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedDxCluster.Host, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Port:" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedDxCluster.Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="0" Grid.Column="4" Margin="0,0,0,5"/>
+                                <TextBlock Text="Username:" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedDxCluster.UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+                                <TextBlock Text="Password:" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
+                                <TextBox Text="{Binding SelectedDxCluster.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                         Grid.Row="1" Grid.Column="4" Margin="0,0,0,5"/>
+                                <Button Content="Save DX Cluster" Command="{Binding SaveDxClusterCommand}" Width="100" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                        IsEnabled="{Binding _validationErrors.Count, Converter={StaticResource InverseBooleanConverter}, ConverterParameter=Count}"/>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+                <TextBlock Text="{Binding Message}" FontSize="14" Margin="0,10,0,0" Foreground="Red"/>
             </StackPanel>
         </ScrollViewer>
         <StackPanel Grid.Row="1" Background="Gray"/>
