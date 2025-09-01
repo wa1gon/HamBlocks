@@ -1,17 +1,4 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using HbLibrary.Extensions;
-using Microsoft.Extensions.Logging;
-using HamBlocks.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace LoggerWPF.Core;
+namespace Logger.Core;
 
 public partial class SettingsViewModel : ObservableObject, IDataErrorInfo
 {

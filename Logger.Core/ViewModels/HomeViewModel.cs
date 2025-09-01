@@ -1,4 +1,4 @@
-namespace LoggerWPF.Core;
+namespace Logger.Core;
 
 public partial class HomeViewModel : ObservableObject
 {

@@ -1,9 +1,3 @@
-// using Logger.Core.Validation;
-
-
-using System.Collections;
-using System.Runtime.CompilerServices;
-
 namespace LoggerWPF.Core.Validation;
 
 public class ValidateViewModeBase : ViewModelBase, INotifyDataErrorInfo
