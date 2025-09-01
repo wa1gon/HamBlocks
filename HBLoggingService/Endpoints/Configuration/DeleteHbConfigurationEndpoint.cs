@@ -17,6 +17,8 @@ public class DeleteHbConfigurationEndpoint : ConfEndpointBase
 
     public override async Task HandleAsync(LogConfig? req, CancellationToken ct)
     {
+        if (req is null) return;
+        
         var id = Route<string>("id");
         await _service.DeleteAsync(req.Id);
         await SendOkAsync(ct);

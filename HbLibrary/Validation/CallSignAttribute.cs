@@ -2,7 +2,7 @@ namespace HBLoggingService.Validators;
 
 public class CallsignAttribute : ValidationAttribute
 {
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {
         var callsign = value as string;
         if (string.IsNullOrWhiteSpace(callsign))
