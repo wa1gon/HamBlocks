@@ -38,6 +38,7 @@ public partial class SettingsViewModel : ObservableObject
             if (configs != null)
             {
                 Options.Clear();
+                Options.Add("New Config");
                 foreach (var config in configs)
                 {
                     // Options.Add(config);

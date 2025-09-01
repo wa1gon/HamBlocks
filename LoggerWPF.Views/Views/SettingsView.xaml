@@ -6,8 +6,18 @@
              mc:Ignorable="d"
              Loaded="OnLoading">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <TextBlock Text="{Binding Message}" FontSize="20" Margin="0,0,0,10" />
+            <ComboBox ItemsSource="{Binding Options}"
+                      Width="150"
+            ></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Background="Gray" >
 
         </StackPanel>
     </Grid>
