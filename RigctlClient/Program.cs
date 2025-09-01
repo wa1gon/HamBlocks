@@ -75,8 +75,7 @@ internal class Program
         //     Console.WriteLine("No matching DXCC found for call sign 'wa1gon'.");
         // });
 
-        if (false)
-        {
+#if false
             var HamQthprovider = host.Services.GetRequiredService<HamQthLookupProvider>();
             var result1 = await HamQthprovider.LookupCallSignAsync("wa1gon");
             var result2 = await HamQthprovider.LookupCallSignAsync("kb1etc");
@@ -99,7 +98,7 @@ internal class Program
 
             var dxccrc = await HamQthprovider.LookupDxccByCallAsync("wa1gon");
             Console.WriteLine($"DXCC: {dxccrc?.CallSign} Name: {dxccrc?.Name} Continent: {dxccrc?.Continent} ");
-        }
+#endif
     }
 
     private static async Task DxClusterTest()

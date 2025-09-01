@@ -29,6 +29,7 @@ public partial class SettingsViewModel : ObservableObject
         await LoadConfigsAsync();
     }
 
+
     private async Task LoadConfigsAsync()
     {
         try
@@ -42,17 +43,17 @@ public partial class SettingsViewModel : ObservableObject
                     // Options.Add(config);
                 }
                 SelectedOption = Options.FirstOrDefault() ?? "None";
-                _message = "Configs loaded successfully";
+                Message = "Configs loaded successfully";
             }
             else
             {
-                _message = "No configs found";
+                Message = "No configs found";
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error loading configs: {ex.Message}");
-            _message = "Failed to load configs";
+            Message = "Failed to load configs";
         }
     }
 
@@ -64,16 +65,18 @@ public partial class SettingsViewModel : ObservableObject
 
     private async Task SaveOptionAsync(string option)
     {
-        try
-        {
-            // var config = new LogConfig { ProfileName = "Default", SelectedOption = option };
-            // await _apiService.AddAsync(config);
-            _message = "Option saved successfully";
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error saving option: {ex.Message}");
-            _message = "Failed to save option";
-        }
+        //todo complete save
+        // try
+        // {
+        //     // var config = new LogConfig { ProfileName = "Default", SelectedOption = option };
+        //     // await _apiService.AddAsync(config);
+        //     _message = "Option saved successfully";
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine($"Error saving option: {ex.Message}");
+        //     _message = "Failed to save option";
+        // }
     }
+    
 }
