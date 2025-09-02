@@ -13,7 +13,7 @@ public partial class App : Application
     {
         // Set up dependency injection
         var collection = new ServiceCollection();
-        collection.AddCommonServices(); // Your service registration method
+        collection.AddLogger(); 
         var services = collection.BuildServiceProvider();
 
         // Resolve the ViewModel
