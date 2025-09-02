@@ -1,8 +1,4 @@
-namespace LoggerWPF.Core;
-
-using System;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading;
+namespace Logger.Core;
 
 /// <summary>
 /// Minimal service-locator wrapper (use sparingly).

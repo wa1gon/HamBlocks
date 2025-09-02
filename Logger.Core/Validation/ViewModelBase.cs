@@ -1,6 +1,3 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
 namespace LoggerWPF.Core.Validation;
 
 public class ViewModelBase : INotifyPropertyChanged
