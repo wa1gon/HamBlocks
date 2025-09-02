@@ -1,7 +1,8 @@
 using CommunityToolkit.Mvvm.Input;
-using LoggerWPF;
+using LoggerWPF.Core;
 
-namespace LoggerWPF.Core;
+
+namespace Logger.Core;
 
 public partial class MainViewModel : ObservableObject
 {

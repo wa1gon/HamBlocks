@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Converter\"/>
+        <Folder Include="Converters\" />
         <Folder Include="Data\"/>
         <Folder Include="Model\"/>
     </ItemGroup>
