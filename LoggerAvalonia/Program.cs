@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using System;
+using LoggerAvalonia;
 
 namespace LoggerAvalonia;
 internal sealed class Program

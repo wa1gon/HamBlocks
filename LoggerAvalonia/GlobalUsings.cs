@@ -1,0 +1,9 @@
+global using LoggerAvalonia.Extensions;
+global using LoggerAvalonia.Views;
+global using Avalonia;
+global using Avalonia.Controls;
+global using Avalonia.Controls.ApplicationLifetimes;
+global using Avalonia.Markup.Xaml;
+global using Microsoft.Extensions.DependencyInjection;
+global using Logger.Core;
+global using LoggerAvalonia.ViewModels;
