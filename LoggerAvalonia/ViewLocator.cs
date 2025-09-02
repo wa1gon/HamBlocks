@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using LoggerAvalonia.ViewModels;
 using System;
 
 namespace LoggerAvalonia;
