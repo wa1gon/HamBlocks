@@ -1,7 +1,4 @@
-﻿using Avalonia;
-using System;
-
-namespace realworld_avalonia;
+﻿namespace LoggerAvalonia.View;
 
 sealed class Program
 {

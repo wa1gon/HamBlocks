@@ -1,6 +1,4 @@
-using Avalonia.Controls;
 using Avalonia.Input;
-using realworld_avalonia.ViewModels;
 
 namespace realworld_avalonia.Views;
 

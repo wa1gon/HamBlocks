@@ -1,9 +1,4 @@
-using System;
-using Avalonia.Controls;
-using Avalonia.Controls.Templates;
-using realworld_avalonia.ViewModels;
-
-namespace realworld_avalonia;
+namespace Logger;
 
 public class ViewLocator : IDataTemplate
 {
@@ -14,7 +9,7 @@ public class ViewLocator : IDataTemplate
             return null;
         
         var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-        // var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.InvariantCulture);
+
         var type = Type.GetType(name);
 
         if (type != null)

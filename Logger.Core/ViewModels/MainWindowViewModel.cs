@@ -1,9 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using realworld_avalonia.Data;
-using realworld_avalonia.Factories;
+﻿
+using Logger.Core.Factories;
 
-namespace realworld_avalonia.ViewModels;
+namespace Logger.Core.ViewModel;
 
 public partial class MainWindowViewModel : ViewModelBase
 {

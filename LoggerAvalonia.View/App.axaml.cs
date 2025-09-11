@@ -1,16 +1,8 @@
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core.Plugins;
-using System.Linq;
-using Avalonia.Markup.Xaml;
-using realworld_avalonia.ViewModels;
-using realworld_avalonia.Views;
-using Microsoft.Extensions.DependencyInjection;
-using realworld_avalonia.Factories;
-using System;
-using realworld_avalonia.Data;
 
-namespace realworld_avalonia;
+
+using LoggerAvalonia.View.Factories;
+
+namespace LoggerAvalonia.View;
 
 public partial class App : Application
 {

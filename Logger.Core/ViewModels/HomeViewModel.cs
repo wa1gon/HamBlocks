@@ -1,7 +1,10 @@
-namespace Logger.Core;
+namespace Logger.Core.ViewModel;
 
-public partial class HomeViewModel : ObservableObject
+public partial class HomeViewModel : PageViewModel
 {
-    [ObservableProperty] 
-    private string message = "Home View";
+  public string Test { get; set; } = "Home";
+  public HomeViewModel()
+  {
+      PageName = ApplicationPageNames.Home;
+  }
 }

@@ -1,5 +1,6 @@
-namespace realworld_avalonia.Data;
+namespace Logger.Core.ViewModel.Data;
 
+// TODO: This file shouldn't be here, but it is used by the Views Models
 public enum ApplicationPageNames
 {
   unknown,

@@ -31,7 +31,7 @@
             DIContainer.Initialize(_host.Services);
             
             var mainWindow = DIContainer.Get<MainWindow>();
-            mainWindow.DataContext = DIContainer.Get<MainViewModel>();
+            // mainWindow.DataContext = DIContainer.Get<MainViewModel>();
 
             MainWindow = mainWindow;
             mainWindow.Show();
@@ -46,8 +46,8 @@
                 .ValidateOnStart();
 
             // ViewModels / Windows
-            services.AddSingleton<SettingsViewModel>();
-            services.AddSingleton<MainViewModel>();
+            // services.AddSingleton<SettingsViewModel>();
+            // services.AddSingleton<MainViewModel>();
             services.AddSingleton<MainWindow>();
 
             // Typed HttpClient for your API client (this also registers IHttpClientFactory)

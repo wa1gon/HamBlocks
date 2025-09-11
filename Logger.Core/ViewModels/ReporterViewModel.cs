@@ -1,6 +1,6 @@
-using realworld_avalonia.Data;
 
-namespace realworld_avalonia.ViewModels;
+
+namespace Logger.Core.ViewModel;
 
 public partial class ReporterViewModel : PageViewModel
 {

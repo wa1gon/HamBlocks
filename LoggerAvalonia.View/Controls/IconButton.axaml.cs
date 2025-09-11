@@ -1,6 +1,3 @@
-using Avalonia;
-using Avalonia.Controls;
-
 namespace realworld_avalonia.Controls;
 
 public class IconButton : Button
