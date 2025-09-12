@@ -57,5 +57,6 @@
     &lt;ProjectFile&gt;BF8F9109-E485-42B7-B2E8-69B07FDF337E/f:AdifWriteTest.cs&lt;/ProjectFile&gt;&#xD;
     &lt;ProjectFile&gt;E08D307A-A3B4-4A28-942F-759AA2BD86E5/f:TestForDatabase.cs&lt;/ProjectFile&gt;&#xD;
     &lt;Project Location="C:\github\HamBlocks\HbLibrary.Test" Presentation="&amp;lt;HbLibrary.Test&amp;gt;" /&gt;&#xD;
+    &lt;Project Location="C:\github\HamBlocks\HbLibrary.Test" Presentation="&amp;lt;Libraries&amp;gt;\&amp;lt;HbLibrary.Test&amp;gt;" /&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
