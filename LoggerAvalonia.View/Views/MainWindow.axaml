@@ -1,0 +1,103 @@
+<Window 
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="clr-namespace:Logger.Core.ViewModel;assembly=Logger.Core"
+	mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="600"
+	x:Class="realworld_avalonia.Views.MainWindow"
+	x:DataType="vm:MainWindowViewModel"
+	Icon="/Assets/avalonia-logo.ico"
+	Title="realworld_avalonia"
+	MinWidth="1400" Width="1400"
+	MinHeight="800" Height="800"
+>
+	<!-- FontFamily="{DynamicResource AkkoPro}" -->
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+			 to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<Grid Background="{DynamicResource PrimaryBackground}" ColumnDefinitions="Auto, *">
+		<ContentControl Grid.Column="1" Content="{Binding CurrentView}">
+		</ContentControl>
+
+		<Border Grid.Column="0" Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}">
+			<Grid RowDefinitions="*, Auto">
+				<StackPanel Spacing="12">
+					<Image PointerPressed="ImageOnPressed" Source="{SvgImage /Assets/Images/logo.svg}" Width="220" IsVisible="{Binding IsExpanded}"/>
+					<Image PointerPressed="ImageOnPressed" Source="{SvgImage /Assets/Images/icon.svg}" Width="22" IsVisible="{Binding !IsExpanded}"/>
+
+					<IconButton IconText="&#xe7f2;" Command="{Binding GoToHomeCommand}"
+						Classes="subtle" Classes.active="{Binding HomeViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="Home"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding HomeViewIsActive}" Command="{Binding GoToHomeCommand}">
+						<StackPanel Orientation="Horizontal">
+							<- <Image Source="{SvgImage Assets/Images/logo.svg}" Width="20"/> ->
+							<- <Label FontFamily="{DynamicResource PhosphorFill}" Classes="icon" Content="&#xE2C2;"/> ->
+							<Label Classes="icon" Content="&#xe2c2;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="Home"/>
+						</StackPanel>
+					</Button> -->
+					<IconButton IconText="&#xe346;" Command="{Binding GoToProcessCommand}"
+						Classes="subtle" Classes.active="{Binding ProcessViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="Process"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding ProcessViewIsActive}" Command="{Binding GoToProcessCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xe346;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="Process"/>
+						</StackPanel>
+					</Button> -->
+					<IconButton IconText="&#xe7f2;" Command="{Binding GoToActionsCommand}"
+						Classes="subtle" Classes.active="{Binding ActionsViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="Actions"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding ActionsViewIsActive}" Command="{Binding GoToActionsCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xe7f2;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="Actions"/>
+						</StackPanel>
+					</Button> -->
+					<IconButton IconText="&#xe3ee;" Command="{Binding GoToMacrosCommand}"
+						Classes="subtle" Classes.active="{Binding MacrosViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="Macros"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding MacrosViewIsActive}" Command="{Binding GoToMacrosCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xe3ee;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="Macros"/>
+						</StackPanel>
+					</Button> -->
+					<IconButton IconText="&#xeb7a;" Command="{Binding GoToReporterCommand}"
+						Classes="subtle" Classes.active="{Binding ReporterViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="Reporter"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding ReporterViewIsActive}" Command="{Binding GoToReporterCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xeb7a;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="Reporter"/>
+						</StackPanel>
+					</Button> -->
+					<IconButton IconText="&#xe03a;" Command="{Binding GoToHistoryCommand}"
+						Classes="subtle" Classes.active="{Binding HistoryViewIsActive}" HorizontalAlignment="Stretch" >
+						<Label IsVisible="{Binding IsExpanded}" Content="History"/>
+					</IconButton>
+					<!-- <Button HorizontalAlignment="Stretch" Classes.active="{Binding HistoryViewIsActive}" Command="{Binding GoToHistoryCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Label Classes="icon" Content="&#xe03a;"/>
+							<Label Classes="akko" IsVisible="{Binding IsExpanded}" Content="History"/>
+						</StackPanel>
+					</Button> -->
+				</StackPanel>
+
+				<Button Grid.Row="1" Classes="subtle transparent" Classes.active="{Binding SettingsViewIsActive}" Command="{Binding GoToSettingsCommand}">
+					<Label Classes="icon-only" Content="&#xe272;"/>
+				</Button>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>

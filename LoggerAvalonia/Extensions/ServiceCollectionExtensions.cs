@@ -7,7 +7,7 @@ public static class ServiceCollectionExtensions
         // collection.AddSingleton<IRepository, Repository>();
         // collection.AddTransient<IBusinessService, BusinessService>();
         collection.AddTransient<MainWindowViewModel>();
-        collection.AddTransient<MainViewModel>();
+        // collection.AddTransient<MainViewModel>();
         return collection;
     }
 }

@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.*" />
       <PackageReference Include="HttpClientFactory" Version="1.0.5" />
     </ItemGroup>
 
