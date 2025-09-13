@@ -23,12 +23,17 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0"/>
 
     </ItemGroup>
-
+    
     <ItemGroup>
       <Folder Include="Data\" />
       <Folder Include="ViewModels\" />
     </ItemGroup>
-
+    
+    <ItemGroup>
+        <Folder Include="Models\" />
+        <AvaloniaResource Include="Assets\**" />
+    </ItemGroup>
+    
     <ItemGroup>
       <ProjectReference Include="..\Logger.Core\Logger.Core.csproj" />
     </ItemGroup>

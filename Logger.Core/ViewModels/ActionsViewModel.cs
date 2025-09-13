@@ -2,7 +2,7 @@
 
 
 
-namespace Logger.Core.ViewModel;
+namespace Logger.Core.ViewModels;
 
 public partial class ActionsViewModel : PageViewModel
 {

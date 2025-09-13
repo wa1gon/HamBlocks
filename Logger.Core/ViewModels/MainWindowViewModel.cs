@@ -1,7 +1,5 @@
 ﻿
-using Logger.Core.Factories;
-
-namespace Logger.Core.ViewModel;
+namespace Logger.Core.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
@@ -29,12 +27,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public bool HistoryViewIsActive => CurrentView.PageName == ApplicationPageNames.History;
     public bool SettingsViewIsActive => CurrentView.PageName == ApplicationPageNames.Settings;
 
-    // private readonly HomeViewModel _home;
-    // private readonly ProcessViewModel _process;
-    // private readonly ActionsViewModel _actions;
-    // private readonly MacrosViewModel _macros;
-    // private readonly ReporterViewModel _reporter;
-    // private readonly HistoryViewModel _history;
 
     public MainWindowViewModel(PageFactory pageFactory)
     {

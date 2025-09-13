@@ -1,5 +1,5 @@
 
-namespace Logger.Core.ViewModel;
+namespace Logger.Core.ViewModels;
 
 public partial class MacrosViewModel : PageViewModel
 {

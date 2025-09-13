@@ -1,6 +1,6 @@
 ﻿
 
-namespace Logger.Core.ViewModel;
+namespace Logger.Core.ViewModels;
 
 public class ViewModelBase : ObservableObject
 {

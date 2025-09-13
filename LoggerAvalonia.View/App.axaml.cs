@@ -1,6 +1,4 @@
-
-
-using LoggerAvalonia.View.Factories;
+using Logger.Core.Factories;
 
 namespace LoggerAvalonia.View;
 
