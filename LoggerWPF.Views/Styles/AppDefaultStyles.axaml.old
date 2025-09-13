@@ -2,43 +2,43 @@
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 >
-	<Design.PreviewWith>
-		<Border Padding="20" Width="300" Background="{DynamicResource PrimaryBackgroundGradient}">
-			<StackPanel Spacing="15">
-
-        <Button Content="Home" />
-        <Button Classes="small" Content="Small" />
-        <Button Classes="subtle" Content="Home" />
-        <Button Classes="outline" Content="Home" />
-        <Button Classes="alert" Content="Home" />
-
-				<!-- <Button>
-					<Label Classes="akko">Home</Label>
-				</Button>
-				<Button HorizontalAlignment="Stretch">
-					<Label Classes="akko">Home</Label>
-				</Button>
-				<Button HorizontalAlignment="Stretch">
-					<StackPanel Orientation="Horizontal">
-						<Label Classes="icon">&#xe2c2;</Label>
-						<Label Classes="akko">Home</Label>
-					</StackPanel>
-				</Button> -->
-
-        <!-- <Button>Home</Button> -->
-        <!-- <Button FontFamily="{DynamicResource AkkoPro}">Home</Button> -->
-        <IconButton IconText="&#xe2c2;" Content="Home" HorizontalAlignment="Stretch"/>
-
-				<Button>
-					<Label Classes="icon-only" >&#xe272;</Label>
-				</Button>
-				<Button Classes="subtle transparent">
-					<Label Classes="icon-only" >&#xe272;</Label>
-				</Button>
-
-			</StackPanel>
-		</Border>
-	</Design.PreviewWith>
+	<!-- <Design.PreviewWith> -->
+	<!-- 	<Border Padding="20" Width="300" Background="{DynamicResource PrimaryBackgroundGradient}"> -->
+	<!-- 		<StackPanel Spacing="15"> -->
+ <!-- -->
+ <!--        <Button Content="Home" /> -->
+ <!--        <Button Classes="small" Content="Small" /> -->
+ <!--        <Button Classes="subtle" Content="Home" /> -->
+ <!--        <Button Classes="outline" Content="Home" /> -->
+ <!--        <Button Classes="alert" Content="Home" /> -->
+ <!-- -->
+	<!-- 			<!-- <Button> -->
+	<!-- 				<Label Classes="akko">Home</Label> -->
+	<!-- 			</Button> -->
+	<!-- 			<Button HorizontalAlignment="Stretch"> -->
+	<!-- 				<Label Classes="akko">Home</Label> -->
+	<!-- 			</Button> -->
+	<!-- 			<Button HorizontalAlignment="Stretch"> -->
+	<!-- 				<StackPanel Orientation="Horizontal"> -->
+	<!-- 					<Label Classes="icon">&#xe2c2;</Label> -->
+	<!-- 					<Label Classes="akko">Home</Label> -->
+	<!-- 				</StackPanel> -->
+	<!-- 			</Button> --> -->
+ <!-- -->
+ <!--        ~1~ <Button>Home</Button> @1@ -->
+ <!--        ~1~ <Button FontFamily="{DynamicResource AkkoPro}">Home</Button> @1@ -->
+ <!--        <IconButton IconText="&#xe2c2;" Content="Home" HorizontalAlignment="Stretch"/> -->
+ <!-- -->
+	<!-- 			<Button> -->
+	<!-- 				<Label Classes="icon-only" >&#xe272;</Label> -->
+	<!-- 			</Button> -->
+	<!-- 			<Button Classes="subtle transparent"> -->
+	<!-- 				<Label Classes="icon-only" >&#xe272;</Label> -->
+	<!-- 			</Button> -->
+ <!-- -->
+	<!-- 		</StackPanel> -->
+	<!-- 	</Border> -->
+	<!-- </Design.PreviewWith> -->
 
 	<Style Selector="Window">
 		<!-- <Setter Property="FontFamily" Value="{DynamicResource AkkoPro}"/> -->

@@ -42,4 +42,9 @@
       <Content Include="Assets\HamBlocksBG.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Styles\AppDefaultStyles.axaml" />
+      <OriginalXamlResource Include="Styles\AppDefaultStyles.axaml" />
+    </ItemGroup>
+
 </Project>
