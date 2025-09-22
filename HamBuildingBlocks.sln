@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Test", "Logger.Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerAvalonia", "LoggerAvalonia\LoggerAvalonia.csproj", "{2EEE0AA1-FA52-4445-971C-CF92C47CB7EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerAvalonia.Native", "LoggerAvalonia.Native\LoggerAvalonia.Native.csproj", "{31258D12-0E69-4216-9F9A-7111CE658822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApplication1", "AvaloniaApplication1\AvaloniaApplication1.csproj", "{F8DD140B-E5CA-404F-9684-CDAA725CFF48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{2EEE0AA1-FA52-4445-971C-CF92C47CB7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EEE0AA1-FA52-4445-971C-CF92C47CB7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EEE0AA1-FA52-4445-971C-CF92C47CB7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31258D12-0E69-4216-9F9A-7111CE658822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31258D12-0E69-4216-9F9A-7111CE658822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31258D12-0E69-4216-9F9A-7111CE658822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31258D12-0E69-4216-9F9A-7111CE658822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DD140B-E5CA-404F-9684-CDAA725CFF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DD140B-E5CA-404F-9684-CDAA725CFF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DD140B-E5CA-404F-9684-CDAA725CFF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DD140B-E5CA-404F-9684-CDAA725CFF48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +120,8 @@ Global
 		{F18AADCB-A6C6-4D3F-AB65-2FDE2228249A} = {9E156353-5A88-46F7-A239-188C7155FD57}
 		{62EBE8B5-540C-42C9-8A60-C7F30810FEC8} = {9E156353-5A88-46F7-A239-188C7155FD57}
 		{2EEE0AA1-FA52-4445-971C-CF92C47CB7EC} = {9E156353-5A88-46F7-A239-188C7155FD57}
+		{31258D12-0E69-4216-9F9A-7111CE658822} = {9E156353-5A88-46F7-A239-188C7155FD57}
+		{F8DD140B-E5CA-404F-9684-CDAA725CFF48} = {9E156353-5A88-46F7-A239-188C7155FD57}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A468C76E-8469-4A58-93F8-7B435A30DB6D}

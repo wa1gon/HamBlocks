@@ -7,8 +7,6 @@ public static class StringsExtensions
     public static bool Cmp(this string source, string target, bool ignoreCase = true, CultureInfo? culture = null)
     {
         if (ReferenceEquals(source, target)) return true;
-
-        // One is null, the other isn't
         if (source is null || target is null) return false;
         
         if (culture is null)
@@ -19,13 +17,8 @@ public static class StringsExtensions
         }
         else
         {
-            // Culture-aware path
             var options = ignoreCase ? CompareOptions.IgnoreCase
                 : CompareOptions.None;
-
-            // If you want to also ignore accents/diacritics, OR in:
-            // options |= CompareOptions.IgnoreNonSpace;
-
             return culture.CompareInfo.Compare(source, target, options) == 0;           
         }
     }
